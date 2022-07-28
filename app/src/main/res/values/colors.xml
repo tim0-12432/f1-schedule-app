@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="red_auburn">#9b2926</color>
+    <color name="red_cg">#e13e3b</color>
+    <color name="red_rosso_corsa">#e30000</color>
+    <color name="black_raisin_dark">#282431</color>
+    <color name="black_raisin_light">#33303b</color>
+    <color name="black_xiketic_dark">#15111e</color>
+    <color name="black_xitecix_light">#1c1824</color>
+    <color name="black_jet">#373440</color>
+    <color name="silver_timberwolf">#d8d1cf</color>
+    <color name="silver_metallic">#b7b1b4</color>
+    <color name="white_cultured">#f8f7f7</color>
+</resources>

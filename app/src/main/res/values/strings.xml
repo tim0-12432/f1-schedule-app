@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Formula 1 App</string>
+    <string name="title_circuits">Circuits</string>
+    <string name="title_schedule">Schedule</string>
+    <string name="title_world_cup">World Cup</string>
+    <string name="nationality_thai">Thai</string>
+    <string name="nationality_german">German</string>
+    <string name="nationality_default">Unknown</string>
+    <string name="nationality_russian">Russian</string>
+    <string name="nationality_british">British</string>
+    <string name="nationality_australian">Australian</string>
+    <string name="nationality_mexican">Mexican</string>
+    <string name="nationality_monegasque">Monegasque</string>
+    <string name="nationality_dutch">Dutch</string>
+    <string name="nationality_danish">Danish</string>
+    <string name="nationality_austrian">Austrian</string>
+    <string name="nationality_canadian">Canadian</string>
+    <string name="nationality_finnish">Finnish</string>
+    <string name="nationality_french">French</string>
+    <string name="nationality_italian">Italian</string>
+    <string name="nationality_spanish">Spanish</string>
+    <string name="schedule_not_found">Schedule could not be found!</string>
+</resources>

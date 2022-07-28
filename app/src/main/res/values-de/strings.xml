@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Formel 1 App</string>
+    <string name="title_circuits">Strecken</string>
+    <string name="title_schedule">Zeitplan</string>
+    <string name="title_world_cup">Weltmeisterschaft</string>
+    <string name="nationality_thai">Thailänder</string>
+    <string name="nationality_german">Deutscher</string>
+    <string name="nationality_default">Unbekannt</string>
+    <string name="nationality_russian">Russe</string>
+    <string name="nationality_british">Brite</string>
+    <string name="nationality_australian">Australier</string>
+    <string name="nationality_mexican">Mexikaner</string>
+    <string name="nationality_monegasque">Monegasse</string>
+    <string name="nationality_spanish">Spanier</string>
+    <string name="nationality_dutch">Holländer</string>
+    <string name="nationality_finnish">Finne</string>
+    <string name="nationality_french">Franzose</string>
+    <string name="nationality_italian">Italiener</string>
+    <string name="nationality_canadian">Kanadier</string>
+    <string name="nationality_austrian">Österreicher</string>
+    <string name="nationality_danish">Däne</string>
+    <string name="schedule_not_found">Zeitplan konnte nicht gefunden werden!</string>
+</resources>

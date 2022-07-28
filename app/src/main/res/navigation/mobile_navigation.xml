@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_schedule">
+
+    <fragment
+        android:id="@+id/navigation_circuits"
+        android:name="de.tim0_12432.f1_schedule_app.ui.circuit.CircuitsFragment"
+        android:label="@string/title_circuits"
+        tools:layout="@layout/fragment_circuits" />
+
+    <fragment
+        android:id="@+id/navigation_schedule"
+        android:name="de.tim0_12432.f1_schedule_app.ui.schedule.ScheduleFragment"
+        android:label="@string/title_schedule"
+        tools:layout="@layout/fragment_schedule" />
+
+    <fragment
+        android:id="@+id/navigation_world_cup"
+        android:name="de.tim0_12432.f1_schedule_app.ui.world_cup.WorldCupFragment"
+        android:label="@string/title_world_cup"
+        tools:layout="@layout/fragment_world_cup" />
+</navigation>
