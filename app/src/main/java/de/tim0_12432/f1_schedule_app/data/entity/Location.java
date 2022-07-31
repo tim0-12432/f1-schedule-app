@@ -1,26 +1,18 @@
 package de.tim0_12432.f1_schedule_app.data.entity;
 
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
+import androidx.annotation.NonNull;
 
-@Root(name="Location")
 public class Location {
 
-    @Attribute(name="lat")
     private final double latitude;
 
-    @Attribute(name="long")
     private final double longitude;
 
-    @Element(name="Locality")
     private final String locality;
 
-    @Element(name="Country")
     private final String country;
 
-    public Location(@Attribute(name="lat") double latitude, @Attribute(name="long") double longitude,
-                    @Element(name="Locality") String locality, @Element(name="Country") String country) {
+    public Location(double latitude, double longitude, String locality, String country) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.locality = locality;
@@ -41,5 +33,16 @@ public class Location {
 
     public String getCountry() {
         return country;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Location{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", locality='" + locality + '\'' +
+                ", country='" + country + '\'' +
+                '}';
     }
 }

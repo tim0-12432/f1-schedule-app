@@ -15,12 +15,14 @@
         app:strokeWidth="0dp"
         app:cardElevation="3dp"
         android:layout_margin="20dp"
+        android:layout_marginBottom="10dp"
         android:padding="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="20dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -30,6 +32,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:layout_weight="800"
                     android:id="@+id/race_name" />
                 <TextView
@@ -46,12 +49,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textAlignment="viewEnd"
+                android:gravity="right"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:layout_weight="800"
                     android:textSize="32dp"
                     android:id="@+id/race_round" />

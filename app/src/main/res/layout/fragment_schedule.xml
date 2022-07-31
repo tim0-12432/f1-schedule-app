@@ -17,7 +17,9 @@
     <ListView
         android:id="@+id/schedule_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -6,14 +6,15 @@
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1665" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1665" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1665" />
-        <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/fragment_circuit.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/fragment_circuits.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/fragment_dashboard.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/fragment_race.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/fragment_schedule.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/fragment_schedule.xml" value="0.6" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/fragment_world_cup.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/menu/bottom_nav_selector.xml" value="0.15208333333333332" />
       </map>
     </option>
   </component>

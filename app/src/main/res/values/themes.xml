@@ -10,6 +10,8 @@
         <item name="colorSecondaryVariant">@color/silver_timberwolf</item>
         <item name="colorOnSecondary">@color/black_xitecix_light</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Navigation bar active indicator color. -->
+        <item name="colorSecondaryContainer">?attr/colorPrimaryVariant</item>
     </style>
 </resources>

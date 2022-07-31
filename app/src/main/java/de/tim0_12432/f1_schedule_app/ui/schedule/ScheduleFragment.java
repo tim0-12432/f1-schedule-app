@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -40,7 +41,6 @@ public class ScheduleFragment extends Fragment implements ScheduleListView {
             @Override
             public void onLoaded(List<Race> list) {
                 races.addAll(list);
-                System.out.println("List: " + list.size());
                 showRaceEntries(races);
             }
         });

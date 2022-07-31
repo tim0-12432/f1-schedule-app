@@ -2,34 +2,22 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 import android.annotation.SuppressLint;
 
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
-
 import java.time.LocalDate;
 
-@Root(name="Driver")
 public class Driver {
 
-    @Attribute(name="code")
     private String code;
 
-    @Element(name="GivenName")
     private String name;
 
-    @Element(name="FamilyName")
     private String familyName;
 
-    @Element(name="DateOfBirth")
     private LocalDate dateOfBirth;
 
-    @Element(name="PermanentNumber")
     private int number;
 
-    @Element(name="Nationality")
     private String nationality;
 
-    @Attribute(name="url")
     private String url;
 
     @SuppressLint("NewApi")

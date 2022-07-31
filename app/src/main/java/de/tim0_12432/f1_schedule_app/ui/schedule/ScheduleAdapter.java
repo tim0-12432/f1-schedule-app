@@ -10,12 +10,13 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.tim0_12432.f1_schedule_app.R;
+import de.tim0_12432.f1_schedule_app.data.Utility;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
 
 public class ScheduleAdapter extends ArrayAdapter<Race> {
-    private List<Race> raceList;
+    private final List<Race> raceList;
 
-    private int layoutId;
+    private final int layoutId;
 
     public ScheduleAdapter(Context context, int layoutId, List<Race> items) {
         super(context, layoutId, items);
@@ -57,9 +58,9 @@ public class ScheduleAdapter extends ArrayAdapter<Race> {
         Race race = raceList.get(position);
 
         holder.raceName.setText(race.getName());
-        holder.raceRound.setText(race.getRound());
-        holder.raceDate.setText(race.getDate().toString());
-        holder.raceDate.setText(race.getTime().toString());
+        holder.raceRound.setText(String.valueOf(race.getRound()));
+        holder.raceDate.setText(Utility.getDatestamp(race.getDate()));
+        holder.raceTime.setText(Utility.getTimestamp(race.getTime()));
 
         return row;
     }

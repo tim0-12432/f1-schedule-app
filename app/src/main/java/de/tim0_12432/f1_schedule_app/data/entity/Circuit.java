@@ -1,22 +1,16 @@
 package de.tim0_12432.f1_schedule_app.data.entity;
 
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
+import androidx.annotation.NonNull;
 
-@Root(name="Circuit")
 public class Circuit {
 
-    @Element(name="Location")
     private final Location location;
 
-    @Element(name="CircuitName")
     private final String name;
 
-    @Attribute(name="url")
     private final String url;
 
-    public Circuit(@Element(name="Location") Location location, @Element(name="CircuitName") String name, @Attribute(name="url") String url) {
+    public Circuit(Location location, String name, String url) {
         this.location = location;
         this.name = name;
         this.url = url;
@@ -36,5 +30,15 @@ public class Circuit {
 
     public static Circuit copyOf(Circuit c) {
         return new Circuit(c.getLocation(), c.getName(), c.getUrl());
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Circuit{" +
+                "location=" + location +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }
