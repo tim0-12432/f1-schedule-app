@@ -1,6 +1,8 @@
 package de.tim0_12432.f1_schedule_app.data.entity;
 
-public class DriverStandings {
+import java.io.Serializable;
+
+public class DriverStandings implements Serializable {
 
     private final StandingsTable table;
 

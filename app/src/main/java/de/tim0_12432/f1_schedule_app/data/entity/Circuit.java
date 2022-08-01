@@ -2,7 +2,9 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 import androidx.annotation.NonNull;
 
-public class Circuit {
+import java.io.Serializable;
+
+public class Circuit implements Serializable {
 
     private final Location location;
 

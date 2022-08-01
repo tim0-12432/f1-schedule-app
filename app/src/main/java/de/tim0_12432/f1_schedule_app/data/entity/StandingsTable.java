@@ -1,9 +1,10 @@
 package de.tim0_12432.f1_schedule_app.data.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StandingsTable {
+public class StandingsTable implements Serializable {
 
     private final List<DriverStanding> list;
 

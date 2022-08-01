@@ -2,7 +2,9 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 import androidx.annotation.NonNull;
 
-public class Constructor {
+import java.io.Serializable;
+
+public class Constructor implements Serializable {
 
     private final String name;
 
