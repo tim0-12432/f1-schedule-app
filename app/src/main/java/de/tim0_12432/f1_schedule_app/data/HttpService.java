@@ -1,11 +1,6 @@
 package de.tim0_12432.f1_schedule_app.data;
 
-import android.util.Xml;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-
-import de.tim0_12432.f1_schedule_app.data.entity.Race;
+import de.tim0_12432.f1_schedule_app.data.parser.DataSourceParser;
 import de.tim0_12432.f1_schedule_app.data.source.remote.RemoteDataSource;
 import de.tim0_12432.f1_schedule_app.data.source.remote.RemoteDataSourceResponseConverter;
 import okhttp3.OkHttpClient;
@@ -15,6 +10,10 @@ public class HttpService {
 
     public static OkHttpClient getClient() {
         return new OkHttpClient();
+    }
+
+    public static <T> RemoteDataSource<T> getDataSourceForUrl(DataSourceParser<T> converter) {
+        return getDataSourceForUrl(converter.getUrl(), converter, true);
     }
 
     public static <T> RemoteDataSource<T> getDataSourceForUrl(String url, RemoteDataSourceResponseConverter<T> converter) {

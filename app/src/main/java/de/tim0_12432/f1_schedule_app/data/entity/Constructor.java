@@ -1,14 +1,20 @@
 package de.tim0_12432.f1_schedule_app.data.entity;
 
+import androidx.annotation.NonNull;
+
 public class Constructor {
 
     private String name;
 
-    private String nationality;
+    private Nationality nationality;
 
     private String url;
 
     public Constructor(String name, String nationality, String url) {
+        new Constructor(name, Nationality.getNationalityOfTranslation(nationality), url);
+    }
+
+    public Constructor(String name, Nationality nationality, String url) {
         this.name = name;
         this.nationality = nationality;
         this.url = url;
@@ -18,7 +24,7 @@ public class Constructor {
         return name;
     }
 
-    public String getNationality() {
+    public Nationality getNationality() {
         return nationality;
     }
 
@@ -28,5 +34,15 @@ public class Constructor {
 
     public static Constructor copyOf(Constructor c) {
         return new Constructor(c.getName(), c.getNationality(), c.getUrl());
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Constructor{" +
+                "name='" + name + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

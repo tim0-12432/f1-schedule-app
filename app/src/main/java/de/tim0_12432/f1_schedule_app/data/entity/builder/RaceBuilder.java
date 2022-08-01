@@ -5,6 +5,7 @@ import java.sql.Time;
 
 import de.tim0_12432.f1_schedule_app.data.entity.Circuit;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
+import de.tim0_12432.f1_schedule_app.data.entity.RaceResultList;
 
 public class RaceBuilder {
 
@@ -22,6 +23,8 @@ public class RaceBuilder {
 
     private Time time;
 
+    private RaceResultList results;
+
     public RaceBuilder() {
         this.season = -1;
         this.round = -1;
@@ -30,6 +33,7 @@ public class RaceBuilder {
         this.url = null;
         this.date = null;
         this.time = null;
+        this.results = null;
     }
 
     public RaceBuilder withSeason(int season) {
@@ -67,7 +71,14 @@ public class RaceBuilder {
         return this;
     }
 
+    public RaceBuilder withResults(RaceResultList results) {
+        this.results = results;
+        return this;
+    }
+
     public Race build() {
-        return new Race(season, round, name, circuit, url, date, time);
+        if (results == null)
+            return new Race(season, round, name, circuit, url, date, time);
+        return new Race(season, round, name, circuit, url, date, time, results);
     }
 }

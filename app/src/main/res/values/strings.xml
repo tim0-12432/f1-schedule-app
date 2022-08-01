@@ -20,4 +20,25 @@
     <string name="nationality_italian">Italian</string>
     <string name="nationality_spanish">Spanish</string>
     <string name="schedule_not_found">Schedule could not be found!</string>
+    <string name="finished">Finished</string>
+    <string name="plus_one_lap">+1 Lap</string>
+    <string name="plus_two_laps">+2 Laps</string>
+    <string name="plus_three_laps">+3 Laps</string>
+    <string name="wheel">Wheel</string>
+    <string name="damage">Damage</string>
+    <string name="engine">Engine</string>
+    <string name="unit_kph">kph</string>
+    <string name="fragment_race_screen_label" translatable="false">{raceName}</string>
+    <string name="nationality_swiss">Swiss</string>
+    <string name="nationality_american">American</string>
+    <string name="nationality_japanese">Japanese</string>
+    <string name="nationality_bahraini">Bahraini</string>
+    <string name="nationality_arab">Arab</string>
+    <string name="nationality_azerbaijani">Azerbaijani</string>
+    <string name="nationality_hungarian">Hungarian</string>
+    <string name="nationality_belgian">Belgian</string>
+    <string name="nationality_brazilian">Brazilian</string>
+    <string name="nationality_saudi">Saudi</string>
+    <string name="nationality_singaporean">Singaporean</string>
+    <string name="nationality_chinese">Chinese</string>
 </resources>

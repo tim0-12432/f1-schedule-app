@@ -12,6 +12,8 @@ import de.tim0_12432.f1_schedule_app.data.source.remote.RemoteDataSourceResponse
 
 public abstract class DataSourceParser<T> implements RemoteDataSourceResponseConverter<T> {
 
+    public abstract String getUrl();
+
     @Override
     public List<T> convert(InputStream inputStream) throws XmlPullParserException, IOException {
         XmlPullParser parser = RemoteDataSource.getXmlPullParser();

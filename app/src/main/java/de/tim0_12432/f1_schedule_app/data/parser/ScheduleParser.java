@@ -21,6 +21,10 @@ public class ScheduleParser extends DataSourceParser<Race> {
 
     private static final String ITEM_TAG = "Race";
 
+    @Override
+    public String getUrl() {
+        return "current";
+    }
 
     @Override
     protected List<Race> parse(InputStream input, XmlPullParser parser) throws XmlPullParserException, IOException {
@@ -34,7 +38,6 @@ public class ScheduleParser extends DataSourceParser<Race> {
                 String name = parser.getName();
                 if (ITEM_TAG.equals(name)) {
                     Race race = parseRace(parser);
-                    System.out.println("-- " + race.toString());
                     result.add(race);
                 }
             }

@@ -12,6 +12,11 @@ import de.tim0_12432.f1_schedule_app.data.entity.DriverStanding;
 
 public class WorldCupParser extends DataSourceParser<DriverStanding> {
     @Override
+    public String getUrl() {
+        return null;
+    }
+
+    @Override
     protected List<DriverStanding> parse(InputStream input, XmlPullParser parser) throws XmlPullParserException, IOException {
         return Collections.emptyList();
     }

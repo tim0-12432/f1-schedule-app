@@ -15,11 +15,31 @@
         android:id="@+id/navigation_schedule"
         android:name="de.tim0_12432.f1_schedule_app.ui.schedule.ScheduleFragment"
         android:label="@string/title_schedule"
-        tools:layout="@layout/fragment_schedule" />
+        tools:layout="@layout/fragment_schedule" >
+        <action
+            android:id="@+id/action_navigation_schedule_to_raceFragment"
+            app:destination="@id/navigation_race_screen"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_world_cup"
         android:name="de.tim0_12432.f1_schedule_app.ui.world_cup.WorldCupFragment"
         android:label="@string/title_world_cup"
         tools:layout="@layout/fragment_world_cup" />
+
+    <fragment
+        android:id="@+id/navigation_race_screen"
+        android:name="de.tim0_12432.f1_schedule_app.ui.race.RaceFragment"
+        android:label="@string/fragment_race_screen_label"
+        tools:layout="@layout/fragment_race_screen" >
+        <argument
+            android:name="raceObj"
+            app:argType="de.tim0_12432.f1_schedule_app.data.entity.Race" />
+        <argument
+            android:name="raceName"
+            app:argType="string"
+            android:defaultValue="Unknown Race" />
+    </fragment>
 </navigation>

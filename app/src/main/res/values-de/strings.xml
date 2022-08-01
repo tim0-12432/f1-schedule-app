@@ -21,4 +21,24 @@
     <string name="nationality_austrian">Österreicher</string>
     <string name="nationality_danish">Däne</string>
     <string name="schedule_not_found">Zeitplan konnte nicht gefunden werden!</string>
+    <string name="finished">Beendet</string>
+    <string name="plus_one_lap">+1 Runde</string>
+    <string name="plus_two_laps">+2 Runden</string>
+    <string name="plus_three_laps">+3 Runden</string>
+    <string name="wheel">Reifen</string>
+    <string name="damage">Beschädigt</string>
+    <string name="engine">Motor</string>
+    <string name="unit_kph">km/h</string>
+    <string name="nationality_swiss">Schweizer</string>
+    <string name="nationality_american">Amerikaner</string>
+    <string name="nationality_japanese">Japaner</string>
+    <string name="nationality_bahraini">Bahrainer</string>
+    <string name="nationality_arab">Araber</string>
+    <string name="nationality_azerbaijani">Aserbaidschane</string>
+    <string name="nationality_hungarian">Ungare</string>
+    <string name="nationality_belgian">Belgier</string>
+    <string name="nationality_brazilian">Brasilianer</string>
+    <string name="nationality_saudi">Saudi</string>
+    <string name="nationality_singaporean">Singapurer</string>
+    <string name="nationality_chinese">Chinese</string>
 </resources>

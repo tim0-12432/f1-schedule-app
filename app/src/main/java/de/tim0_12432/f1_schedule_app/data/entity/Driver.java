@@ -1,8 +1,8 @@
 package de.tim0_12432.f1_schedule_app.data.entity;
 
-import android.annotation.SuppressLint;
+import androidx.annotation.NonNull;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class Driver {
 
@@ -12,20 +12,23 @@ public class Driver {
 
     private String familyName;
 
-    private LocalDate dateOfBirth;
+    private Date dateOfBirth;
 
     private int number;
 
-    private String nationality;
+    private Nationality nationality;
 
     private String url;
 
-    @SuppressLint("NewApi")
     public Driver(String code, String name, String familyName, String dateOfBirth, int number, String nationality, String url) {
-        new Driver(code, name, familyName, LocalDate.parse(dateOfBirth), number, nationality, url);
+        new Driver(code, name, familyName, Date.valueOf(dateOfBirth), number, nationality, url);
     }
 
-    public Driver(String code, String name, String familyName, LocalDate dateOfBirth, int number, String nationality, String url) {
+    public Driver(String code, String name, String familyName, Date dateOfBirth, int number, String nationality, String url) {
+        new Driver(code, name, familyName, dateOfBirth, number, Nationality.getNationalityOfTranslation(nationality), url);
+    }
+
+    public Driver(String code, String name, String familyName, Date dateOfBirth, int number, Nationality nationality, String url) {
         this.code = code;
         this.name = name;
         this.familyName = familyName;
@@ -47,7 +50,7 @@ public class Driver {
         return familyName;
     }
 
-    public LocalDate getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -55,7 +58,7 @@ public class Driver {
         return number;
     }
 
-    public String getNationality() {
+    public Nationality getNationality() {
         return nationality;
     }
 
@@ -72,5 +75,19 @@ public class Driver {
                 d.getNumber(),
                 d.getNationality(),
                 d.getUrl());
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", familyName='" + familyName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", number=" + number +
+                ", nationality='" + nationality + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package de.tim0_12432.f1_schedule_app.data;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -27,7 +28,61 @@ public class Utility {
         LocalDateTime nowUtc = LocalDateTime.now(tzUtc.toZoneId());
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime diff = now.minusHours(nowUtc.getHour());
-        System.out.println("Diff: " + diff.getHour());
         return diff.getHour();
+    }
+
+    public enum LogLevel {
+        VERBOSE(2),
+        DEBUG(3),
+        INFO(4),
+        WARN(5),
+        ERROR(6),
+        ASSERT(7);
+
+        private final int code;
+
+        LogLevel(int code) {
+            this.code = code;
+        }
+        public int getCode() {
+            return code;
+        }
+    }
+
+    public static void Log(String... message) {
+        Log(LogLevel.INFO, message);
+    }
+
+    public static void Log(LogLevel level, String... message) {
+        StackTraceElement caller = Thread.currentThread().getStackTrace()[4];
+        String tag = caller.getClassName() + "#" + caller.getMethodName();
+        String msg = String.join(" ", message);
+        switch (level) {
+            case VERBOSE:
+                Log.v(tag, msg);
+                break;
+            case DEBUG:
+                Log.d(tag, msg);
+                break;
+            case WARN:
+                Log.w(tag, msg);
+                break;
+            case ERROR:
+                Log.e(tag, msg);
+                break;
+            case ASSERT:
+                Log.wtf(tag, msg);
+                break;
+            case INFO:
+            default:
+                Log.i(tag, msg);
+                break;
+        }
+    }
+
+    public static void Log(Throwable throwable, String... message) {
+        StackTraceElement caller = Thread.currentThread().getStackTrace()[4];
+        String msg = String.join(" ", message);
+        Log.e(caller.getClassName() + "#" + caller.getMethodName(), msg, throwable);
     }
 }

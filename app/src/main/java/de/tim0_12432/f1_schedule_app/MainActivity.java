@@ -2,6 +2,7 @@ package de.tim0_12432.f1_schedule_app;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -30,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         setSupportActionBar(toolbar);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
