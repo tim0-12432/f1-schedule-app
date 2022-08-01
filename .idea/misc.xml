@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1665" />
+        <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/drawable/ic_fastest_lap_24.xml" value="0.5475" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1665" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1665" />
+        <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/drawable/ic_schedule_24.xml" value="0.5475" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/fragment_circuit.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Lenovo/Documents/Skripte/android-dev/f1scheduleapp/app/src/main/res/layout/fragment_circuits.xml" value="0.24010416666666667" />

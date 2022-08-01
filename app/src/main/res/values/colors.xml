@@ -11,4 +11,11 @@
     <color name="silver_timberwolf">#d8d1cf</color>
     <color name="silver_metallic">#b7b1b4</color>
     <color name="white_cultured">#f8f7f7</color>
+    <color name="purple_purpureus">#8942a0</color>
+    <color name="purple_middle">#dc7ab9</color>
+    <color name="red_indian">#d65b5b</color>
+    <color name="orange_persian">#dd8f53</color>
+    <color name="yellow_metallic_gold">#d5b556</color>
+    <color name="green_pantone">#4eb55b</color>
+    <color name="blue_ncs">#478fb6</color>
 </resources>

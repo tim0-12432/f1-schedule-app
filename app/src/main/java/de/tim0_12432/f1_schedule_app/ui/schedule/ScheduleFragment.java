@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,8 +23,9 @@ import de.tim0_12432.f1_schedule_app.data.parser.ScheduleParser;
 import de.tim0_12432.f1_schedule_app.data.source.LoadCallback;
 import de.tim0_12432.f1_schedule_app.data.source.remote.RemoteDataSource;
 import de.tim0_12432.f1_schedule_app.databinding.FragmentScheduleBinding;
+import de.tim0_12432.f1_schedule_app.ui.ListView;
 
-public class ScheduleFragment extends Fragment implements ScheduleListView {
+public class ScheduleFragment extends Fragment implements ListView<Race> {
 
     private FragmentScheduleBinding binding;
 
@@ -48,7 +48,7 @@ public class ScheduleFragment extends Fragment implements ScheduleListView {
                 for (Race race : races) {
                     fetchRaces(races, race);
                 }
-                showRaceEntries(races);
+                showEntries(races);
             }
         });
 
@@ -67,10 +67,10 @@ public class ScheduleFragment extends Fragment implements ScheduleListView {
     }
 
     @Override
-    public void showRaceEntries(List<Race> entries) {
+    public void showEntries(List<Race> entries) {
         this.getActivity().runOnUiThread(() -> {
             if (entries.size() > 0) {
-                ListView list = binding.scheduleList;
+                android.widget.ListView list = binding.scheduleList;
                 list.setAdapter(new ScheduleAdapter(getActivity(), R.layout.fragment_race, entries));
             } else {
                 binding.scheduleError.setVisibility(View.VISIBLE);

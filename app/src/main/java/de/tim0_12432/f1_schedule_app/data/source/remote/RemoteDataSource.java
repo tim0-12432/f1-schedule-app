@@ -1,7 +1,5 @@
 package de.tim0_12432.f1_schedule_app.data.source.remote;
 
-import android.util.Xml;
-
 import androidx.annotation.NonNull;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -16,6 +14,7 @@ import javax.inject.Inject;
 
 import de.tim0_12432.f1_schedule_app.data.source.DataSource;
 import de.tim0_12432.f1_schedule_app.data.source.LoadCallback;
+import de.tim0_12432.f1_schedule_app.utility.Logging;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -43,22 +42,24 @@ public class RemoteDataSource<T> implements DataSource<T> {
                 .header("Accept", "application/xml")
                 .build();
 
+        Logging.Log("\u2192", "GET", url);
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Logging.Log("\u2190", "GET", url, "FAILED");
                 callback.onLoaded(Collections.emptyList());
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) {
+                Logging.Log("\u2190", "GET", url, response.code(), "(" + (response.receivedResponseAtMillis() - response.sentRequestAtMillis()) + "ms)");
                 if (!response.isSuccessful()) {
                     callback.onLoaded(Collections.emptyList());
                 }
                 try (ResponseBody responseBody = response.body(); InputStream inputStream = responseBody.byteStream()) {
                     callback.onLoaded(converter.convert(inputStream));
                 } catch (Exception e) {
-                    System.err.println("Error while parsing response: " + e.getMessage());
-                    e.printStackTrace();
+                    Logging.Log(e, "Error while parsing response:", e.getMessage());
                     callback.onLoaded(Collections.emptyList());
                 }
             }

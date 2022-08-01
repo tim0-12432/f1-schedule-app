@@ -13,8 +13,6 @@ import de.tim0_12432.f1_schedule_app.data.entity.parser.RaceParser;
 
 public class RaceResultsParser extends DataSourceParser<Race> {
 
-    private static final String ITEM_TAG = "Race";
-
     @Override
     public String getUrl() {
         return null;
@@ -30,7 +28,7 @@ public class RaceResultsParser extends DataSourceParser<Race> {
         while (event != XmlPullParser.END_DOCUMENT) {
             if (event == XmlPullParser.START_TAG) {
                 String name = parser.getName();
-                if (ITEM_TAG.equals(name)) {
+                if ("Race".equals(name)) {
                     Race race = RaceParser.parseRaceWithResults(parser);
                     result.add(race);
                 }

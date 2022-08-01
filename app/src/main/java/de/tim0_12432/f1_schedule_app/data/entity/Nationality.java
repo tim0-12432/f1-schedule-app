@@ -7,7 +7,7 @@ import java.util.Locale;
 
 import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.R;
-import de.tim0_12432.f1_schedule_app.data.Utility;
+import de.tim0_12432.f1_schedule_app.utility.Logging;
 
 public enum Nationality {
     AMERICAN("\uD83C\uDDFA\uD83C\uDDF8", R.string.nationality_american, "USA"),
@@ -94,7 +94,7 @@ public enum Nationality {
                 return nationality;
             }
         }
-        Utility.Log(Utility.LogLevel.WARN, "No nationality for translation", englishTranslation, "!");
+        Logging.Log(Logging.LogLevel.WARN, "No nationality for translation", englishTranslation, "!");
         return DEFAULT;
     }
 
@@ -104,7 +104,7 @@ public enum Nationality {
                 return nationality;
             }
         }
-        Utility.Log(Utility.LogLevel.WARN, "No nationality for country", country, "!");
+        Logging.Log(Logging.LogLevel.WARN, "No nationality for country", country, "!");
         return DEFAULT;
     }
 }

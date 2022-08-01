@@ -2,28 +2,21 @@ package de.tim0_12432.f1_schedule_app.ui.schedule;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import java.util.List;
 
-import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.R;
-import de.tim0_12432.f1_schedule_app.data.Utility;
 import de.tim0_12432.f1_schedule_app.data.entity.Driver;
 import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
+import de.tim0_12432.f1_schedule_app.utility.DateTime;
+import de.tim0_12432.f1_schedule_app.utility.Logging;
 
 public class ScheduleAdapter extends ArrayAdapter<Race> {
     private final List<Race> raceList;
@@ -82,12 +75,12 @@ public class ScheduleAdapter extends ArrayAdapter<Race> {
         }
 
         Race race = raceList.get(position);
-        // Utility.Log(race.toString());
+        Logging.Log(Logging.LogLevel.DEBUG, race.toString());
 
         holder.raceName.setText(race.getName());
         holder.raceRound.setText(String.valueOf(race.getRound()));
-        holder.raceDate.setText(Utility.getDatestamp(race.getDate()));
-        holder.raceTime.setText(Utility.getTimestamp(race.getTime()));
+        holder.raceDate.setText(DateTime.getDatestamp(race.getDate()));
+        holder.raceTime.setText(DateTime.getTimestamp(race.getTime()));
 
         if (race.getResults() != null) {
             List<RaceResult> results = race.getResults().getResults();
