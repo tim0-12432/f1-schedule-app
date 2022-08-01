@@ -6,6 +6,7 @@ import android.util.Log;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -49,14 +50,15 @@ public class Utility {
         }
     }
 
-    public static void Log(String... message) {
+    public static void Log(Object... message) {
         Log(LogLevel.INFO, message);
     }
 
-    public static void Log(LogLevel level, String... message) {
+    @SuppressLint("NewApi")
+    public static void Log(LogLevel level, Object... message) {
         StackTraceElement caller = Thread.currentThread().getStackTrace()[4];
         String tag = caller.getClassName() + "#" + caller.getMethodName();
-        String msg = String.join(" ", message);
+        String msg = String.join(" ", Arrays.stream(message).map(Object::toString).toArray(String[]::new));
         switch (level) {
             case VERBOSE:
                 Log.v(tag, msg);
@@ -80,9 +82,10 @@ public class Utility {
         }
     }
 
-    public static void Log(Throwable throwable, String... message) {
+    @SuppressLint("NewApi")
+    public static void Log(Throwable throwable, Object... message) {
         StackTraceElement caller = Thread.currentThread().getStackTrace()[4];
-        String msg = String.join(" ", message);
+        String msg = String.join(" ", Arrays.stream(message).map(Object::toString).toArray(String[]::new));
         Log.e(caller.getClassName() + "#" + caller.getMethodName(), msg, throwable);
     }
 }

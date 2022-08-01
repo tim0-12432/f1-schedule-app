@@ -8,34 +8,34 @@ import java.sql.Time;
 
 public class Race implements Serializable {
 
-    private int season;
+    private final int season;
 
-    private int round;
+    private final int round;
 
-    private String name;
+    private final String name;
 
-    private Circuit circuit;
+    private final Circuit circuit;
 
-    private String url;
+    private final String url;
 
-    private Date date;
+    private final Date date;
 
-    private Time time;
+    private final Time time;
 
     private RaceResultList results = null;
 
     public Race(int season, int round, String name, Circuit circuit, String url, String date, String time, RaceResultList results) {
-        new Race(season, round, name, circuit, url, Date.valueOf(date), Time.valueOf(time));
+        this(season, round, name, circuit, url, Date.valueOf(date), Time.valueOf(time));
         this.results = results;
     }
 
     public Race(int season, int round, String name, Circuit circuit, String url, Date date, Time time, RaceResultList results) {
-        new Race(season, round, name, circuit, url, date, time);
+        this(season, round, name, circuit, url, date, time);
         this.results = results;
     }
 
     public Race(int season, int round, String name, Circuit circuit, String url, String date, String time) {
-        new Race(season, round, name, circuit, url, Date.valueOf(date), Time.valueOf(time));
+        this(season, round, name, circuit, url, Date.valueOf(date), Time.valueOf(time));
     }
 
     public Race(int season, int round, String name, Circuit circuit, String url, Date date, Time time) {

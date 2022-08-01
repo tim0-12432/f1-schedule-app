@@ -1,6 +1,5 @@
 package de.tim0_12432.f1_schedule_app.data.entity.builder;
 
-
 import java.sql.Date;
 
 import de.tim0_12432.f1_schedule_app.data.entity.Driver;

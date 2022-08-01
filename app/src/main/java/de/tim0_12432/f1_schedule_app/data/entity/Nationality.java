@@ -44,7 +44,7 @@ public enum Nationality {
     private final String country;
 
     Nationality() {
-        emojiFlag = "\uD83C\uDFF3";
+        emojiFlag = "\uD83C\uDFF3\u200D\uD83C\uDF08";
         translationId = R.string.nationality_default;
         country = MainActivity.getAppResources().getString(R.string.nationality_default);
     }
@@ -56,7 +56,7 @@ public enum Nationality {
     }
 
     Nationality(int translationId, String country) {
-        emojiFlag = "\uD83C\uDFF3";
+        emojiFlag = "\uD83C\uDFF3\u200D\uD83C\uDF08";
         this.translationId = translationId;
         this.country = country;
     }

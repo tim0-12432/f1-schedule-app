@@ -82,7 +82,7 @@ public class ScheduleAdapter extends ArrayAdapter<Race> {
         }
 
         Race race = raceList.get(position);
-        Utility.Log(race.toString());
+        // Utility.Log(race.toString());
 
         holder.raceName.setText(race.getName());
         holder.raceRound.setText(String.valueOf(race.getRound()));

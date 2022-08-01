@@ -6,26 +6,26 @@ import java.sql.Date;
 
 public class Driver {
 
-    private String code;
+    private final String code;
 
-    private String name;
+    private final String name;
 
-    private String familyName;
+    private final String familyName;
 
-    private Date dateOfBirth;
+    private final Date dateOfBirth;
 
-    private int number;
+    private final int number;
 
-    private Nationality nationality;
+    private final Nationality nationality;
 
-    private String url;
+    private final String url;
 
     public Driver(String code, String name, String familyName, String dateOfBirth, int number, String nationality, String url) {
-        new Driver(code, name, familyName, Date.valueOf(dateOfBirth), number, nationality, url);
+        this(code, name, familyName, Date.valueOf(dateOfBirth), number, nationality, url);
     }
 
     public Driver(String code, String name, String familyName, Date dateOfBirth, int number, String nationality, String url) {
-        new Driver(code, name, familyName, dateOfBirth, number, Nationality.getNationalityOfTranslation(nationality), url);
+        this(code, name, familyName, dateOfBirth, number, Nationality.getNationalityOfTranslation(nationality), url);
     }
 
     public Driver(String code, String name, String familyName, Date dateOfBirth, int number, Nationality nationality, String url) {

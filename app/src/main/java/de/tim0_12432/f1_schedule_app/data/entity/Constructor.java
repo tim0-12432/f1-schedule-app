@@ -4,14 +4,14 @@ import androidx.annotation.NonNull;
 
 public class Constructor {
 
-    private String name;
+    private final String name;
 
-    private Nationality nationality;
+    private final Nationality nationality;
 
-    private String url;
+    private final String url;
 
     public Constructor(String name, String nationality, String url) {
-        new Constructor(name, Nationality.getNationalityOfTranslation(nationality), url);
+        this(name, Nationality.getNationalityOfTranslation(nationality), url);
     }
 
     public Constructor(String name, Nationality nationality, String url) {
