@@ -36,27 +36,47 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAlignment="center"
                         android:textColor="?attr/colorOnSecondary"
-                        android:text="@string/dummy_text"
-                        android:layout_marginBottom="7dp"
-                        android:textFontWeight="700"
+                        android:text="@string/circuit"
+                        android:textFontWeight="800"
                         android:textStyle="bold"
-                        android:id="@+id/race_screen_circuit_name" />
+                        android:textSize="18dp"
+                        android:layout_marginBottom="15dp"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="?attr/colorOnSecondary"
-                        android:text="@string/dummy_text"
-                        android:layout_marginBottom="7dp"
-                        android:id="@+id/race_screen_date" />
+                        android:orientation="vertical"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="left">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="?attr/colorOnSecondary"
-                        android:text="@string/dummy_text"
-                        android:id="@+id/race_screen_time" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/colorOnSecondary"
+                            android:text="@string/dummy_text"
+                            android:layout_marginBottom="7dp"
+                            android:textFontWeight="700"
+                            android:textStyle="bold"
+                            android:id="@+id/race_screen_circuit_name" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/colorOnSecondary"
+                            android:text="@string/dummy_text"
+                            android:layout_marginBottom="7dp"
+                            android:id="@+id/race_screen_date" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/colorOnSecondary"
+                            android:text="@string/dummy_text"
+                            android:id="@+id/race_screen_time" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

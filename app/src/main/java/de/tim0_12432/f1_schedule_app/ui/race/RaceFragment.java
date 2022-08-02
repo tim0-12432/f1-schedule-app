@@ -72,9 +72,7 @@ public class RaceFragment extends Fragment {
             binding.raceScreenResults.setVisibility(View.GONE);
         }
 
-        View root = binding.getRoot();
-
-        return root;
+        return binding.getRoot();
     }
 
     private void setText(TextView view, int prefixId, String text) {
