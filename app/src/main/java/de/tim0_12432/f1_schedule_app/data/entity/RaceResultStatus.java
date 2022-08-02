@@ -2,6 +2,7 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.R;
+import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public enum RaceResultStatus {
     FINISHED(1, R.string.finished, "\uD83C\uDFC1"),
@@ -10,11 +11,16 @@ public enum RaceResultStatus {
     PLUS_2_LAPS(12, R.string.plus_two_laps, "\uD83C\uDFF3"),
     PLUS_3_LAPS(13, R.string.plus_three_laps, "\uD83C\uDFF3"),
     WHEEL(36, R.string.wheel, "\uD83D\uDEA9"),
-    DAMAGE(137, R.string.damage);
+    DAMAGE(137, R.string.damage),
+    DEFAULT();
 
     private final int code;
     private final String text;
     private final String emoji;
+
+    RaceResultStatus() {
+        this(-1, R.string.status_unknown);
+    }
 
     RaceResultStatus(int code, int stringId) {
         this(code, stringId, "\uD83C\uDFF4");
@@ -44,7 +50,8 @@ public enum RaceResultStatus {
                 return status;
             }
         }
-        return null;
+        Logger.log("No status found for code " + code);
+        return DEFAULT;
     }
 
     public static boolean finished(int code) {

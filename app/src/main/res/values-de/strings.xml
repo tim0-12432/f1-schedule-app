@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">Formel 1 App</string>
     <string name="title_circuits">Strecken</string>
-    <string name="title_schedule">Zeitplan</string>
-    <string name="title_world_cup">Weltmeisterschaft</string>
+    <string name="title_schedule">Rennkalender</string>
+    <string name="title_world_cup">Rangliste</string>
     <string name="nationality_thai">Thailänder</string>
     <string name="nationality_german">Deutscher</string>
     <string name="nationality_default">Unbekannt</string>
@@ -20,7 +20,7 @@
     <string name="nationality_canadian">Kanadier</string>
     <string name="nationality_austrian">Österreicher</string>
     <string name="nationality_danish">Däne</string>
-    <string name="schedule_not_found">Zeitplan konnte nicht gefunden werden!</string>
+    <string name="schedule_not_found">❗ Zeitplan konnte nicht gefunden werden!</string>
     <string name="finished">Beendet</string>
     <string name="plus_one_lap">+1 Runde</string>
     <string name="plus_two_laps">+2 Runden</string>
@@ -41,4 +41,14 @@
     <string name="nationality_saudi">Saudi</string>
     <string name="nationality_singaporean">Singapurer</string>
     <string name="nationality_chinese">Chinese</string>
+    <string name="dummy_text">Lorem ipsum</string>
+    <string name="circuit">Strecke</string>
+    <string name="driver">Fahrer</string>
+    <string name="date">Startdatum</string>
+    <string name="time">Startzeitpunkt</string>
+    <string name="race">Rennen</string>
+    <string name="podium">Podium</string>
+    <string name="winner">Gewinner</string>
+    <string name="results">Ergebnisse</string>
+    <string name="status_unknown">Unbekannt</string>
 </resources>

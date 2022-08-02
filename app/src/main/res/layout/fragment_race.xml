@@ -10,6 +10,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/race_card"
         app:shapeAppearance="@style/ShapeAppearance.Material3.MediumComponent"
         app:cardBackgroundColor="?attr/colorSecondaryVariant"
         app:strokeWidth="0dp"

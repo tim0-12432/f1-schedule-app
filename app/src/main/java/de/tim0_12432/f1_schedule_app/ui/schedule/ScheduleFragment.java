@@ -8,25 +8,25 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
-import de.tim0_12432.f1_schedule_app.data.HttpService;
 import de.tim0_12432.f1_schedule_app.data.ResourceNames;
 import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
-import de.tim0_12432.f1_schedule_app.data.parser.RaceResultsParser;
-import de.tim0_12432.f1_schedule_app.data.parser.ScheduleParser;
 import de.tim0_12432.f1_schedule_app.data.source.LoadCallback;
-import de.tim0_12432.f1_schedule_app.data.source.remote.RemoteDataSource;
 import de.tim0_12432.f1_schedule_app.databinding.FragmentScheduleBinding;
 import de.tim0_12432.f1_schedule_app.ui.ListView;
+import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class ScheduleFragment extends Fragment implements ListView<Race> {
 
@@ -39,7 +39,7 @@ public class ScheduleFragment extends Fragment implements ListView<Race> {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentScheduleBinding.inflate(inflater, container, false);
         binding.scheduleProgress.setVisibility(View.INVISIBLE);
-        binding.scheduleError.setVisibility(View.INVISIBLE);
+        binding.scheduleError.setVisibility(View.GONE);
 
         manager = new DataManager(getContext());
 
@@ -52,11 +52,34 @@ public class ScheduleFragment extends Fragment implements ListView<Race> {
             public void onLoaded(List<Race> list) {
                 races.addAll(list);
                 for (Race race : races) {
-                    fetchRaces(race);
+                    fetchRaces(race, false);
                 }
                 showEntries(races);
             }
         });
+
+        /*SwipeRefreshLayout refreshLayout = binding.scheduleListRefresh;
+        TypedValue secondaryVariant = new TypedValue();
+        getContext().getTheme().resolveAttribute(com.google.android.material.R.attr.colorSecondaryVariant, secondaryVariant, true);
+        refreshLayout.setProgressBackgroundColorSchemeResource(secondaryVariant.resourceId);
+        refreshLayout.setColorSchemeResources(R.color.red_cg);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshLayout.setRefreshing(false);
+                showLoading();
+                manager.refreshDataFrom(ResourceNames.SCHEDULE, new LoadCallback<Race>() {
+                    @Override
+                    public void onLoaded(List<Race> list) {
+                        races.addAll(list);
+                        for (Race race : races) {
+                            fetchRaces(race, true);
+                        }
+                        showEntries(races);
+                    }
+                });
+            }
+        });*/
 
         return root;
     }
@@ -95,21 +118,40 @@ public class ScheduleFragment extends Fragment implements ListView<Race> {
                     controller.navigate(R.id.action_navigation_schedule_to_raceFragment, params);
                 }
             });
-            int nextRacePosition = entries.indexOf(entries.stream().filter(r -> r.getResults() == null).findFirst().get());
-            binding.scheduleList.setSelection(Math.max(nextRacePosition - 2, 0));
-            // binding.scheduleList.getChildAt(nextRacePosition).setStroke(getResources().getColor(R.color.colorPrimaryVariant));
-        });
-    }
 
-    private void fetchRaces(Race race) {
-        String url = race.getSeason() + "/" + race.getRound() + "/results";
-        manager.getDataFrom(ResourceNames.RACE_RESULTS, url, new LoadCallback<Race>() {
-            @Override
-            public void onLoaded(List<Race> list) {
-                if (list.size() > 0) {
-                    race.addResults(list.get(0).getResults());
+            if (entries.size() > 0) {
+                int nextRacePosition = entries.indexOf(entries.stream().filter(r -> r.getResults() == null).findFirst().get());
+                binding.scheduleList.setSelection(Math.max(nextRacePosition - 2, 0));
+                View selectedItem = binding.scheduleList.getAdapter().getView(nextRacePosition, null, binding.scheduleList);
+                MaterialCardView card = selectedItem == null ? null : selectedItem.findViewById(R.id.race_card);
+                if (card != null) {
+                    card.setStrokeWidth(getResources().getDimensionPixelOffset(R.dimen.card_border_active));
+                    card.setStrokeColor(getResources().getColor(R.color.red_auburn));
                 }
             }
         });
+    }
+
+    private void fetchRaces(Race race, boolean force) {
+        String url = race.getSeason() + "/" + race.getRound() + "/results";
+        if (force) {
+            manager.refreshDataFrom(ResourceNames.RACE_RESULTS, url, new LoadCallback<Race>() {
+                @Override
+                public void onLoaded(List<Race> list) {
+                    if (list.size() > 0) {
+                        race.addResults(list.get(0).getResults());
+                    }
+                }
+            });
+        } else {
+            manager.getDataFrom(ResourceNames.RACE_RESULTS, url, new LoadCallback<Race>() {
+                @Override
+                public void onLoaded(List<Race> list) {
+                    if (list.size() > 0) {
+                        race.addResults(list.get(0).getResults());
+                    }
+                }
+            });
+        }
     }
 }

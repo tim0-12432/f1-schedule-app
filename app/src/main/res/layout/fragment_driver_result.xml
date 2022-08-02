@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.race.DriverResultFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textFontWeight="800"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:text="1"
+                android:layout_weight="1"
+                android:id="@+id/driver_result_position"
+                android:layout_marginRight="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔺4"
+                android:textSize="16dp"
+                android:layout_weight="1"
+                android:id="@+id/driver_result_gain" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.6"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textFontWeight="800"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:text="@string/dummy_text"
+                android:id="@+id/driver_result_name" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="54"
+                    android:id="@+id/driver_result_number"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/dummy_text"
+                    android:id="@+id/driver_result_team"
+                    android:textFontWeight="650"
+                    android:textStyle="bold"
+                    android:layout_weight="0.9" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="end|center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_fastest_lap_24"
+                android:id="@+id/driver_result_fastest_lap"
+                tools:ignore="NestedWeights" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏁"
+                android:textAlignment="viewEnd"
+                android:layout_weight="1"
+                android:id="@+id/driver_result_status" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

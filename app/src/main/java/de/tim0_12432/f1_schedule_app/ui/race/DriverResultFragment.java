@@ -1,4 +1,4 @@
-package de.tim0_12432.f1_schedule_app.ui.schedule;
+package de.tim0_12432.f1_schedule_app.ui.race;
 
 import android.os.Bundle;
 
@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 
 import de.tim0_12432.f1_schedule_app.R;
 
-public class RaceFragment extends Fragment {
-
+public class DriverResultFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_race, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_driver_result, container, false);
     }
 }

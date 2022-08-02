@@ -19,7 +19,7 @@
     <string name="nationality_french">French</string>
     <string name="nationality_italian">Italian</string>
     <string name="nationality_spanish">Spanish</string>
-    <string name="schedule_not_found">Schedule could not be found!</string>
+    <string name="schedule_not_found">❗ Schedule could not be found!</string>
     <string name="finished">Finished</string>
     <string name="plus_one_lap">+1 Lap</string>
     <string name="plus_two_laps">+2 Laps</string>
@@ -41,4 +41,15 @@
     <string name="nationality_saudi">Saudi</string>
     <string name="nationality_singaporean">Singaporean</string>
     <string name="nationality_chinese">Chinese</string>
+    <string name="dummy_text">Lorem ipsum</string>
+    <string name="circuit">Circuit</string>
+    <string name="driver">Driver</string>
+    <string name="date">Startdate</string>
+    <string name="time">Starttime</string>
+    <string name="race">Race</string>
+    <string name="podium">Podium</string>
+    <string name="winner">Winner</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="results">Results</string>
+    <string name="status_unknown">Unknown</string>
 </resources>

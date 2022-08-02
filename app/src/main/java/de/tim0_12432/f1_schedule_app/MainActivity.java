@@ -1,5 +1,7 @@
 package de.tim0_12432.f1_schedule_app;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -18,12 +21,15 @@ import de.tim0_12432.f1_schedule_app.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private static Resources resources;
+    @SuppressLint("StaticFieldLeak")
+    private static Context context;
 
     private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         resources = getResources();
+        context = getApplicationContext();
 
         super.onCreate(savedInstanceState);
 
@@ -31,12 +37,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
         setSupportActionBar(toolbar);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -46,9 +46,25 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                if (fragmentManager.getBackStackEntryCount() > 0) {
+                    fragmentManager.popBackStack();
+                } else {
+                    navController.navigate(R.id.navigation_schedule);
+                }
+            }
+        });
     }
 
     public static Resources getAppResources() {
         return resources;
+    }
+
+    public static Context getAppContext() {
+        return context;
     }
 }

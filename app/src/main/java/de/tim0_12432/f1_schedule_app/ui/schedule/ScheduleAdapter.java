@@ -16,7 +16,7 @@ import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
 import de.tim0_12432.f1_schedule_app.utility.DateTime;
-import de.tim0_12432.f1_schedule_app.utility.Logging;
+import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class ScheduleAdapter extends ArrayAdapter<Race> {
     private final List<Race> raceList;
@@ -75,7 +75,7 @@ public class ScheduleAdapter extends ArrayAdapter<Race> {
         }
 
         Race race = raceList.get(position);
-        Logging.Log(Logging.LogLevel.DEBUG, race.toString());
+        Logger.log(Logger.LogLevel.DEBUG, race.toString());
 
         holder.raceName.setText(race.getName());
         holder.raceRound.setText(String.valueOf(race.getRound()));

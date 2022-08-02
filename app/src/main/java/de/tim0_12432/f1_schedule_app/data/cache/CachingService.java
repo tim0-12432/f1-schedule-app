@@ -4,10 +4,9 @@ import android.content.Context;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import de.tim0_12432.f1_schedule_app.utility.Logging;
+import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class CachingService {
     private static final long UPDATE_INTERVAL_HOURS = 36;
@@ -19,7 +18,7 @@ public class CachingService {
         try {
             StorageService.writeObject(context, key, cacheObj);
         } catch (IOException e) {
-            Logging.Log(e, "Could not write data to cache", key, "!");
+            Logger.log(e, "Could not write data to cache", key, "!");
         }
     }
 
@@ -32,7 +31,7 @@ public class CachingService {
             }
             throw new ClassCastException("Cache object from is not a map!");
         } catch (IOException | ClassNotFoundException | ClassCastException e) {
-            Logging.Log(e, "Could not read data from cache", key, "!");
+            Logger.log(e, "Could not read data from cache", key, "!");
             return null;
         }
     }
@@ -47,7 +46,7 @@ public class CachingService {
             }
             throw new ClassCastException("Cache object is not a map!");
         } catch (IOException | ClassNotFoundException | ClassCastException e) {
-            Logging.Log(e, "Could not read data from cache", key, "!");
+            Logger.log(e, "Could not read data from cache", key, "!");
             return true;
         }
     }

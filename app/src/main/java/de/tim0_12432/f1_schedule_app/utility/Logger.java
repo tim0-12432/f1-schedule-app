@@ -5,7 +5,7 @@ import android.util.Log;
 
 import java.util.Arrays;
 
-public class Logging {
+public class Logger {
     public enum LogLevel {
         VERBOSE(2),
         DEBUG(3),
@@ -24,12 +24,12 @@ public class Logging {
         }
     }
 
-    public static void Log(Object... message) {
-        Log(LogLevel.INFO, message);
+    public static void log(Object... message) {
+        log(LogLevel.INFO, message);
     }
 
     @SuppressLint("NewApi")
-    public static void Log(LogLevel level, Object... message) {
+    public static void log(LogLevel level, Object... message) {
         StackTraceElement caller = Thread.currentThread().getStackTrace()[4];
         String tag = caller.getClassName() + "#" + caller.getMethodName();
         String msg = String.join(" ", Arrays.stream(message).map(Object::toString).toArray(String[]::new));
@@ -57,7 +57,7 @@ public class Logging {
     }
 
     @SuppressLint("NewApi")
-    public static void Log(Throwable throwable, Object... message) {
+    public static void log(Throwable throwable, Object... message) {
         StackTraceElement caller = Thread.currentThread().getStackTrace()[4];
         String msg = String.join(" ", Arrays.stream(message).map(Object::toString).toArray(String[]::new));
         Log.e(caller.getClassName() + "#" + caller.getMethodName(), msg, throwable);
