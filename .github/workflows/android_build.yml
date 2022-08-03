@@ -1,0 +1,45 @@
+name: Android build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: "1.8"
+          jdk-version: "1.8"
+      - name: Run tests
+        run: ./gradlew testStagingDebugUnitTest
+      - name: Build APK
+        id: buildApk
+        uses: eskatos/gradle-command-action@v1.3.3
+        with:
+          gradle-version: current
+          wrapper-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
+          arguments: assembleRelease
+      - name: Sign APK
+        id: signApk
+        uses: r0adkll/sign-android-release@v1.0.1
+        with:
+          release-directory: $GITHUB_WORKSPACE/app/build/outputs/apk/release
+          alias: ${{ secrets.alias }}
+          signingKeyBase64: ${{ secrets.keystore }}
+          keyStorePassword: ${{ secrets.keystore_password }}
+          keyPassword: ${{ secrets.password }}
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: $GITHUB_WORKSPACE/app/build/outputs/apk/release/app*.apk
