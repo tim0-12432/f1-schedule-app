@@ -107,4 +107,7 @@
     <string name="second_driver">Zweitfahrer</string>
     <string name="name">Name</string>
     <string name="wins">aktuell gewonnen</string>
+    <string name="circuits_not_found">❗ Strecken konnten nicht abgerufen werden!</string>
+    <string name="locality">Örtlichkeit</string>
+    <string name="country">Land</string>
 </resources>

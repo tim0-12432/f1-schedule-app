@@ -114,4 +114,9 @@
     <string name="wins">Current wins</string>
     <string name="fragment_team_screen_label" translatable="false">{teamName}</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="circuits_not_found">❗ Circuits could not be retrieved!</string>
+    <string name="fragment_circuit_screen_label" translatable="false">{circuitName}</string>
+    <string name="locality">Locality</string>
+    <string name="country">Country</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

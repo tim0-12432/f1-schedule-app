@@ -9,7 +9,14 @@
         android:id="@+id/navigation_circuits"
         android:name="de.tim0_12432.f1_schedule_app.ui.circuit.CircuitsFragment"
         android:label="@string/title_circuits"
-        tools:layout="@layout/fragment_circuits" />
+        tools:layout="@layout/fragment_circuits" >
+        <action
+            android:id="@+id/action_navigation_driver_ranking_to_navigation_circuit_details_screen"
+            app:destination="@id/navigation_circuit_details_screen"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_schedule"
@@ -101,5 +108,19 @@
             android:name="teamName"
             app:argType="string"
             android:defaultValue="Unknown Team" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_circuit_details_screen"
+        android:name="de.tim0_12432.f1_schedule_app.ui.circuit.CircuitDetailsFragment"
+        android:label="@string/fragment_circuit_screen_label"
+        tools:layout="@layout/fragment_circuit_details">
+        <argument
+            android:name="circuitObj"
+            app:argType="de.tim0_12432.f1_schedule_app.data.entity.Circuit" />
+        <argument
+            android:name="circuitName"
+            app:argType="string"
+            android:defaultValue="Unknown Circuit" />
     </fragment>
 </navigation>

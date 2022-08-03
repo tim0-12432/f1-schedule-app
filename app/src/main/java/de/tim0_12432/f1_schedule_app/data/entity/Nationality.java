@@ -12,6 +12,7 @@ import de.tim0_12432.f1_schedule_app.utility.Logger;
 public enum Nationality {
     AMERICAN("\uD83C\uDDFA\uD83C\uDDF8", R.string.nationality_american, "USA"),
     ARAB("\uD83C\uDDE6\uD83C\uDDEA", R.string.nationality_arab, "UAE"),
+    ARGENTINIAN("\uD83C\uDDE6\uD83C\uDDF7", "Argentina"),
     AUSTRIAN("\uD83C\uDDE6\uD83C\uDDF9", R.string.nationality_austrian, "Austria"),
     AUSTRALIAN("\uD83C\uDDE6\uD83C\uDDFA", R.string.nationality_australian, "Australia"),
     AZERBAIJANI("\uD83C\uDDE6\uD83C\uDDFF", R.string.nationality_azerbaijani, "Azerbaijan"),
@@ -27,16 +28,22 @@ public enum Nationality {
     FRENCH("\uD83C\uDDEB\uD83C\uDDF7", R.string.nationality_french, "France"),
     GERMAN("\uD83C\uDDE9\uD83C\uDDEA", R.string.nationality_german, "Germany"),
     HUNGARIAN("\uD83C\uDDED\uD83C\uDDFA", R.string.nationality_hungarian, "Hungary"),
+    INDIAN("\uD83C\uDDEE\uD83C\uDDF3", "India"),
     ITALIAN("\uD83C\uDDEE\uD83C\uDDF9", R.string.nationality_italian, "Italy"),
     JAPANESE("\uD83C\uDDEF\uD83C\uDDF5", R.string.nationality_japanese, "Japan"),
     MEXICAN("\uD83C\uDDF2\uD83C\uDDFD", R.string.nationality_mexican, "Mexico"),
     MONEGASQUE("\uD83C\uDDF2\uD83C\uDDE8", R.string.nationality_monegasque, "Monaco"),
+    MOROCCAN("\uD83C\uDDF2\uD83C\uDDE6", "Morocco"),
+    PORTUGUESE("\uD83C\uDDF5\uD83C\uDDF9", "Portugal"),
     RUSSIAN("\uD83C\uDDF7\uD83C\uDDFA", R.string.nationality_russian, "Russia"),
     SAUDI("\uD83C\uDDF8\uD83C\uDDE6", R.string.nationality_saudi, "Saudi Arabia"),
+    SOUTH_AFRICAN("\uD83C\uDDFF\uD83C\uDDE6", "South Africa"),
     SINGAPOREAN("\uD83C\uDDF8\uD83C\uDDEC", R.string.nationality_singaporean, "Singapore"),
     SPANISH("\uD83C\uDDEA\uD83C\uDDF8", R.string.nationality_spanish, "Spain"),
+    SWEDISH("\uD83C\uDDF8\uD83C\uDDEA", "Sweden"),
     SWISS("\uD83C\uDDE8\uD83C\uDDED", R.string.nationality_swiss, "Switzerland"),
     THAI("\uD83C\uDDF9\uD83C\uDDED", R.string.nationality_thai, "Thailand"),
+    TURKIYE("\uD83C\uDDF9\uD83C\uDDF7", "Turkey"),
     DEFAULT();
 
     private final String emojiFlag;
@@ -53,6 +60,12 @@ public enum Nationality {
         this.emojiFlag = emojiFlag;
         translationId = R.string.nationality_default;
         country = MainActivity.getAppResources().getString(R.string.nationality_default);
+    }
+
+    Nationality(String emojiFlag, String country) {
+        this.emojiFlag = emojiFlag;
+        this.translationId = R.string.nationality_default;
+        this.country = country;
     }
 
     Nationality(int translationId, String country) {
