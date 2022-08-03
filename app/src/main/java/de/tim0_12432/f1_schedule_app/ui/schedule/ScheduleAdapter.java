@@ -79,8 +79,8 @@ public class ScheduleAdapter extends ArrayAdapter<Race> {
 
         holder.raceName.setText(race.getName());
         holder.raceRound.setText(String.valueOf(race.getRound()));
-        holder.raceDate.setText(DateTime.getDatestamp(race.getDate()));
-        holder.raceTime.setText(DateTime.getTimestamp(race.getTime()));
+        holder.raceDate.setText("\uD83D\uDDD3 " + DateTime.getDatestamp(race.getDate()));
+        holder.raceTime.setText("\uD83D\uDD51 " + DateTime.getTimestamp(race.getTime()));
 
         if (race.getResults() != null) {
             List<RaceResult> results = race.getResults().getResults();

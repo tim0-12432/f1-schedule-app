@@ -20,14 +20,28 @@
             android:id="@+id/action_navigation_schedule_to_raceFragment"
             app:destination="@id/navigation_race_screen"
             app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right" />
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_world_cup"
         android:name="de.tim0_12432.f1_schedule_app.ui.world_cup.WorldCupFragment"
         android:label="@string/title_world_cup"
-        tools:layout="@layout/fragment_world_cup" />
+        tools:layout="@layout/fragment_world_cup">
+        <action
+            android:id="@+id/action_navigation_world_cup_to_navigation_driver_details_screen"
+            app:destination="@id/navigation_driver_details_screen"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_world_cup_to_teamDetailsFragment"
+            app:destination="@id/navigation_team_details_screen"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_race_screen"
@@ -41,5 +55,51 @@
             android:name="raceName"
             app:argType="string"
             android:defaultValue="Unknown Race" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_driver_details_screen"
+        android:name="de.tim0_12432.f1_schedule_app.ui.driver.DriverDetailsFragment"
+        android:label="@string/fragment_driver_screen_label"
+        tools:layout="@layout/fragment_driver_details">
+        <argument
+            android:name="driverObj"
+            app:argType="de.tim0_12432.f1_schedule_app.data.entity.Driver" />
+        <argument
+            android:name="driverName"
+            app:argType="string"
+            android:defaultValue="Unknown Driver" />
+        <argument
+            android:name="teamObj"
+            app:argType="de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr" />
+        <argument
+            android:name="driverPoints"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_driver_ranking"
+        android:name="de.tim0_12432.f1_schedule_app.ui.world_cup.DriverRankingFragment"
+        tools:layout="@layout/fragment_driver_ranking">
+        <action
+            android:id="@+id/action_navigation_driver_ranking_to_navigation_driver_details_screen"
+            app:destination="@id/navigation_driver_details_screen"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_team_details_screen"
+        android:name="de.tim0_12432.f1_schedule_app.ui.team.TeamDetailsFragment"
+        android:label="@string/fragment_team_screen_label"
+        tools:layout="@layout/fragment_team_details">
+        <argument
+            android:name="teamObj"
+            app:argType="de.tim0_12432.f1_schedule_app.data.entity.ConstructorStanding" />
+        <argument
+            android:name="teamName"
+            app:argType="string"
+            android:defaultValue="Unknown Team" />
     </fragment>
 </navigation>

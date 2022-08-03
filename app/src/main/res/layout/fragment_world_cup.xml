@@ -1,8 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.world_cup.WorldCupFragment">
 
-</androidx.core.widget.NestedScrollView>
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/world_cup_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:background="?attr/colorSecondaryVariant"
+        app:indicatorColor="?attr/colorOnPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/world_cup_tab_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:trackThickness="5dp" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/world_cup_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSecondaryVariant"
+        android:elevation="3dp"
+        android:overScrollMode="never"
+        app:tabBackground="?attr/colorSecondaryVariant"
+        app:tabIndicator="?attr/colorPrimaryVariant"
+        app:tabIndicatorColor="?attr/colorPrimaryVariant"
+        app:tabIndicatorHeight="5dp"
+        app:tabMode="fixed"
+        app:layout_constraintTop_toBottomOf="@id/world_cup_progress"
+        app:layout_constraintBottom_toTopOf="@+id/world_cup_pager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabSelectedTextColor="?attr/colorPrimaryVariant"
+        app:tabTextColor="?attr/colorOnSecondary" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/world_cup_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/world_cup_tab_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

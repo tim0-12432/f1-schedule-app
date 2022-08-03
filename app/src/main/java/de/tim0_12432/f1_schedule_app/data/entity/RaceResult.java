@@ -2,9 +2,7 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 import androidx.annotation.NonNull;
 
-import java.io.Serializable;
-
-public class RaceResult implements Serializable {
+public class RaceResult extends Entity {
 
     private final int number;
 

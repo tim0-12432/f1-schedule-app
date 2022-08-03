@@ -14,8 +14,16 @@
     <color name="purple_purpureus">#8942a0</color>
     <color name="purple_middle">#dc7ab9</color>
     <color name="red_indian">#d65b5b</color>
+    <color name="red_rose_vale">#b3575a</color>
+    <color name="red_english_vermillion">#d04c4c</color>
     <color name="orange_persian">#dd8f53</color>
     <color name="yellow_metallic_gold">#d5b556</color>
     <color name="green_pantone">#4eb55b</color>
+    <color name="green_viridian">#4b8772</color>
+    <color name="green_keppel">#5fb399</color>
     <color name="blue_ncs">#478fb6</color>
+    <color name="blue_yonder">#5b6cb5</color>
+    <color name="blue_lapis_lazuli">#2f6595</color>
+    <color name="blue_prussian">#203c54</color>
+    <color name="black_charcoal">#3b3f4e</color>
 </resources>

@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import de.tim0_12432.f1_schedule_app.data.entity.Driver;
 
-public class DriverBuilder {
+public class DriverBuilder extends EntityBuilder<Driver> {
 
     private String code;
 
@@ -26,7 +26,7 @@ public class DriverBuilder {
         this.familyName = null;
         this.dateOfBirth = null;
         this.number = -1;
-        this.nationality =
+        this.nationality = null;
         this.url = null;
     }
 

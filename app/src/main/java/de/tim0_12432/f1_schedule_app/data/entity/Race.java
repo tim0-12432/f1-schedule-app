@@ -2,11 +2,10 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 import androidx.annotation.NonNull;
 
-import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Race implements Serializable {
+public class Race extends Entity {
 
     private final int season;
 

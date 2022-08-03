@@ -2,7 +2,7 @@ package de.tim0_12432.f1_schedule_app.data.entity.builder;
 
 import de.tim0_12432.f1_schedule_app.data.entity.Location;
 
-public class LocationBuilder {
+public class LocationBuilder extends EntityBuilder<Location> {
 
     private double latitude;
 

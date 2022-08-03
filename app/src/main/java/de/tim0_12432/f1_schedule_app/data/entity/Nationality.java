@@ -84,18 +84,22 @@ public enum Nationality {
     }
 
     public static Nationality getNationalityOfTranslation(String englishTranslation) {
-        Resources currUsed = MainActivity.getAppResources();
-        Configuration config = currUsed.getConfiguration();
-        config.locale = new Locale("en");
-        Resources englishResources = new Resources(currUsed.getAssets(), currUsed.getDisplayMetrics(), config);
-        for (Nationality nationality : values()) {
-            String actualTranslation = englishResources.getString(nationality.getTranslationId());
-            if (actualTranslation.equals(englishTranslation)) {
-                return nationality;
+        try {
+            return Nationality.valueOf(englishTranslation.toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException e) {
+            Resources currUsed = MainActivity.getAppResources();
+            Configuration config = currUsed.getConfiguration();
+            config.locale = new Locale("en");
+            Resources englishResources = new Resources(currUsed.getAssets(), currUsed.getDisplayMetrics(), config);
+            for (Nationality nationality : values()) {
+                String actualTranslation = englishResources.getString(nationality.getTranslationId());
+                if (actualTranslation.equals(englishTranslation)) {
+                    return nationality;
+                }
             }
+            Logger.log(Logger.LogLevel.WARN, "No nationality for translation", englishTranslation, "!");
+            return DEFAULT;
         }
-        Logger.log(Logger.LogLevel.WARN, "No nationality for translation", englishTranslation, "!");
-        return DEFAULT;
     }
 
     public static Nationality getNationalityOfCountry(String country) {

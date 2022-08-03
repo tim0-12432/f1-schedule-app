@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 
 import de.tim0_12432.f1_schedule_app.data.cache.CachingService;
+import de.tim0_12432.f1_schedule_app.data.entity.Entity;
 import de.tim0_12432.f1_schedule_app.data.parser.DataSourceParser;
 import de.tim0_12432.f1_schedule_app.data.source.LoadCallback;
 import de.tim0_12432.f1_schedule_app.data.source.remote.RemoteDataSource;
@@ -20,11 +21,11 @@ public class DataManager {
         this.context = context;
     }
 
-    public <T> void getDataFrom(ResourceNames resource, LoadCallback<T> callback) {
-        getDataFrom(resource, resource.getUrl(), callback);
+    public <T extends Entity> void getDataFrom(ResourceNames resource, LoadCallback<T> callback) {
+        getDataFrom(resource, null, callback);
     }
 
-    public <T> void getDataFrom(ResourceNames resource, String url, LoadCallback<T> callback) {
+    public <T extends Entity> void getDataFrom(ResourceNames resource, String url, LoadCallback<T> callback) {
         if (CachingService.shouldUpdateCache(context, getKey(resource, url))) {
             DataSourceParser<T> parser = null;
             try {
@@ -68,11 +69,11 @@ public class DataManager {
         }
     }
 
-    public <T> void refreshDataFrom(ResourceNames resource, LoadCallback<T> callback) {
-        refreshDataFrom(resource, resource.getUrl(), callback);
+    public <T extends Entity> void refreshDataFrom(ResourceNames resource, LoadCallback<T> callback) {
+        refreshDataFrom(resource, null, callback);
     }
 
-    public <T> void refreshDataFrom(ResourceNames resource, String url, LoadCallback<T> callback) {
+    public <T extends Entity> void refreshDataFrom(ResourceNames resource, String url, LoadCallback<T> callback) {
         DataSourceParser<T> parser = null;
         try {
             parser = (DataSourceParser<T>) resource.getParser().newInstance();

@@ -2,7 +2,7 @@ package de.tim0_12432.f1_schedule_app.data.entity.builder;
 
 import de.tim0_12432.f1_schedule_app.data.entity.Constructor;
 
-public class ConstructorBuilder {
+public class ConstructorBuilder extends EntityBuilder<Constructor> {
     private String name;
 
     private String nationality;

@@ -2,9 +2,7 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 import androidx.annotation.NonNull;
 
-import java.io.Serializable;
-
-public class Location implements Serializable {
+public class Location extends Entity {
 
     private final double latitude;
 

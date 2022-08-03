@@ -2,13 +2,12 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 import androidx.annotation.NonNull;
 
-import java.io.Serializable;
 import java.util.List;
 
 import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.R;
 
-public class RaceResultList implements Serializable {
+public class RaceResultList extends Entity {
     private static final String speedUnit = MainActivity.getAppResources().getString(R.string.unit_kph);
 
     private final List<RaceResult> results;

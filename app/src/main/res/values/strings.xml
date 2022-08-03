@@ -52,4 +52,66 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="results">Results</string>
     <string name="status_unknown">Unknown</string>
+    <string name="constructor">Constructor</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="driver_ranking_not_found">❗ Driver ranking could not be found!</string>
+    <string name="constructor_ranking_not_found">❗ Team ranking could not be found!</string>
+    <string name="disqualified">Disqualified</string>
+    <string name="accident">Accident</string>
+    <string name="collision">Collision</string>
+    <string name="gearbox">Gearbox</string>
+    <string name="transmission">Transmission</string>
+    <string name="clutch">Clutch</string>
+    <string name="hydraulics">Hydraulics</string>
+    <string name="electrical">Electrical</string>
+    <string name="plus_four_laps">+4 Laps</string>
+    <string name="plus_five_laps">+5 Laps</string>
+    <string name="plus_six_laps">+6 Laps</string>
+    <string name="plus_seven_laps">+7 Laps</string>
+    <string name="spun_off">Spun off</string>
+    <string name="radiator">Radiator</string>
+    <string name="suspension">Suspension</string>
+    <string name="brakes">Brakes</string>
+    <string name="differential">Differential</string>
+    <string name="overheating">Overheating</string>
+    <string name="mechanical">Mechanical</string>
+    <string name="tyre">Tyre</string>
+    <string name="driver_seat">Driver seat</string>
+    <string name="puncture">Puncture</string>
+    <string name="driveshaft">Driveshaft</string>
+    <string name="retired">Retired</string>
+    <string name="water_pressure">Water pressure</string>
+    <string name="exhaust">Exhaust</string>
+    <string name="oil_leak">Oil leak</string>
+    <string name="withdrew">Withdrew</string>
+    <string name="out_of_fuel">Out of fuel</string>
+    <string name="power_loss">Power loss</string>
+    <string name="collision_damage">Collision damage</string>
+    <string name="power_unit">Power unit</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="personal_details">Personal details</string>
+    <string name="f1_details">Details in F1</string>
+    <string name="more_information">More information</string>
+    <string name="fragment_driver_screen_label" translatable="false">{driverName}</string>
+    <string name="wikipedia" translatable="false">Wikipedia</string>
+    <string name="first_name">First name</string>
+    <string name="family_name">Surname</string>
+    <string name="birthday">Birthday</string>
+    <string name="nationality">Nationality</string>
+    <string name="code">Abbreviation</string>
+    <string name="team">Team</string>
+    <string name="points">Points in current season</string>
+    <string name="number">Number</string>
+    <string name="age">Age</string>
+    <string name="years">Years</string>
+    <string name="organisational_structure">Organisational structure</string>
+    <string name="drivers">Drivers</string>
+    <string name="overview">Overview</string>
+    <string name="first_driver">First driver</string>
+    <string name="second_driver">Second driver</string>
+    <string name="sub_driver">Sub driver</string>
+    <string name="name">Name</string>
+    <string name="wins">Current wins</string>
+    <string name="fragment_team_screen_label" translatable="false">{teamName}</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

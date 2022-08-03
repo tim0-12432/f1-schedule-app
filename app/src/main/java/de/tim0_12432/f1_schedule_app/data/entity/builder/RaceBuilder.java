@@ -7,7 +7,7 @@ import de.tim0_12432.f1_schedule_app.data.entity.Circuit;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResultList;
 
-public class RaceBuilder {
+public class RaceBuilder extends EntityBuilder<Race> {
 
     private int season;
 

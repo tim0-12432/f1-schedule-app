@@ -1,5 +1,6 @@
 package de.tim0_12432.f1_schedule_app.data;
 
+import de.tim0_12432.f1_schedule_app.data.entity.Entity;
 import de.tim0_12432.f1_schedule_app.data.parser.DataSourceParser;
 import de.tim0_12432.f1_schedule_app.data.source.remote.RemoteDataSource;
 import de.tim0_12432.f1_schedule_app.data.source.remote.RemoteDataSourceResponseConverter;
@@ -12,15 +13,15 @@ public class HttpService {
         return new OkHttpClient();
     }
 
-    public static <T> RemoteDataSource<T> getDataSourceForUrl(DataSourceParser<T> converter) {
+    public static <T extends Entity> RemoteDataSource<T> getDataSourceForUrl(DataSourceParser<T> converter) {
         return getDataSourceForUrl(converter.getUrl(), converter, true);
     }
 
-    public static <T> RemoteDataSource<T> getDataSourceForUrl(String url, RemoteDataSourceResponseConverter<T> converter) {
+    public static <T extends Entity> RemoteDataSource<T> getDataSourceForUrl(String url, RemoteDataSourceResponseConverter<T> converter) {
         return getDataSourceForUrl(url, converter, true);
     }
 
-    public static <T> RemoteDataSource<T> getDataSourceForUrl(String url, RemoteDataSourceResponseConverter<T> converter, boolean useBase) {
+    public static <T extends Entity> RemoteDataSource<T> getDataSourceForUrl(String url, RemoteDataSourceResponseConverter<T> converter, boolean useBase) {
         String address = url;
         if (useBase)
             address = BASE_URL + url;

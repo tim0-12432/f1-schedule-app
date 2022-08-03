@@ -5,7 +5,7 @@ import de.tim0_12432.f1_schedule_app.data.entity.Driver;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResultStatus;
 
-public class RaceResultBuilder {
+public class RaceResultBuilder extends EntityBuilder<RaceResult> {
     private int number;
 
     private int position;

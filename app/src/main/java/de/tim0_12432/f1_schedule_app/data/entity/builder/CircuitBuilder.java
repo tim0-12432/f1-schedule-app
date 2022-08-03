@@ -3,7 +3,7 @@ package de.tim0_12432.f1_schedule_app.data.entity.builder;
 import de.tim0_12432.f1_schedule_app.data.entity.Circuit;
 import de.tim0_12432.f1_schedule_app.data.entity.Location;
 
-public class CircuitBuilder {
+public class CircuitBuilder extends EntityBuilder<Circuit> {
 
     private Location location;
 

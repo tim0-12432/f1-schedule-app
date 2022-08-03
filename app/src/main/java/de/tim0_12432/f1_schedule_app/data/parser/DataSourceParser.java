@@ -7,10 +7,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import de.tim0_12432.f1_schedule_app.data.entity.Entity;
 import de.tim0_12432.f1_schedule_app.data.source.remote.RemoteDataSource;
 import de.tim0_12432.f1_schedule_app.data.source.remote.RemoteDataSourceResponseConverter;
 
-public abstract class DataSourceParser<T> implements RemoteDataSourceResponseConverter<T> {
+public abstract class DataSourceParser<T extends Entity> implements RemoteDataSourceResponseConverter<T> {
 
     public abstract String getUrl();
 

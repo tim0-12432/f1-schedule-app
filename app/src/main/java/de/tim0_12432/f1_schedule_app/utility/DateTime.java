@@ -5,7 +5,8 @@ import android.annotation.SuppressLint;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.sql.Date;
+import java.time.ZoneOffset;
 import java.util.TimeZone;
 
 public class DateTime {
@@ -28,5 +29,19 @@ public class DateTime {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime diff = now.minusHours(nowUtc.getHour());
         return diff.getHour();
+    }
+
+    @SuppressLint("NewApi")
+    public static boolean isBirthday(final Date date) {
+        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime birthday = LocalDateTime.ofEpochSecond(date.getTime() / 1000, 0, ZoneOffset.ofHours(getTimezone()));
+        return today.getMonth() == birthday.getMonth() && today.getDayOfMonth() == birthday.getDayOfMonth();
+    }
+
+    @SuppressLint("NewApi")
+    public static int getAge(final Date date) {
+        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime birthday = LocalDateTime.ofEpochSecond(date.getTime() / 1000, 0, ZoneOffset.ofHours(getTimezone()));
+        return today.getYear() - birthday.getYear();
     }
 }

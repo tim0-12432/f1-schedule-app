@@ -6,7 +6,7 @@ import java.util.List;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResultList;
 
-public class RaceResultListBuilder {
+public class RaceResultListBuilder extends EntityBuilder<RaceResultList> {
 
     private List<RaceResult> raceResultList;
 
