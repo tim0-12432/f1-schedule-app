@@ -1,5 +1,7 @@
 # Formula 1 App
 
+[![Android build](https://github.com/tim0-12432/f1-schedule-app/actions/workflows/android_build.yml/badge.svg?branch=main)](https://github.com/tim0-12432/f1-schedule-app/actions/workflows/android_build.yml)
+
 ## Table of Contents
 
 - [Description](#description)
