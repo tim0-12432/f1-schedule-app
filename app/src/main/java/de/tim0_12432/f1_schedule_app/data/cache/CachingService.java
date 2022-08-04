@@ -11,20 +11,26 @@ import de.tim0_12432.f1_schedule_app.utility.Logger;
 public class CachingService {
     private static final long UPDATE_INTERVAL_HOURS = 48;
 
-    public static void writeData(Context context, String key, Object object) {
+    private final StorageService storageService;
+
+    public CachingService(Context context) {
+        this.storageService = new StorageService(context);
+    }
+
+    public void writeData(String key, Object object) {
         Map<String, Object> cacheObj = new HashMap<>();
         cacheObj.put("time", System.currentTimeMillis());
         cacheObj.put("data", object);
         try {
-            StorageService.writeObject(context, key, cacheObj);
+            storageService.writeObject(key, cacheObj);
         } catch (IOException e) {
             Logger.log(e, "Could not write data to cache", key, "!");
         }
     }
 
-    public static Object readData(Context context, String key) {
+    public Object readData(String key) {
         try {
-            Object cacheObj = StorageService.readObject(context, key);
+            Object cacheObj = storageService.readObject(key);
             if (cacheObj instanceof Map) {
                 Map<String, Object> cacheMap = (Map<String, Object>) cacheObj;
                 return cacheMap.get("data");
@@ -36,9 +42,9 @@ public class CachingService {
         }
     }
 
-    public static boolean shouldUpdateCache(Context context, String key) {
+    public boolean shouldUpdateCache(String key) {
         try {
-            Object cacheObj = StorageService.readObject(context, key);
+            Object cacheObj = storageService.readObject(key);
             if (cacheObj instanceof Map) {
                 Map<String, Object> cacheMap = (Map<String, Object>) cacheObj;
                 long time = (long) cacheMap.get("time");
@@ -51,7 +57,7 @@ public class CachingService {
         }
     }
 
-    public static void clearCache(Context context, String key) {
-        StorageService.deleteObject(context, key);
+    public void clearCache(String key) {
+        storageService.deleteObject(key);
     }
 }
