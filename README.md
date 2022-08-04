@@ -1,6 +1,6 @@
 # Formula 1 App
 
-[![Android build](https://github.com/tim0-12432/f1-schedule-app/actions/workflows/android_build.yml/badge.svg?branch=main)](https://github.com/tim0-12432/f1-schedule-app/actions/workflows/android_build.yml)
+[![Android build on main](https://github.com/tim0-12432/f1-schedule-app/actions/workflows/main_android.yml/badge.svg?branch=main)](https://github.com/tim0-12432/f1-schedule-app/actions/workflows/main_android.yml)
 
 ## Table of Contents
 
@@ -34,3 +34,7 @@
 - Rotating your phone could possibly break the layout
 
 ## License
+
+Under [MIT](./LICENSE.md) License
+
+Using Maps by [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors with osmdroid

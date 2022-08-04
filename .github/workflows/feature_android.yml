@@ -17,7 +17,7 @@ jobs:
     continue-on-error: true
     steps:
       - uses: actions/checkout@v3
-      - name: Load JDK from cache
+      - name: Load Gradle from cache
         uses: actions/cache@v3
         with:
           path: |
@@ -34,14 +34,14 @@ jobs:
         with:
           name: test-reports
           path:
-            $GITHUB_WORKSPACE/app/build/reports/tests/
+            ./app/build/reports/tests/**
   lint:
     name: Lint source code
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
       - uses: actions/checkout@v3
-      - name: Load JDK from cache
+      - name: Load Gradle from cache
         uses: actions/cache@v3
         with:
           path: |
@@ -58,4 +58,4 @@ jobs:
         with:
           name: lint-reports
           path:
-            $GITHUB_WORKSPACE/app/build/reports/lint*
+            ./app/build/reports/lint*

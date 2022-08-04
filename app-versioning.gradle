@@ -1,10 +1,16 @@
-def VERSION_NAME = "1.0"
+def VERSION_NAME = "1.0.0"
 def DEFAULT_VERSION_CODE = 1
 
 ext.getUniqueVersionCode = {
     def code = System.getenv("VERSION_CODE")
-
-    return (code != null && !code.isEmpty()) ? Integer.parseInt(code) : DEFAULT_VERSION_CODE
+    try {
+        if (code != null && !code.isEmpty()) {
+            code = Integer.parseInt(code)
+        }
+    } catch (NumberFormatException ignored) {
+        code = DEFAULT_VERSION_CODE
+    }
+    return code
 }
 
 ext.getUserVisibleVersionName = {
@@ -15,5 +21,5 @@ ext.getUserVisibleVersionSuffix = {
     def suffix = System.getenv("VERSION_SUFFIX") != null ? "-${System.getenv("VERSION_SUFFIX")}" : ""
     def code = System.getenv("VERSION_CODE") != null ? "-${System.getenv("VERSION_CODE")}" : ""
 
-    return suffix + code
+    return VERSION_NAME + suffix + code
 }

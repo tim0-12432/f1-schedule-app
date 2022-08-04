@@ -1,0 +1,153 @@
+name: Android RELEASE
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test source code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load Gradle from cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-gradle-
+      - name: Run tests
+        run: ./gradlew testDebugUnitTest --continue --stacktrace
+      - name: Upload reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path:
+            ./app/build/reports/tests/**
+  lint:
+    name: Lint source code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load Gradle from cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-gradle-
+      - name: Run linting
+        run: ./gradlew lintDebug --stacktrace
+      - name: Upload reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: lint-reports
+          path:
+            ./app/build/reports/lint*
+  test-android:
+    name: Test source code on Android
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load Gradle from cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-gradle-
+      - name: Run android tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 32
+          script: ./gradlew connectedDebugAndroidTest --continue --stacktrace
+      - name: Upload reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-android-reports
+          path:
+            ./app/build/reports/androidTests/**
+  build:
+    name: Build APK
+    needs: [test, lint, test-android]
+    runs-on: ubuntu-latest
+    env:
+      VERSION_SUFFIX: RELEASE
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load Gradle from cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-gradle-
+      - name: Build APK
+        id: buildApk
+        run: ./gradlew assembleRelease --stacktrace
+      - name: Sign APK
+        id: signApk
+        uses: r0adkll/sign-android-release@v1
+        with:
+          release-directory: ./app/build/outputs/apk/release
+          alias: ${{ secrets.ALIAS }}
+          signingKeyBase64: ${{ secrets.KEYSTORE }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.PASSWORD }}
+      - name: Cache APK
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ./app/release/*.apk
+            - ./app/build/outputs/apk/release/*.apk
+          key: ${{ runner.os }}-apk-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-apk-
+  - release:
+    name: Release APK
+    needs: [build]
+    runs-on: ubuntu-latest
+    env:
+      VERSION_SUFFIX: RELEASE
+    steps:
+      - id: app-version
+        run: echo "::set-output name=version::$(./gradlew -q printVersion)"
+      - name: Use cached APK
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ./app/release/*.apk
+            - ./app/build/outputs/apk/release/*.apk
+          key: ${{ runner.os }}-apk-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-apk-
+      - name: Create release
+        uses: avakar/tag-and-release@v1
+        with:
+          tag_name: v${{ steps.app-version.outputs.version }}
+          release_name: v${{ steps.app-version.outputs.version }}
+        id: release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          - name: Upload binaries to release
+            uses: actions/upload-release-asset@v3
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            with:
+              asset_path: ./app/release/*.apk
+              asset_name: f1scheduleapp-v${{ steps.app-version.outputs.version }}.apk
+              asset_content_type: application/apk
+              upload_url: ${{ steps.release.outputs.upload_url }}

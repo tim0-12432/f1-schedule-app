@@ -1,7 +1,11 @@
 package de.tim0_12432.f1_schedule_app.data.entity.builder;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.sql.Date;
 
@@ -9,7 +13,10 @@ import de.tim0_12432.f1_schedule_app.data.entity.Circuit;
 import de.tim0_12432.f1_schedule_app.data.entity.Driver;
 import de.tim0_12432.f1_schedule_app.data.entity.Location;
 
+@LargeTest
+@RunWith(AndroidJUnit4.class)
 public class DriverBuilderTest {
+
     @Test
     public void testDefault() {
         DriverBuilder builder = new DriverBuilder();

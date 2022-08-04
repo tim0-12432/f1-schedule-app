@@ -1,6 +1,7 @@
 package de.tim0_12432.f1_schedule_app.data.entity;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.junit.runner.RunWith;
 
 import de.tim0_12432.f1_schedule_app.R;
 
+@LargeTest
 @RunWith(AndroidJUnit4.class)
 public class NationalityTest {
     @Test

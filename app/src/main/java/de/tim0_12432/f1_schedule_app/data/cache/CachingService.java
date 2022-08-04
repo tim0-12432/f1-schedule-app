@@ -9,7 +9,7 @@ import java.util.Map;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class CachingService {
-    private static final long UPDATE_INTERVAL_HOURS = 36;
+    private static final long UPDATE_INTERVAL_HOURS = 48;
 
     public static void writeData(Context context, String key, Object object) {
         Map<String, Object> cacheObj = new HashMap<>();
