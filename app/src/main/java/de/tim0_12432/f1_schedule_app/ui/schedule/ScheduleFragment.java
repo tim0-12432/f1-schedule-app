@@ -52,7 +52,7 @@ public class ScheduleFragment extends Fragment implements ListView<Race> {
             public void onLoaded(List<Race> list) {
                 races.addAll(list);
                 for (Race race : races) {
-                    fetchRaces(race, false);
+                    fetchRaces(race);
                 }
                 showEntries(races);
             }
@@ -132,26 +132,15 @@ public class ScheduleFragment extends Fragment implements ListView<Race> {
         });
     }
 
-    private void fetchRaces(Race race, boolean force) {
+    private void fetchRaces(Race race) {
         String url = race.getSeason() + "/" + race.getRound() + "/results";
-        if (force) {
-            manager.refreshDataFrom(ResourceNames.RACE_RESULTS, url, new LoadCallback<Race>() {
-                @Override
-                public void onLoaded(List<Race> list) {
-                    if (list.size() > 0) {
-                        race.addResults(list.get(0).getResults());
-                    }
+        manager.getDataFrom(ResourceNames.RACE_RESULTS, url, new LoadCallback<Race>() {
+            @Override
+            public void onLoaded(List<Race> list) {
+                if (list.size() > 0) {
+                    race.addResults(list.get(0).getResults());
                 }
-            });
-        } else {
-            manager.getDataFrom(ResourceNames.RACE_RESULTS, url, new LoadCallback<Race>() {
-                @Override
-                public void onLoaded(List<Race> list) {
-                    if (list.size() > 0) {
-                        race.addResults(list.get(0).getResults());
-                    }
-                }
-            });
-        }
+            }
+        });
     }
 }
