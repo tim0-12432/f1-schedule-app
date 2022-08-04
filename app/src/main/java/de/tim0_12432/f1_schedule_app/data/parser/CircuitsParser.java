@@ -14,7 +14,7 @@ import de.tim0_12432.f1_schedule_app.data.entity.parser.CircuitParser;
 public class CircuitsParser extends DataSourceParser<Circuit> {
     @Override
     public String getUrl() {
-        return "circuits";
+        return "circuits?limit=100";
     }
 
     @Override

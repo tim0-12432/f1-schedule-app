@@ -52,34 +52,11 @@ public class ScheduleFragment extends Fragment implements ListView<Race> {
             public void onLoaded(List<Race> list) {
                 races.addAll(list);
                 for (Race race : races) {
-                    fetchRaces(race, false);
+                    fetchRaces(race);
                 }
                 showEntries(races);
             }
         });
-
-        /*SwipeRefreshLayout refreshLayout = binding.scheduleListRefresh;
-        TypedValue secondaryVariant = new TypedValue();
-        getContext().getTheme().resolveAttribute(com.google.android.material.R.attr.colorSecondaryVariant, secondaryVariant, true);
-        refreshLayout.setProgressBackgroundColorSchemeResource(secondaryVariant.resourceId);
-        refreshLayout.setColorSchemeResources(R.color.red_cg);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshLayout.setRefreshing(false);
-                showLoading();
-                manager.refreshDataFrom(ResourceNames.SCHEDULE, new LoadCallback<Race>() {
-                    @Override
-                    public void onLoaded(List<Race> list) {
-                        races.addAll(list);
-                        for (Race race : races) {
-                            fetchRaces(race, true);
-                        }
-                        showEntries(races);
-                    }
-                });
-            }
-        });*/
 
         return root;
     }
@@ -132,26 +109,15 @@ public class ScheduleFragment extends Fragment implements ListView<Race> {
         });
     }
 
-    private void fetchRaces(Race race, boolean force) {
+    private void fetchRaces(Race race) {
         String url = race.getSeason() + "/" + race.getRound() + "/results";
-        if (force) {
-            manager.refreshDataFrom(ResourceNames.RACE_RESULTS, url, new LoadCallback<Race>() {
-                @Override
-                public void onLoaded(List<Race> list) {
-                    if (list.size() > 0) {
-                        race.addResults(list.get(0).getResults());
-                    }
+        manager.getDataFrom(race.getDate(), ResourceNames.RACE_RESULTS, url, new LoadCallback<Race>() {
+            @Override
+            public void onLoaded(List<Race> list) {
+                if (list.size() > 0) {
+                    race.addResults(list.get(0).getResults());
                 }
-            });
-        } else {
-            manager.getDataFrom(ResourceNames.RACE_RESULTS, url, new LoadCallback<Race>() {
-                @Override
-                public void onLoaded(List<Race> list) {
-                    if (list.size() > 0) {
-                        race.addResults(list.get(0).getResults());
-                    }
-                }
-            });
-        }
+            }
+        });
     }
 }

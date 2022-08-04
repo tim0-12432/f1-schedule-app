@@ -31,13 +31,16 @@ public enum Nationality {
     INDIAN("\uD83C\uDDEE\uD83C\uDDF3", "India"),
     ITALIAN("\uD83C\uDDEE\uD83C\uDDF9", R.string.nationality_italian, "Italy"),
     JAPANESE("\uD83C\uDDEF\uD83C\uDDF5", R.string.nationality_japanese, "Japan"),
+    MALAYSIAN("\uD83C\uDDF2\uD83C\uDDFE", "Malaysia"),
     MEXICAN("\uD83C\uDDF2\uD83C\uDDFD", R.string.nationality_mexican, "Mexico"),
     MONEGASQUE("\uD83C\uDDF2\uD83C\uDDE8", R.string.nationality_monegasque, "Monaco"),
     MOROCCAN("\uD83C\uDDF2\uD83C\uDDE6", "Morocco"),
     PORTUGUESE("\uD83C\uDDF5\uD83C\uDDF9", "Portugal"),
+    QATARI("\uD83C\uDDF6\uD83C\uDDE6", "Qatar"),
     RUSSIAN("\uD83C\uDDF7\uD83C\uDDFA", R.string.nationality_russian, "Russia"),
     SAUDI("\uD83C\uDDF8\uD83C\uDDE6", R.string.nationality_saudi, "Saudi Arabia"),
     SOUTH_AFRICAN("\uD83C\uDDFF\uD83C\uDDE6", "South Africa"),
+    SOUTH_KOREAN("\uD83C\uDDF0\uD83C\uDDF7", "Korea"),
     SINGAPOREAN("\uD83C\uDDF8\uD83C\uDDEC", R.string.nationality_singaporean, "Singapore"),
     SPANISH("\uD83C\uDDEA\uD83C\uDDF8", R.string.nationality_spanish, "Spain"),
     SWEDISH("\uD83C\uDDF8\uD83C\uDDEA", "Sweden"),
@@ -117,7 +120,7 @@ public enum Nationality {
 
     public static Nationality getNationalityOfCountry(String country) {
         for (Nationality nationality : values()) {
-            if (nationality.getCountry().equals(country)) {
+            if (nationality.getCountry().toLowerCase(Locale.ROOT).equals(country.toLowerCase(Locale.ROOT))) {
                 return nationality;
             }
         }
