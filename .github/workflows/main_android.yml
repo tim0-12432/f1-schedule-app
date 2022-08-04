@@ -76,6 +76,7 @@ jobs:
         id: buildApk
         env:
           VERSION_CODE: ${{ github.run_id }}
+          VERSION_SUFFIX: SNAPSHOT
         run: ./gradlew assembleRelease --stacktrace
       - name: Sign APK
         id: signApk
