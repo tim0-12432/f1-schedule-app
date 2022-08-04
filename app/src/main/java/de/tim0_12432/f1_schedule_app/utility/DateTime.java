@@ -10,10 +10,14 @@ import java.time.ZoneOffset;
 import java.util.TimeZone;
 
 public class DateTime {
-    public static String getTimestamp(final Time time) {
+    public static String getTimestamp(Time time) {
+        return getTimestamp(time, getTimezone());
+    }
+
+    public static String getTimestamp(final Time time, final int timezoneOffset) {
         Time newTime = new Time(time.getTime());
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-        newTime.setTime(newTime.getTime() + ((long) getTimezone() * 60 * 60 * 1000));
+        newTime.setTime(newTime.getTime() + ((long) timezoneOffset * 60 * 60 * 1000));
         return formatter.format(new Date(newTime.getTime()));
     }
 
