@@ -1,0 +1,61 @@
+name: Android build on feature
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+  pull_request:
+    branches:
+      - '**'
+      - '!main'
+
+jobs:
+  test:
+    name: Test source code
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load JDK from cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-gradle-
+      - name: Run tests
+        run: ./gradlew testDebugUnitTest --continue
+      - name: Upload reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path:
+            $GITHUB_WORKSPACE/app/build/reports/tests/
+  lint:
+    name: Lint source code
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load JDK from cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-gradle-
+      - name: Run linting
+        run: ./gradlew lintDebug
+      - name: Upload reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: lint-reports
+          path:
+            $GITHUB_WORKSPACE/app/build/reports/lint*

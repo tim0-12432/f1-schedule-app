@@ -1,0 +1,97 @@
+name: Android build on main
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test source code
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load JDK from cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-gradle-
+      - name: Run tests
+        run: ./gradlew testDebugUnitTest --continue
+      - name: Upload reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path:
+            $GITHUB_WORKSPACE/app/build/reports/tests/
+  lint:
+    name: Lint source code
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load JDK from cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-gradle-
+      - name: Run linting
+        run: ./gradlew lintDebug
+      - name: Upload reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: lint-reports
+          path:
+            $GITHUB_WORKSPACE/app/build/reports/lint*
+  build:
+    name: Build APK
+    needs: [test, lint]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load JDK from cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-gradle-
+      - name: Build APK
+        id: buildApk
+        env:
+          VERSION_CODE: ${{ github.run_id }}
+        run: ./gradlew assembleRelease
+      - name: Sign APK
+        id: signApk
+        uses: r0adkll/sign-android-release@v1
+        with:
+          release-directory: $GITHUB_WORKSPACE/app/build/outputs/apk/release
+          alias: ${{ secrets.ALIAS }}
+          signingKeyBase64: ${{ secrets.KEYSTORE }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.PASSWORD }}
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        env:
+          VERSION_CODE: ${{ github.run_id }}
+        with:
+          name: app-apk-${{ env.VERSION_CODE }}
+          path: |
+            $GITHUB_WORKSPACE/app/build/outputs/apk/release/**.apk
+            $GITHUB_WORKSPACE/app/release/**.apk

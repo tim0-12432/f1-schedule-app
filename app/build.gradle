@@ -9,8 +9,9 @@ android {
         applicationId "de.tim0_12432.f1_schedule_app"
         minSdk 21
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode getUniqueVersionCode()
+        versionName getUserVisibleVersionName()
+        versionNameSuffix getUserVisibleVersionSuffix()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
