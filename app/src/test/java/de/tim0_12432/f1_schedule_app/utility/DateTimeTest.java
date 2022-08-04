@@ -45,4 +45,14 @@ public class DateTimeTest {
         Date date2 = Date.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         assertEquals(0, DateTimeMock.getAge(date2));
     }
+
+    @Test
+    public void testGetDaysDifference() {
+        Date date1 = Date.valueOf("2020-01-01");
+        Date date2 = Date.valueOf("2020-01-31");
+        assertEquals(30, DateTimeMock.getDaysDifference(date1, date2));
+
+        Date date3 = Date.valueOf("2019-12-29");
+        assertEquals(-3, DateTimeMock.getDaysDifference(date1, date3));
+    }
 }
