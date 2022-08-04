@@ -139,12 +139,12 @@ jobs:
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          - name: Upload binaries to release
-            uses: actions/upload-release-asset@v3
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            with:
-              asset_path: ./app/release/*.apk
-              asset_name: f1scheduleapp-v${{ steps.app-version.outputs.version }}.apk
-              asset_content_type: application/apk
-              upload_url: ${{ steps.release.outputs.upload_url }}
+      - name: Upload binaries to release
+        uses: actions/upload-release-asset@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          asset_path: ./app/release/*.apk
+          asset_name: f1scheduleapp-v${{ steps.app-version.outputs.version }}.apk
+          asset_content_type: application/apk
+          upload_url: ${{ steps.release.outputs.upload_url }}
