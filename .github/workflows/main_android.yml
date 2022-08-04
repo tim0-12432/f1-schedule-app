@@ -25,14 +25,14 @@ jobs:
           restore-keys: |
             - ${{ runner.os }}-gradle-
       - name: Run tests
-        run: ./gradlew testDebugUnitTest --continue
+        run: ./gradlew testDebugUnitTest --continue --stacktrace
       - name: Upload reports
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: test-reports
           path:
-            $GITHUB_WORKSPACE/app/build/reports/tests/
+            ./app/build/reports/tests/**
   lint:
     name: Lint source code
     runs-on: ubuntu-latest
@@ -49,14 +49,14 @@ jobs:
           restore-keys: |
             - ${{ runner.os }}-gradle-
       - name: Run linting
-        run: ./gradlew lintDebug
+        run: ./gradlew lintDebug --stacktrace
       - name: Upload reports
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: lint-reports
           path:
-            $GITHUB_WORKSPACE/app/build/reports/lint*
+            ./app/build/reports/lint/**
   build:
     name: Build APK
     needs: [test, lint]
@@ -76,12 +76,12 @@ jobs:
         id: buildApk
         env:
           VERSION_CODE: ${{ github.run_id }}
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleRelease --stacktrace
       - name: Sign APK
         id: signApk
         uses: r0adkll/sign-android-release@v1
         with:
-          release-directory: $GITHUB_WORKSPACE/app/build/outputs/apk/release
+          release-directory: ./app/build/outputs/apk/release
           alias: ${{ secrets.ALIAS }}
           signingKeyBase64: ${{ secrets.KEYSTORE }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -93,5 +93,5 @@ jobs:
         with:
           name: app-apk-${{ env.VERSION_CODE }}
           path: |
-            $GITHUB_WORKSPACE/app/build/outputs/apk/release/**.apk
-            $GITHUB_WORKSPACE/app/release/**.apk
+            ./app/build/outputs/apk/release/**.apk
+            ./app/release/**.apk
