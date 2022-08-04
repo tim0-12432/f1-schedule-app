@@ -2,9 +2,9 @@ package de.tim0_12432.f1_schedule_app.data;
 
 import android.content.Context;
 
+import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 import de.tim0_12432.f1_schedule_app.data.cache.CachingService;
 import de.tim0_12432.f1_schedule_app.data.entity.Entity;
@@ -22,11 +22,11 @@ public class DataManager {
     }
 
     public <T extends Entity> void getDataFrom(ResourceNames resource, LoadCallback<T> callback) {
-        getDataFrom(resource, null, callback);
+        getDataFrom(null, resource, null, callback);
     }
 
-    public <T extends Entity> void getDataFrom(ResourceNames resource, String url, LoadCallback<T> callback) {
-        if (cachingService.shouldUpdateCache(getKey(resource, url))) {
+    public <T extends Entity> void getDataFrom(Date date, ResourceNames resource, String url, LoadCallback<T> callback) {
+        if (cachingService.shouldUpdateCache(resource == ResourceNames.RACE_RESULTS ? date : null, resource, url)) {
             DataSourceParser<T> parser = null;
             try {
                 parser = (DataSourceParser<T>) resource.getParser().newInstance();
@@ -44,20 +44,20 @@ public class DataManager {
                 source.getData(new LoadCallback<T>() {
                     @Override
                     public void onLoaded(List<T> list) {
-                        cachingService.writeData(getKey(resource, url), list);
+                        cachingService.writeData(resource, url, list);
                         callback.onLoaded(list);
                     }
                 });
             } else {
-                Logger.log(Logger.LogLevel.ERROR, "Parser", getKey(resource, url), "is null!");
+                Logger.log(Logger.LogLevel.ERROR, "Parser", CachingService.getKey(resource, url), "is null!");
             }
         } else {
-            Object cache = cachingService.readData(getKey(resource, url));
+            Object cache = cachingService.readData(resource, url);
             try {
                 List<T> data = (List<T>) cache;
                 if (data == null) {
-                    cachingService.clearCache(getKey(resource, url));
-                    Logger.log(Logger.LogLevel.WARN, "Cache", getKey(resource, url), "was null!");
+                    cachingService.clearCache(resource, url);
+                    Logger.log(Logger.LogLevel.WARN, "Cache", CachingService.getKey(resource, url), "was null!");
                     callback.onLoaded(Collections.emptyList());
                 } else {
                     callback.onLoaded(data);
@@ -69,11 +69,5 @@ public class DataManager {
         }
     }
 
-    private static String getKey(ResourceNames resource, String url) {
-        if (url == null) {
-            return resource.name().toLowerCase(Locale.ROOT);
-        } else {
-            return resource.name().toLowerCase(Locale.ROOT) + "-" + url.toLowerCase(Locale.ROOT).replaceAll("[/.:]", "");
-        }
-    }
+
 }

@@ -26,6 +26,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -34,24 +36,29 @@
                     android:textStyle="bold"
                     android:textSize="18dp"
                     android:layout_weight="800"
+                    android:text="Lorem ipsum dolor sit amet Lorem ipsum"
+                    android:layout_marginBottom="4dp"
                     android:id="@+id/circuit_name" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/dummy_text"
                     android:id="@+id/circuit_locality" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="right"
+                android:layout_weight="0.1"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:text="🇶🇦"
                     android:layout_weight="800"
                     android:textSize="32dp"
                     android:id="@+id/circuit_country" />

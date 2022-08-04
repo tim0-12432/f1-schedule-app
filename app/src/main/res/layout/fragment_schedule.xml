@@ -14,65 +14,56 @@
         app:indicatorColor="?attr/colorOnPrimary"
         android:id="@+id/schedule_progress" />
 
-    <!--
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/schedule_list_refresh"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    -->
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <LinearLayout
+            android:id="@+id/schedule_error"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/schedule_error"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="?attr/colorSecondaryVariant"
+                app:cardElevation="3dp"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.MediumComponent"
+                app:strokeWidth="0dp">
 
-                <com.google.android.material.card.MaterialCardView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:padding="20dp"
-                    app:cardBackgroundColor="?attr/colorSecondaryVariant"
-                    app:cardElevation="3dp"
-                    app:shapeAppearance="@style/ShapeAppearance.Material3.MediumComponent"
-                    app:strokeWidth="0dp">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="20dp">
+                    <TextView
+                        android:id="@+id/schedule_not_found"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/schedule_not_found"
+                        android:textColor="@color/red_cg"
+                        android:textFontWeight="800"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/schedule_not_found"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/schedule_not_found"
-                            android:textColor="@color/red_cg"
-                            android:textFontWeight="800"
-                            android:textStyle="bold" />
+                </LinearLayout>
 
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
-
-            <ListView
-                android:id="@+id/schedule_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="?attr/colorOnSecondary"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="0dp" />
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
-    <!--
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    -->
+        <ListView
+            android:id="@+id/schedule_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="?attr/colorOnSecondary"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp" />
+
+    </LinearLayout>
+
 </RelativeLayout>
