@@ -113,7 +113,7 @@ jobs:
           key: ${{ runner.os }}-apk-${{ hashFiles('**/*gradle*') }}
           restore-keys: |
             - ${{ runner.os }}-apk-
-  - release:
+  release:
     name: Release APK
     needs: [build]
     runs-on: ubuntu-latest
