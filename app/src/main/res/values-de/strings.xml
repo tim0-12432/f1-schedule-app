@@ -110,4 +110,6 @@
     <string name="circuits_not_found">❗ Strecken konnten nicht abgerufen werden!</string>
     <string name="locality">Örtlichkeit</string>
     <string name="country">Land</string>
+    <string name="more_info_counter">Um mehr Informationen zu lesen, warten sie noch</string>
+    <string name="days">Tage</string>
 </resources>

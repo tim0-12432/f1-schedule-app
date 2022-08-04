@@ -54,11 +54,11 @@ public class CircuitDetailsFragment extends Fragment {
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    public void addMarker (GeoPoint point){
+    public void addMarker(GeoPoint point){
         Marker marker = new Marker(osm);
         marker.setPosition(point);
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        marker.setIcon(getResources().getDrawable(R.drawable.ic_location_24));
+        marker.setIcon(getResources().getDrawable(R.drawable.ic_location_48));
         osm.getOverlays().clear();
         osm.getOverlays().add(marker);
         osm.invalidate();
@@ -97,6 +97,12 @@ public class CircuitDetailsFragment extends Fragment {
                 requireActivity().startActivity(new Intent(Intent.ACTION_VIEW, url));
             });
         }
+
+        binding.circuitScreenOsmButton.setOnClickListener(v -> {
+            Logger.log("OSM opened");
+            Uri url = Uri.parse("https://www.openstreetmap.org/copyright");
+            requireActivity().startActivity(new Intent(Intent.ACTION_VIEW, url));
+        });
 
         return root;
     }
