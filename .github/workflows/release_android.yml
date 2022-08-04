@@ -2,8 +2,6 @@ name: Android RELEASE
 
 on:
   workflow_dispatch:
-    branches:
-      - main
 
 jobs:
   test:
@@ -102,7 +100,7 @@ jobs:
         id: signApk
         uses: r0adkll/sign-android-release@v1
         with:
-          release-directory: ./app/build/outputs/apk/release
+          releaseDirectory: ./app/build/outputs/apk/release
           alias: ${{ secrets.ALIAS }}
           signingKeyBase64: ${{ secrets.KEYSTORE }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
