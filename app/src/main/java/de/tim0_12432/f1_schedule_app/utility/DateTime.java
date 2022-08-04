@@ -26,6 +26,10 @@ public class DateTime {
         return formatter.format(new Date(date.getTime()));
     }
 
+    public static Date getToday() {
+        return new Date(System.currentTimeMillis());
+    }
+
     @SuppressLint("NewApi")
     public static int getTimezone() {
         TimeZone tzUtc = TimeZone.getTimeZone("UTC");
@@ -47,5 +51,12 @@ public class DateTime {
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime birthday = LocalDateTime.ofEpochSecond(date.getTime() / 1000, 0, ZoneOffset.ofHours(getTimezone()));
         return today.getYear() - birthday.getYear();
+    }
+
+    @SuppressLint("NewApi")
+    public static int getDaysDifference(final Date date1, final Date date2) {
+        LocalDateTime day1 = LocalDateTime.ofEpochSecond(date1.getTime() / 1000, 0, ZoneOffset.ofHours(getTimezone())).withHour(0).withMinute(0).withSecond(0);
+        LocalDateTime day2 = LocalDateTime.ofEpochSecond(date2.getTime() / 1000, 0, ZoneOffset.ofHours(getTimezone())).withHour(0).withMinute(0).withSecond(0);
+        return (int) (day1.until(day2, java.time.temporal.ChronoUnit.DAYS));
     }
 }

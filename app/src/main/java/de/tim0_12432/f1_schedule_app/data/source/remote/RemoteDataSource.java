@@ -36,34 +36,39 @@ public class RemoteDataSource<T> implements DataSource<T> {
     }
 
     @Override
-    public void getData(final LoadCallback<T> callback) {
+    public Runnable getData(final LoadCallback<T> callback) {
         Request request = new Request.Builder()
                 .url(url)
                 .header("Accept", "application/xml")
                 .build();
 
         Logger.log("\u2192", "GET", url);
-        client.newCall(request).enqueue(new Callback() {
+        return new Runnable() {
             @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Logger.log("\u2190", "GET", url, "FAILED");
-                callback.onLoaded(Collections.emptyList());
-            }
+            public void run() {
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        Logger.log("\u2190", "GET", url, "FAILED");
+                        callback.onLoaded(Collections.emptyList());
+                    }
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) {
-                Logger.log("\u2190", "GET", url, response.code(), "(" + (response.receivedResponseAtMillis() - response.sentRequestAtMillis()) + "ms)");
-                if (!response.isSuccessful()) {
-                    callback.onLoaded(Collections.emptyList());
-                }
-                try (ResponseBody responseBody = response.body(); InputStream inputStream = responseBody.byteStream()) {
-                    callback.onLoaded(converter.convert(inputStream));
-                } catch (Exception e) {
-                    Logger.log(e, "Error while parsing response:", e.getMessage());
-                    callback.onLoaded(Collections.emptyList());
-                }
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) {
+                        Logger.log("\u2190", "GET", url, response.code(), "(" + (response.receivedResponseAtMillis() - response.sentRequestAtMillis()) + "ms)");
+                        if (!response.isSuccessful()) {
+                            callback.onLoaded(Collections.emptyList());
+                        }
+                        try (ResponseBody responseBody = response.body(); InputStream inputStream = responseBody.byteStream()) {
+                            callback.onLoaded(converter.convert(inputStream));
+                        } catch (Exception e) {
+                            Logger.log(e, "Error while parsing response:", e.getMessage());
+                            callback.onLoaded(Collections.emptyList());
+                        }
+                    }
+                });
             }
-        });
+        };
     }
 
     public static XmlPullParser getXmlPullParser() throws XmlPullParserException {

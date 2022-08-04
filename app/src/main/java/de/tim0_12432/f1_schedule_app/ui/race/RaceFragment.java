@@ -36,6 +36,7 @@ public class RaceFragment extends Fragment {
     }
 
     @Override
+    @SuppressLint("SetTextI18n")
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentRaceScreenBinding.inflate(inflater, container, false);
@@ -47,6 +48,8 @@ public class RaceFragment extends Fragment {
 
             RaceResultList resultList = race.getResults();
             if (resultList != null) {
+                binding.raceScreenCounterCard.setVisibility(View.GONE);
+
                 List<RaceResult> results = resultList.getResults();
                 setText(binding.raceScreenWinner1, "\uD83E\uDD47", ' ',
                         results.get(0).getDriver().getCode() + " "
@@ -65,11 +68,16 @@ public class RaceFragment extends Fragment {
             } else {
                 binding.raceScreenPodium.setVisibility(View.GONE);
                 binding.raceScreenResults.setVisibility(View.GONE);
+
+                binding.raceScreenCounter.setText(getString(R.string.more_info_counter) + " "
+                        + DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) + " "
+                        + getString(R.string.days) + ".");
             }
         } else {
             Logger.log(Logger.LogLevel.ERROR, "Race object was null!");
             binding.raceScreenPodium.setVisibility(View.GONE);
             binding.raceScreenResults.setVisibility(View.GONE);
+            binding.raceScreenCounterCard.setVisibility(View.GONE);
         }
 
         return binding.getRoot();

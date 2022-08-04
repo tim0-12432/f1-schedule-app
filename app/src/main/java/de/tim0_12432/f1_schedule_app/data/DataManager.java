@@ -5,6 +5,7 @@ import android.content.Context;
 import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import de.tim0_12432.f1_schedule_app.data.cache.CachingService;
 import de.tim0_12432.f1_schedule_app.data.entity.Entity;
@@ -41,13 +42,16 @@ public class DataManager {
                 } else {
                     source = HttpService.getDataSourceForUrl(url, parser);
                 }
-                source.getData(new LoadCallback<T>() {
-                    @Override
-                    public void onLoaded(List<T> list) {
-                        cachingService.writeData(resource, url, list);
-                        callback.onLoaded(list);
-                    }
-                });
+                Executors.newCachedThreadPool().execute(
+                        source.getData(new LoadCallback<T>() {
+                            @Override
+                            public void onLoaded(List<T> list) {
+                                cachingService.writeData(resource, url, list);
+                                callback.onLoaded(list);
+                            }
+                        })
+                );
+
             } else {
                 Logger.log(Logger.LogLevel.ERROR, "Parser", CachingService.getKey(resource, url), "is null!");
             }
