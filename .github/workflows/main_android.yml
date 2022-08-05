@@ -24,6 +24,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
           restore-keys: |
             - ${{ runner.os }}-gradle-
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: adopt-hotspot
+          cache: gradle
       - name: Run tests
         run: ./gradlew testDebugUnitTest --continue --stacktrace
       - name: Upload reports
@@ -48,6 +54,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
           restore-keys: |
             - ${{ runner.os }}-gradle-
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: adopt-hotspot
+          cache: gradle
       - name: Run linting
         run: ./gradlew lintDebug --stacktrace
       - name: Upload reports
@@ -75,6 +87,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
           restore-keys: |
             - ${{ runner.os }}-gradle-
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: adopt-hotspot
+          cache: gradle
       - id: app-version
         run: echo "::set-output name=version::$(./gradlew -q printVersion)"
       - name: Build APK

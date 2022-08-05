@@ -17,6 +17,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
           restore-keys: |
             - ${{ runner.os }}-gradle-
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: adopt-hotspot
+          cache: gradle
       - name: Run tests
         run: ./gradlew testDebugUnitTest --continue --stacktrace
       - name: Upload reports
@@ -40,6 +46,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
           restore-keys: |
             - ${{ runner.os }}-gradle-
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: adopt-hotspot
+          cache: gradle
       - name: Run linting
         run: ./gradlew lintDebug --stacktrace
       - name: Upload reports
@@ -63,10 +75,19 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
           restore-keys: |
             - ${{ runner.os }}-gradle-
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: adopt-hotspot
+          cache: gradle
       - name: Run android tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
           script: ./gradlew connectedDebugAndroidTest --continue --stacktrace
       - name: Upload reports
         if: ${{ always() }}
@@ -92,6 +113,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
           restore-keys: |
             - ${{ runner.os }}-gradle-
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: adopt-hotspot
+          cache: gradle
       - name: Build APK
         id: buildApk
         run: ./gradlew assembleRelease --stacktrace
