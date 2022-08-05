@@ -16,13 +16,13 @@ import java.util.List;
 
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
-import de.tim0_12432.f1_schedule_app.data.ResourceNames;
+import de.tim0_12432.f1_schedule_app.data.Resource;
 import de.tim0_12432.f1_schedule_app.data.entity.Constructor;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorStanding;
 import de.tim0_12432.f1_schedule_app.data.entity.Driver;
 import de.tim0_12432.f1_schedule_app.data.entity.DriverStanding;
-import de.tim0_12432.f1_schedule_app.data.source.LoadCallback;
+import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.databinding.FragmentTeamDetailsBinding;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
 
@@ -48,7 +48,7 @@ public class TeamDetailsFragment extends Fragment {
             wins = standing.getWins();
         }
         DataManager manager = new DataManager(getContext());
-        manager.getDataFrom(ResourceNames.DRIVER_RANKING, new LoadCallback<DriverStanding>() {
+        manager.getDataFrom(Resource.DRIVER_RANKING, new ILoadCallback<DriverStanding>() {
             @Override
             public void onLoaded(List<DriverStanding> list) {
                 results = list;

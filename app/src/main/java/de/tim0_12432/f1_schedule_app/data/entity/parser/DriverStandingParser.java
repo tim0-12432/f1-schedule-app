@@ -8,8 +8,12 @@ import java.io.IOException;
 import de.tim0_12432.f1_schedule_app.data.entity.DriverStanding;
 import de.tim0_12432.f1_schedule_app.data.entity.builder.DriverStandingBuilder;
 
-public class DriverStandingParser {
-    public static DriverStanding parseDriverStanding(XmlPullParser parser) throws XmlPullParserException, IOException {
+public class DriverStandingParser extends AbstractEntityParser<DriverStanding> {
+    private static final DriverParser driverParser = new DriverParser();
+    private static final ConstructorParser constructorParser = new ConstructorParser();
+
+    @Override
+    public DriverStanding parse(XmlPullParser parser) throws XmlPullParserException, IOException {
         DriverStandingBuilder builder = new DriverStandingBuilder()
                 .withPosition(Integer.parseInt(parser.getAttributeValue(null, "position")))
                 .withPoints(Integer.parseInt(parser.getAttributeValue(null, "points")))
@@ -21,10 +25,10 @@ public class DriverStandingParser {
                 String attr = parser.getName();
                 switch (attr) {
                     case "Driver":
-                        builder.withDriver(DriverParser.parseDriver(parser));
+                        builder.withDriver(driverParser.parse(parser));
                         break;
                     case "Constructor":
-                        builder.withConstructor(ConstructorParser.parseConstructor(parser));
+                        builder.withConstructor(constructorParser.parse(parser));
                         break;
                 }
             }

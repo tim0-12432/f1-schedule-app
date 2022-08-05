@@ -11,12 +11,14 @@ import java.util.List;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
 import de.tim0_12432.f1_schedule_app.data.entity.parser.RaceParser;
 
-public class ScheduleParser extends DataSourceParser<Race> {
+public class ScheduleParser extends AbstractDataSourceParser<Race> {
 
     @Override
     public String getUrl() {
         return "current";
     }
+
+    private static final RaceParser raceParser = new RaceParser();
 
     @Override
     protected List<Race> parse(InputStream input, XmlPullParser parser) throws XmlPullParserException, IOException {
@@ -29,7 +31,7 @@ public class ScheduleParser extends DataSourceParser<Race> {
             if (event == XmlPullParser.START_TAG) {
                 String name = parser.getName();
                 if ("Race".equals(name)) {
-                    Race race = RaceParser.parseRace(parser);
+                    Race race = raceParser.parse(parser);
                     result.add(race);
                 }
             }

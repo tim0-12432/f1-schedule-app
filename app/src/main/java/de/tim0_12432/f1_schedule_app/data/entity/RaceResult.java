@@ -2,7 +2,7 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 import androidx.annotation.NonNull;
 
-public class RaceResult extends Entity {
+public class RaceResult extends AbstractEntity {
 
     private final int number;
 

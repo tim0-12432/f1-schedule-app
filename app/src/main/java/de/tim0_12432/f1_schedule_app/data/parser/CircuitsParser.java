@@ -11,11 +11,13 @@ import java.util.List;
 import de.tim0_12432.f1_schedule_app.data.entity.Circuit;
 import de.tim0_12432.f1_schedule_app.data.entity.parser.CircuitParser;
 
-public class CircuitsParser extends DataSourceParser<Circuit> {
+public class CircuitsParser extends AbstractDataSourceParser<Circuit> {
     @Override
     public String getUrl() {
         return "circuits?limit=100";
     }
+
+    private static final CircuitParser circuitParser = new CircuitParser();
 
     @Override
     protected List<Circuit> parse(InputStream input, XmlPullParser parser) throws XmlPullParserException, IOException {
@@ -28,7 +30,7 @@ public class CircuitsParser extends DataSourceParser<Circuit> {
             if (event == XmlPullParser.START_TAG) {
                 String name = parser.getName();
                 if ("Circuit".equals(name)) {
-                    Circuit circuit = CircuitParser.parseCircuit(parser);
+                    Circuit circuit = circuitParser.parse(parser);
                     result.add(circuit);
                 }
             }

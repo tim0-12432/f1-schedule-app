@@ -1,4 +1,4 @@
-package de.tim0_12432.f1_schedule_app.utility;
+package de.tim0_12432.f1_schedule_app;
 
 import android.util.Log;
 

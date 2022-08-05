@@ -8,8 +8,11 @@ import java.io.IOException;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorStanding;
 import de.tim0_12432.f1_schedule_app.data.entity.builder.ConstructorStandingBuilder;
 
-public class ConstructorStandingParser {
-    public static ConstructorStanding parseConstructorStanding(XmlPullParser parser) throws XmlPullParserException, IOException {
+public class ConstructorStandingParser extends AbstractEntityParser<ConstructorStanding> {
+    private static final ConstructorParser constructorParser = new ConstructorParser();
+
+    @Override
+    public ConstructorStanding parse(XmlPullParser parser) throws XmlPullParserException, IOException {
         ConstructorStandingBuilder builder = new ConstructorStandingBuilder()
                 .withPosition(Integer.parseInt(parser.getAttributeValue(null, "position")))
                 .withPoints(Integer.parseInt(parser.getAttributeValue(null, "points")))
@@ -20,7 +23,7 @@ public class ConstructorStandingParser {
             if (event == XmlPullParser.START_TAG) {
                 String attr = parser.getName();
                 if ("Constructor".equals(attr)) {
-                    builder.withConstructor(ConstructorParser.parseConstructor(parser));
+                    builder.withConstructor(constructorParser.parse(parser));
                 }
             }
             event = parser.nextTag();

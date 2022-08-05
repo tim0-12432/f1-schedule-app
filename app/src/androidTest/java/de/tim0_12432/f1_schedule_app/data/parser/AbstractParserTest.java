@@ -1,16 +1,29 @@
 package de.tim0_12432.f1_schedule_app.data.parser;
 
-import org.apache.commons.io.FileUtils;
+import android.content.Context;
+
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
+
 import org.apache.commons.io.IOUtils;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.runner.RunWith;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 
+import de.tim0_12432.f1_schedule_app.MainActivity;
+
+@MediumTest
+@RunWith(AndroidJUnit4.class)
 public abstract class AbstractParserTest {
+    @Rule
+    public final ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<MainActivity>(MainActivity.class);
+
     protected static final InputStream ERROR_STREAM = IOUtils.toInputStream("<html><h1>Error reading response from server!</h1></html>", "UTF-8");
 
     protected abstract String getXmlFileName();
@@ -19,9 +32,8 @@ public abstract class AbstractParserTest {
 
     @Before
     public void setUp() throws IOException {
-        File file = FileUtils.getFile("src", "test", "res", getXmlFileName());
-        System.out.println(FileUtils.readFileToString(file, StandardCharsets.UTF_8));
-        stream = FileUtils.openInputStream(file);
+        Context context = InstrumentationRegistry.getInstrumentation().getContext();
+        stream = context.getResources().getAssets().open(getXmlFileName());
     }
 
     @After

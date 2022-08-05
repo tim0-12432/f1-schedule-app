@@ -2,29 +2,33 @@ package de.tim0_12432.f1_schedule_app.data.entity.builder;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
+import androidx.test.filters.SmallTest;
 
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.sql.Date;
+
 import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.data.entity.Constructor;
-import de.tim0_12432.f1_schedule_app.data.entity.ConstructorStanding;
+import de.tim0_12432.f1_schedule_app.data.entity.Driver;
+import de.tim0_12432.f1_schedule_app.data.entity.DriverStanding;
 import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
 
-@LargeTest
+@SmallTest
 @RunWith(AndroidJUnit4.class)
-public class ConstructorStandingBuilderTest {
+public class DriverStandingBuilderTest {
 
     @Rule
     public final ActivityScenarioRule<MainActivity> activityRule = new ActivityScenarioRule<MainActivity>(MainActivity.class);
 
     @Test
     public void testDefault() {
-        ConstructorStandingBuilder builder = new ConstructorStandingBuilder();
-        ConstructorStanding standing = builder.build();
+        DriverStandingBuilder builder = new DriverStandingBuilder();
+        DriverStanding standing = builder.build();
+        Assert.assertNull(standing.getDriver());
         Assert.assertNull(standing.getConstructor());
         Assert.assertEquals(0, standing.getPoints());
         Assert.assertEquals(0, standing.getWins());
@@ -33,16 +37,19 @@ public class ConstructorStandingBuilderTest {
 
     @Test
     public void testAttributes() {
+        Driver driver = new Driver("TEST", "Test", "Test", new Date(0), 56, Nationality.AMERICAN, "https://hello-world.com");
         Constructor constructor = new Constructor("Test", Nationality.ITALIAN, "https://hello-world.com");
         int position = 1;
         int points = 2;
         int wins = 3;
-        ConstructorStandingBuilder builder = new ConstructorStandingBuilder()
+        DriverStandingBuilder builder = new DriverStandingBuilder()
+                .withDriver(driver)
                 .withConstructor(constructor)
                 .withPoints(points)
                 .withPosition(position)
                 .withWins(wins);
-        ConstructorStanding standing = builder.build();
+        DriverStanding standing = builder.build();
+        Assert.assertEquals(driver, standing.getDriver());
         Assert.assertEquals(constructor, standing.getConstructor());
         Assert.assertEquals(position, standing.getPosition());
         Assert.assertEquals(points, standing.getPoints());

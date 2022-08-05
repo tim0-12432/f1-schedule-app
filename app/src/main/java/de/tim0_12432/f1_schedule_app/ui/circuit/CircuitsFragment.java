@@ -19,14 +19,14 @@ import java.util.Locale;
 
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
-import de.tim0_12432.f1_schedule_app.data.ResourceNames;
+import de.tim0_12432.f1_schedule_app.data.Resource;
 import de.tim0_12432.f1_schedule_app.data.entity.Circuit;
 import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
-import de.tim0_12432.f1_schedule_app.data.source.LoadCallback;
+import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.databinding.FragmentCircuitsBinding;
-import de.tim0_12432.f1_schedule_app.ui.ListView;
+import de.tim0_12432.f1_schedule_app.ui.IListView;
 
-public class CircuitsFragment extends Fragment implements ListView<Circuit> {
+public class CircuitsFragment extends Fragment implements IListView<Circuit> {
 
     private FragmentCircuitsBinding binding;
 
@@ -42,7 +42,7 @@ public class CircuitsFragment extends Fragment implements ListView<Circuit> {
 
         List<Circuit> circuits = new ArrayList<>();
         showLoading();
-        manager.getDataFrom(ResourceNames.CIRCUITS, new LoadCallback<Circuit>() {
+        manager.getDataFrom(Resource.CIRCUITS, new ILoadCallback<Circuit>() {
             @SuppressLint("NewApi")
             @Override
             public void onLoaded(List<Circuit> list) {

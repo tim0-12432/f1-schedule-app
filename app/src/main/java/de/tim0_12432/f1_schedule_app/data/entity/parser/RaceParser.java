@@ -10,8 +10,12 @@ import java.sql.Time;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
 import de.tim0_12432.f1_schedule_app.data.entity.builder.RaceBuilder;
 
-public class RaceParser {
-    public static Race parseRace(XmlPullParser parser) throws XmlPullParserException, IOException {
+public class RaceParser extends AbstractEntityParser<Race> {
+    private static final CircuitParser circuitParser = new CircuitParser();
+    private static final ResultParser resultParser = new ResultParser();
+
+    @Override
+    public Race parse(XmlPullParser parser) throws XmlPullParserException, IOException {
         RaceBuilder builder = new RaceBuilder()
                 .withSeason(Integer.parseInt(parser.getAttributeValue(null, "season")))
                 .withRound(Integer.parseInt(parser.getAttributeValue(null, "round")))
@@ -32,7 +36,7 @@ public class RaceParser {
                         builder.withTime(Time.valueOf(parser.nextText().replace("Z", "")));
                         break;
                     case "Circuit":
-                        builder.withCircuit(CircuitParser.parseCircuit(parser));
+                        builder.withCircuit(circuitParser.parse(parser));
                         break;
                 }
             }
@@ -41,7 +45,7 @@ public class RaceParser {
         return builder.build();
     }
 
-    public static Race parseRaceWithResults(XmlPullParser parser) throws XmlPullParserException, IOException {
+    public Race parseWithResults(XmlPullParser parser) throws XmlPullParserException, IOException {
         RaceBuilder builder = new RaceBuilder()
                 .withSeason(Integer.parseInt(parser.getAttributeValue(null, "season")))
                 .withRound(Integer.parseInt(parser.getAttributeValue(null, "round")))
@@ -62,10 +66,10 @@ public class RaceParser {
                         builder.withTime(Time.valueOf(parser.nextText().replace("Z", "")));
                         break;
                     case "Circuit":
-                        builder.withCircuit(CircuitParser.parseCircuit(parser));
+                        builder.withCircuit(circuitParser.parse(parser));
                         break;
                     case "ResultsList":
-                        builder.withResults(ResultParser.parseResults(parser));
+                        builder.withResults(resultParser.parse(parser));
                         break;
                 }
             }

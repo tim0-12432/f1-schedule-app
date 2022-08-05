@@ -32,7 +32,7 @@ public class Logger {
     public static void log(LogLevel level, Object... message) {
         StackTraceElement caller = Thread.currentThread().getStackTrace()[4];
         String tag = caller.getClassName() + "#" + caller.getMethodName();
-        String msg = String.join(" ", Arrays.stream(message).map(Object::toString).toArray(String[]::new));
+        String msg = String.join(" ", Arrays.stream(message).map(m -> m == null ? "null" : m.toString()).toArray(String[]::new));
         switch (level) {
             case VERBOSE:
                 Log.v(tag, msg);
@@ -59,7 +59,7 @@ public class Logger {
     @SuppressLint("NewApi")
     public static void log(Throwable throwable, Object... message) {
         StackTraceElement caller = Thread.currentThread().getStackTrace()[4];
-        String msg = String.join(" ", Arrays.stream(message).map(Object::toString).toArray(String[]::new));
+        String msg = String.join(" ", Arrays.stream(message).map(m -> m == null ? "null" : m.toString()).toArray(String[]::new));
         Log.e(caller.getClassName() + "#" + caller.getMethodName(), msg, throwable);
     }
 }

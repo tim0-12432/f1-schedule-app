@@ -8,8 +8,9 @@ import java.io.IOException;
 import de.tim0_12432.f1_schedule_app.data.entity.Constructor;
 import de.tim0_12432.f1_schedule_app.data.entity.builder.ConstructorBuilder;
 
-public class ConstructorParser {
-    public static Constructor parseConstructor(XmlPullParser parser) throws XmlPullParserException, IOException {
+public class ConstructorParser extends AbstractEntityParser<Constructor> {
+    @Override
+    public Constructor parse(XmlPullParser parser) throws XmlPullParserException, IOException {
         ConstructorBuilder builder = new ConstructorBuilder()
                 .withUrl(parser.getAttributeValue(null, "url"));
         parser.nextTag();

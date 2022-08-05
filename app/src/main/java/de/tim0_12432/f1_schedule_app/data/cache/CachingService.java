@@ -8,17 +8,17 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import de.tim0_12432.f1_schedule_app.data.ResourceNames;
+import de.tim0_12432.f1_schedule_app.data.Resource;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class CachingService {
-    private final StorageService storageService;
+    protected StorageService storageService;
 
     public CachingService(Context context) {
         this.storageService = new StorageService(context);
     }
 
-    public void writeData(ResourceNames resource, String url, Object object) {
+    public void writeData(Resource resource, String url, Object object) {
         Map<String, Object> cacheObj = new HashMap<>();
         cacheObj.put("time", System.currentTimeMillis());
         cacheObj.put("data", object);
@@ -29,7 +29,7 @@ public class CachingService {
         }
     }
 
-    public Object readData(ResourceNames resource, String url) {
+    public Object readData(Resource resource, String url) {
         try {
             Object cacheObj = storageService.readObject(getKey(resource, url));
             if (cacheObj instanceof Map) {
@@ -43,7 +43,7 @@ public class CachingService {
         }
     }
 
-    public boolean shouldUpdateCache(Date date, ResourceNames resource, String url) {
+    public boolean shouldUpdateCache(Date date, Resource resource, String url) {
         try {
             Object cacheObj = storageService.readObject(getKey(resource, url));
             if (cacheObj instanceof Map) {
@@ -65,11 +65,11 @@ public class CachingService {
         }
     }
 
-    public void clearCache(ResourceNames resource, String url) {
+    public void clearCache(Resource resource, String url) {
         storageService.deleteObject(getKey(resource, url));
     }
 
-    public static String getKey(ResourceNames resource,  String url) {
+    public static String getKey(Resource resource, String url) {
         if (url == null) {
             return resource.name().toLowerCase(Locale.ROOT);
         } else {

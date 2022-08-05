@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,15 +19,14 @@ import java.util.List;
 
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
-import de.tim0_12432.f1_schedule_app.data.ResourceNames;
+import de.tim0_12432.f1_schedule_app.data.Resource;
 import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
-import de.tim0_12432.f1_schedule_app.data.source.LoadCallback;
+import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.databinding.FragmentScheduleBinding;
-import de.tim0_12432.f1_schedule_app.ui.ListView;
-import de.tim0_12432.f1_schedule_app.utility.Logger;
+import de.tim0_12432.f1_schedule_app.ui.IListView;
 
-public class ScheduleFragment extends Fragment implements ListView<Race> {
+public class ScheduleFragment extends Fragment implements IListView<Race> {
 
     private FragmentScheduleBinding binding;
 
@@ -47,7 +45,7 @@ public class ScheduleFragment extends Fragment implements ListView<Race> {
 
         List<Race> races = new ArrayList<>();
         showLoading();
-        manager.getDataFrom(ResourceNames.SCHEDULE, new LoadCallback<Race>() {
+        manager.getDataFrom(Resource.SCHEDULE, new ILoadCallback<Race>() {
             @Override
             public void onLoaded(List<Race> list) {
                 races.addAll(list);
@@ -111,7 +109,7 @@ public class ScheduleFragment extends Fragment implements ListView<Race> {
 
     private void fetchRaces(Race race) {
         String url = race.getSeason() + "/" + race.getRound() + "/results";
-        manager.getDataFrom(race.getDate(), ResourceNames.RACE_RESULTS, url, new LoadCallback<Race>() {
+        manager.getDataFrom(race.getDate(), Resource.RACE_RESULTS, url, new ILoadCallback<Race>() {
             @Override
             public void onLoaded(List<Race> list) {
                 if (list.size() > 0) {

@@ -5,8 +5,8 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 
-import de.tim0_12432.f1_schedule_app.data.entity.Entity;
+import de.tim0_12432.f1_schedule_app.data.entity.AbstractEntity;
 
-public abstract class EntityParser<T extends Entity> {
+public abstract class AbstractEntityParser<T extends AbstractEntity> {
     public abstract T parse(XmlPullParser parser) throws XmlPullParserException, IOException;
 }

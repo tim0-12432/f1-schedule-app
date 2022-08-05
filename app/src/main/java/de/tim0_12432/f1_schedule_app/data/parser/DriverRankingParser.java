@@ -11,11 +11,13 @@ import java.util.List;
 import de.tim0_12432.f1_schedule_app.data.entity.DriverStanding;
 import de.tim0_12432.f1_schedule_app.data.entity.parser.DriverStandingParser;
 
-public class DriverRankingParser extends DataSourceParser<DriverStanding> {
+public class DriverRankingParser extends AbstractDataSourceParser<DriverStanding> {
     @Override
     public String getUrl() {
         return "current/driverStandings";
     }
+
+    private static final DriverStandingParser driverStandingParser = new DriverStandingParser();
 
     @Override
     protected List<DriverStanding> parse(InputStream input, XmlPullParser parser) throws XmlPullParserException, IOException {
@@ -28,7 +30,7 @@ public class DriverRankingParser extends DataSourceParser<DriverStanding> {
             if (event == XmlPullParser.START_TAG) {
                 String name = parser.getName();
                 if ("DriverStanding".equals(name)) {
-                    DriverStanding standing = DriverStandingParser.parseDriverStanding(parser);
+                    DriverStanding standing = driverStandingParser.parse(parser);
                     result.add(standing);
                 }
             }

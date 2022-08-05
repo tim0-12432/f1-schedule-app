@@ -1,12 +1,13 @@
 package de.tim0_12432.f1_schedule_app.data.parser;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.MediumTest;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,15 +15,15 @@ import java.util.List;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
 
-@RunWith(RobolectricTestRunner.class)
-@Config(manifest=Config.NONE)
+@MediumTest
+@RunWith(AndroidJUnit4.class)
 public class RaceResultsParserTest extends AbstractParserTest {
 
     private RaceResultsParser parser;
 
     @Override
     protected String getXmlFileName() {
-        return "race_results.xml";
+        return "assets/race_results.xml";
     }
 
     @Before
@@ -45,7 +46,7 @@ public class RaceResultsParserTest extends AbstractParserTest {
 
     @Test
     public void testParseError() throws Exception {
-        List<Race> list = parser.convert(ERROR_STREAM);
+        List<Race> list = parser.convert(AbstractParserTest.ERROR_STREAM);
         Assert.assertEquals(0, list.size());
     }
 

@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 import de.tim0_12432.f1_schedule_app.data.cache.CachingService;
-import de.tim0_12432.f1_schedule_app.data.entity.Entity;
-import de.tim0_12432.f1_schedule_app.data.parser.DataSourceParser;
-import de.tim0_12432.f1_schedule_app.data.source.LoadCallback;
+import de.tim0_12432.f1_schedule_app.data.entity.AbstractEntity;
+import de.tim0_12432.f1_schedule_app.data.parser.AbstractDataSourceParser;
+import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.data.source.remote.RemoteDataSource;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
 
@@ -22,15 +22,15 @@ public class DataManager {
         this.cachingService = new CachingService(context);
     }
 
-    public <T extends Entity> void getDataFrom(ResourceNames resource, LoadCallback<T> callback) {
+    public <T extends AbstractEntity> void getDataFrom(Resource resource, ILoadCallback<T> callback) {
         getDataFrom(null, resource, null, callback);
     }
 
-    public <T extends Entity> void getDataFrom(Date date, ResourceNames resource, String url, LoadCallback<T> callback) {
-        if (cachingService.shouldUpdateCache(resource == ResourceNames.RACE_RESULTS ? date : null, resource, url)) {
-            DataSourceParser<T> parser = null;
+    public <T extends AbstractEntity> void getDataFrom(Date date, Resource resource, String url, ILoadCallback<T> callback) {
+        if (cachingService.shouldUpdateCache(resource == Resource.RACE_RESULTS ? date : null, resource, url)) {
+            AbstractDataSourceParser<T> parser = null;
             try {
-                parser = (DataSourceParser<T>) resource.getParser().newInstance();
+                parser = (AbstractDataSourceParser<T>) resource.getParser().newInstance();
             } catch (IllegalAccessException | InstantiationException e) {
                 Logger.log(e, "Could not initialize parser class!");
                 e.printStackTrace();
@@ -43,7 +43,7 @@ public class DataManager {
                     source = HttpService.getDataSourceForUrl(url, parser);
                 }
                 Executors.newCachedThreadPool().execute(
-                        source.getData(new LoadCallback<T>() {
+                        source.getData(new ILoadCallback<T>() {
                             @Override
                             public void onLoaded(List<T> list) {
                                 cachingService.writeData(resource, url, list);

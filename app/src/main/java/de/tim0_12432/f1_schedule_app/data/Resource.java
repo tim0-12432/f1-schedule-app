@@ -6,7 +6,7 @@ import de.tim0_12432.f1_schedule_app.data.parser.ScheduleParser;
 import de.tim0_12432.f1_schedule_app.data.parser.DriverRankingParser;
 import de.tim0_12432.f1_schedule_app.data.parser.TeamRankingParser;
 
-public enum ResourceNames {
+public enum Resource {
     SCHEDULE(ScheduleParser.class, 72),
     RACE_RESULTS(RaceResultsParser.class, 48),
     DRIVER_RANKING(DriverRankingParser.class, 48),
@@ -17,7 +17,7 @@ public enum ResourceNames {
 
     private final int updateIntervalHours;
 
-    ResourceNames(Class parser, int updateIntervalHours) {
+    Resource(Class parser, int updateIntervalHours) {
         this.parser = parser;
         this.updateIntervalHours = updateIntervalHours;
     }

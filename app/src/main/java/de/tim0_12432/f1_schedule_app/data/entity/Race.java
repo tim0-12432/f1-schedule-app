@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Race extends Entity {
+public class Race extends AbstractEntity {
 
     private final int season;
 
