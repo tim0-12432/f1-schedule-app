@@ -66,7 +66,7 @@ jobs:
       - name: Run android tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 32
+          api-level: 29
           script: ./gradlew connectedDebugAndroidTest --continue --stacktrace
       - name: Upload reports
         if: ${{ always() }}

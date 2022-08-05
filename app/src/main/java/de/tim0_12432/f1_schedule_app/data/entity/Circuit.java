@@ -2,7 +2,7 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 import androidx.annotation.NonNull;
 
-public class Circuit extends Entity {
+public class Circuit extends AbstractEntity {
 
     private final Location location;
 

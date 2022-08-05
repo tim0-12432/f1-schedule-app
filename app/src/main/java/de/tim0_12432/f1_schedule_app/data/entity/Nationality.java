@@ -101,6 +101,9 @@ public enum Nationality {
 
     public static Nationality getNationalityOfTranslation(String englishTranslation) {
         try {
+            if (englishTranslation == null) {
+                throw new IllegalArgumentException("Translation is null!");
+            }
             return Nationality.valueOf(englishTranslation.toUpperCase(Locale.ROOT));
         } catch (IllegalArgumentException e) {
             Resources currUsed = MainActivity.getAppResources();

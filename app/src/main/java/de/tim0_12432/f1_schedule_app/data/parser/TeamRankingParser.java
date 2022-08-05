@@ -11,11 +11,13 @@ import java.util.List;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorStanding;
 import de.tim0_12432.f1_schedule_app.data.entity.parser.ConstructorStandingParser;
 
-public class TeamRankingParser extends DataSourceParser<ConstructorStanding> {
+public class TeamRankingParser extends AbstractDataSourceParser<ConstructorStanding> {
     @Override
     public String getUrl() {
         return "current/constructorStandings";
     }
+
+    private static final ConstructorStandingParser constructorStandingParser = new ConstructorStandingParser();
 
     @Override
     protected List<ConstructorStanding> parse(InputStream input, XmlPullParser parser) throws XmlPullParserException, IOException {
@@ -28,7 +30,7 @@ public class TeamRankingParser extends DataSourceParser<ConstructorStanding> {
             if (event == XmlPullParser.START_TAG) {
                 String name = parser.getName();
                 if ("ConstructorStanding".equals(name)) {
-                    ConstructorStanding standing = ConstructorStandingParser.parseConstructorStanding(parser);
+                    ConstructorStanding standing = constructorStandingParser.parse(parser);
                     result.add(standing);
                 }
             }

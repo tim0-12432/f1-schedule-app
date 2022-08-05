@@ -8,8 +8,9 @@ import java.io.IOException;
 import de.tim0_12432.f1_schedule_app.data.entity.Location;
 import de.tim0_12432.f1_schedule_app.data.entity.builder.LocationBuilder;
 
-public class LocationParser {
-    public static Location parseLocation(XmlPullParser parser) throws XmlPullParserException, IOException {
+public class LocationParser extends AbstractEntityParser<Location> {
+    @Override
+    public Location parse(XmlPullParser parser) throws XmlPullParserException, IOException {
         LocationBuilder builder = new LocationBuilder()
                 .withLat(Double.parseDouble(parser.getAttributeValue(null, "lat")))
                 .withLong(Double.parseDouble(parser.getAttributeValue(null, "long")));

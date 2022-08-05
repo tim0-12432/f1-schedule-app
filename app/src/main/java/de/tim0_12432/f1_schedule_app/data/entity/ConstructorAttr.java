@@ -61,7 +61,7 @@ public enum ConstructorAttr {
         return engine;
     }
 
-    public static ConstructorAttr getConstructorOfName(String name) {
+    public static ConstructorAttr getConstructorByName(String name) {
         try {
             return ConstructorAttr.valueOf(name.replace(" ", "").toUpperCase(Locale.ROOT).substring(0, 4));
         } catch (IllegalArgumentException e) {
@@ -73,6 +73,6 @@ public enum ConstructorAttr {
         if (constructor == null) {
             return ConstructorAttr.DEFAULT;
         }
-        return ConstructorAttr.getConstructorOfName(constructor.getName());
+        return ConstructorAttr.getConstructorByName(constructor.getName());
     }
 }

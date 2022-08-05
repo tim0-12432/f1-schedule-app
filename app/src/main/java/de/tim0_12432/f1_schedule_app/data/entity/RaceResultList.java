@@ -7,7 +7,7 @@ import java.util.List;
 import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.R;
 
-public class RaceResultList extends Entity {
+public class RaceResultList extends AbstractEntity {
     private static final String speedUnit = MainActivity.getAppResources().getString(R.string.unit_kph);
 
     private final List<RaceResult> results;

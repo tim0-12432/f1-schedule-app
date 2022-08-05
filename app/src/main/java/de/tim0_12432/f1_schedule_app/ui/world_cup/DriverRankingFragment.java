@@ -16,17 +16,15 @@ import java.util.List;
 
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
-import de.tim0_12432.f1_schedule_app.data.ResourceNames;
+import de.tim0_12432.f1_schedule_app.data.Resource;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr;
 import de.tim0_12432.f1_schedule_app.data.entity.Driver;
 import de.tim0_12432.f1_schedule_app.data.entity.DriverStanding;
-import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
-import de.tim0_12432.f1_schedule_app.data.entity.Race;
-import de.tim0_12432.f1_schedule_app.data.source.LoadCallback;
+import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.databinding.FragmentDriverRankingBinding;
-import de.tim0_12432.f1_schedule_app.ui.ListView;
+import de.tim0_12432.f1_schedule_app.ui.IListView;
 
-public class DriverRankingFragment extends Fragment implements ListView<DriverStanding> {
+public class DriverRankingFragment extends Fragment implements IListView<DriverStanding> {
 
     private FragmentDriverRankingBinding binding;
 
@@ -92,7 +90,7 @@ public class DriverRankingFragment extends Fragment implements ListView<DriverSt
 
         List<DriverStanding> driverStandings = new ArrayList<>();
         showLoading();
-        manager.getDataFrom(ResourceNames.DRIVER_RANKING, new LoadCallback<DriverStanding>() {
+        manager.getDataFrom(Resource.DRIVER_RANKING, new ILoadCallback<DriverStanding>() {
             @Override
             public void onLoaded(List<DriverStanding> list) {
                 driverStandings.addAll(list);

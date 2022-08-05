@@ -9,8 +9,9 @@ import java.sql.Date;
 import de.tim0_12432.f1_schedule_app.data.entity.Driver;
 import de.tim0_12432.f1_schedule_app.data.entity.builder.DriverBuilder;
 
-public class DriverParser {
-    public static Driver parseDriver(XmlPullParser parser) throws XmlPullParserException, IOException {
+public class DriverParser extends AbstractEntityParser<Driver> {
+    @Override
+    public Driver parse(XmlPullParser parser) throws XmlPullParserException, IOException {
         DriverBuilder builder = new DriverBuilder()
                 .withCode(parser.getAttributeValue(null, "code"))
                 .withUrl(parser.getAttributeValue(null, "url"));

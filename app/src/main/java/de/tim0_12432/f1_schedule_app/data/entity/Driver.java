@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import java.sql.Date;
 
-public class Driver extends Entity {
+public class Driver extends AbstractEntity {
 
     private final String code;
 

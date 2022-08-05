@@ -12,8 +12,8 @@ import java.util.Collections;
 
 import javax.inject.Inject;
 
-import de.tim0_12432.f1_schedule_app.data.source.DataSource;
-import de.tim0_12432.f1_schedule_app.data.source.LoadCallback;
+import de.tim0_12432.f1_schedule_app.data.source.IDataSource;
+import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -22,21 +22,21 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class RemoteDataSource<T> implements DataSource<T> {
+public class RemoteDataSource<T> implements IDataSource<T> {
 
     private final String url;
-    private final RemoteDataSourceResponseConverter<T> converter;
+    private final IRemoteDataSourceResponseConverter<T> converter;
     private final OkHttpClient client;
 
     @Inject
-    public RemoteDataSource(String url, RemoteDataSourceResponseConverter<T> converter, OkHttpClient client) {
+    public RemoteDataSource(String url, IRemoteDataSourceResponseConverter<T> converter, OkHttpClient client) {
         this.url = url;
         this.converter = converter;
         this.client = client;
     }
 
     @Override
-    public Runnable getData(final LoadCallback<T> callback) {
+    public Runnable getData(final ILoadCallback<T> callback) {
         Request request = new Request.Builder()
                 .url(url)
                 .header("Accept", "application/xml")

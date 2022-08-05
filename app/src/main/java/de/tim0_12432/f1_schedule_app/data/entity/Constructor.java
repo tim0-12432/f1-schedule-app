@@ -2,7 +2,7 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 import androidx.annotation.NonNull;
 
-public class Constructor extends Entity {
+public class Constructor extends AbstractEntity {
 
     private final String name;
 

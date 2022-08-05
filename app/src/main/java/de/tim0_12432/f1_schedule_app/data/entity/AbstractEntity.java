@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
-public abstract class Entity implements Serializable {
+public abstract class AbstractEntity implements Serializable {
     @NonNull
     @Override
     public abstract String toString();

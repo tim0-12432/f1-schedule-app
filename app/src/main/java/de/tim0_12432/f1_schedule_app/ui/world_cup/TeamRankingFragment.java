@@ -15,16 +15,13 @@ import java.util.List;
 
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
-import de.tim0_12432.f1_schedule_app.data.ResourceNames;
-import de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr;
+import de.tim0_12432.f1_schedule_app.data.Resource;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorStanding;
-import de.tim0_12432.f1_schedule_app.data.entity.Driver;
-import de.tim0_12432.f1_schedule_app.data.entity.DriverStanding;
-import de.tim0_12432.f1_schedule_app.data.source.LoadCallback;
+import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.databinding.FragmentTeamRankingBinding;
-import de.tim0_12432.f1_schedule_app.ui.ListView;
+import de.tim0_12432.f1_schedule_app.ui.IListView;
 
-public class TeamRankingFragment extends Fragment implements ListView<ConstructorStanding> {
+public class TeamRankingFragment extends Fragment implements IListView<ConstructorStanding> {
 
     private FragmentTeamRankingBinding binding;
 
@@ -87,7 +84,7 @@ public class TeamRankingFragment extends Fragment implements ListView<Constructo
 
         List<ConstructorStanding> constructorStandings = new ArrayList<>();
         showLoading();
-        manager.getDataFrom(ResourceNames.TEAM_RANKING, new LoadCallback<ConstructorStanding>() {
+        manager.getDataFrom(Resource.TEAM_RANKING, new ILoadCallback<ConstructorStanding>() {
             @Override
             public void onLoaded(List<ConstructorStanding> list) {
                 constructorStandings.addAll(list);

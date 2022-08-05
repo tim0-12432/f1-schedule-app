@@ -11,8 +11,12 @@ import de.tim0_12432.f1_schedule_app.data.entity.RaceResultStatus;
 import de.tim0_12432.f1_schedule_app.data.entity.builder.RaceResultBuilder;
 import de.tim0_12432.f1_schedule_app.data.entity.builder.RaceResultListBuilder;
 
-public class ResultParser {
-    public static RaceResultList parseResults(XmlPullParser parser) throws XmlPullParserException, IOException {
+public class ResultParser extends AbstractEntityParser<RaceResultList> {
+    private static final DriverParser driverParser = new DriverParser();
+    private static final ConstructorParser constructorParser = new ConstructorParser();
+
+    @Override
+    public RaceResultList parse(XmlPullParser parser) throws XmlPullParserException, IOException {
         RaceResultListBuilder builder = new RaceResultListBuilder();
         parser.nextTag();
         int event = parser.getEventType();
@@ -28,7 +32,7 @@ public class ResultParser {
         return builder.build();
     }
 
-    private static RaceResult parseResult(XmlPullParser parser) throws XmlPullParserException, IOException {
+    private RaceResult parseResult(XmlPullParser parser) throws XmlPullParserException, IOException {
         RaceResultBuilder builder = new RaceResultBuilder()
                 .withNumber(Integer.parseInt(parser.getAttributeValue(null, "number")))
                 .withPosition(Integer.parseInt(parser.getAttributeValue(null, "position")))
@@ -40,10 +44,10 @@ public class ResultParser {
                 String attr = parser.getName();
                 switch (attr) {
                     case "Driver":
-                        builder.withDriver(DriverParser.parseDriver(parser));
+                        builder.withDriver(driverParser.parse(parser));
                         break;
                     case "Constructor":
-                        builder.withTeam(ConstructorParser.parseConstructor(parser));
+                        builder.withTeam(constructorParser.parse(parser));
                         break;
                     case "Grid":
                         builder.withGrid(Integer.parseInt(parser.nextText()));
@@ -70,7 +74,7 @@ public class ResultParser {
         return builder.build();
     }
 
-    private static void parseFastestLap(XmlPullParser parser, RaceResultBuilder builder) throws XmlPullParserException, IOException {
+    private void parseFastestLap(XmlPullParser parser, RaceResultBuilder builder) throws XmlPullParserException, IOException {
         parser.nextTag();
         int event = parser.getEventType();
         while (event != XmlPullParser.END_TAG && !"FastestLap".equals(parser.getName())) {
