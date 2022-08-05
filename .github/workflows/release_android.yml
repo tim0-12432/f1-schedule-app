@@ -134,9 +134,7 @@ jobs:
       - name: Cache APK
         uses: actions/cache@v3
         with:
-          path: |
-            - ./app/release/*.apk
-            - ./app/build/outputs/apk/release/*.apk
+          path: ./app/build/outputs/apk/release/app*.apk
           key: ${{ runner.os }}-apk-${{ hashFiles('**/*gradle*') }}
           restore-keys: |
             - ${{ runner.os }}-apk-
@@ -152,9 +150,7 @@ jobs:
       - name: Use cached APK
         uses: actions/cache@v3
         with:
-          path: |
-            - ./app/release/*.apk
-            - ./app/build/outputs/apk/release/*.apk
+          path: ./app/build/outputs/apk/release/app*.apk
           key: ${{ runner.os }}-apk-${{ hashFiles('**/*gradle*') }}
           restore-keys: |
             - ${{ runner.os }}-apk-
@@ -171,7 +167,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          asset_path: ./app/release/*.apk
+          asset_path: ./app/build/outputs/apk/release/app*.apk
           asset_name: f1scheduleapp-v${{ steps.app-version.outputs.version }}.apk
           asset_content_type: application/apk
           upload_url: ${{ steps.release.outputs.upload_url }}
