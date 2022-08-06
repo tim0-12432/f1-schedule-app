@@ -145,6 +145,15 @@ jobs:
     env:
       VERSION_SUFFIX: RELEASE
     steps:
+      - name: Load Gradle from cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
+          restore-keys: |
+            - ${{ runner.os }}-gradle-
       - id: appVersion
         run: echo "::set-output name=VERSION::$(./gradlew -q printVersion)"
       - name: Use cached APK
