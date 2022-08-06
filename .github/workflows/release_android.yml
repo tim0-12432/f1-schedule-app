@@ -154,6 +154,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
           restore-keys: |
             - ${{ runner.os }}-gradle-
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: adopt-hotspot
+          cache: gradle
       - id: appVersion
         run: echo "::set-output name=VERSION::$(./gradlew -q printVersion)"
       - name: Use cached APK
