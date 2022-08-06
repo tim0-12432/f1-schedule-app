@@ -49,11 +49,9 @@
     <string name="race">Race</string>
     <string name="podium">Podium</string>
     <string name="winner">Winner</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="results">Results</string>
     <string name="status_unknown">Unknown</string>
     <string name="constructor">Constructor</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="driver_ranking_not_found">❗ Driver ranking could not be found!</string>
     <string name="constructor_ranking_not_found">❗ Team ranking could not be found!</string>
     <string name="disqualified">Disqualified</string>
@@ -88,7 +86,6 @@
     <string name="power_loss">Power loss</string>
     <string name="collision_damage">Collision damage</string>
     <string name="power_unit">Power unit</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="personal_details">Personal details</string>
     <string name="f1_details">Details in F1</string>
     <string name="more_information">More information</string>
@@ -113,7 +110,6 @@
     <string name="name">Name</string>
     <string name="wins">Current wins</string>
     <string name="fragment_team_screen_label" translatable="false">{teamName}</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="circuits_not_found">❗ Circuits could not be retrieved!</string>
     <string name="fragment_circuit_screen_label" translatable="false">{circuitName}</string>
     <string name="locality">Locality</string>
@@ -121,5 +117,5 @@
     <string name="more_info_counter">More information can be read here in</string>
     <string name="days">days</string>
     <string name="open_street_map" translatable="false">OpenStreetMap</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="widget_desc">Widget description</string>
 </resources>
