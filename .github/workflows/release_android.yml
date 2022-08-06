@@ -145,6 +145,7 @@ jobs:
     env:
       VERSION_SUFFIX: RELEASE
     steps:
+      - uses: actions/checkout@v3
       - name: Load Gradle from cache
         uses: actions/cache@v3
         with:
