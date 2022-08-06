@@ -30,6 +30,7 @@ public class CircuitsFragment extends Fragment implements IListView<Circuit> {
 
     private FragmentCircuitsBinding binding;
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCircuitsBinding.inflate(inflater, container, false);

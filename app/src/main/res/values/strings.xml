@@ -121,5 +121,8 @@
     <string name="more_info_counter">More information can be read here in</string>
     <string name="days">days</string>
     <string name="open_street_map" translatable="false">OpenStreetMap</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
