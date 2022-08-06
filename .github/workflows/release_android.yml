@@ -145,8 +145,8 @@ jobs:
     env:
       VERSION_SUFFIX: RELEASE
     steps:
-      - id: app-version
-        run: echo "::set-output name=version::$(./gradlew -q printVersion)"
+      - id: appVersion
+        run: echo "::set-output name=VERSION::$(./gradlew -q printVersion)"
       - name: Use cached APK
         uses: actions/cache@v3
         with:
@@ -157,8 +157,8 @@ jobs:
       - name: Create release
         uses: avakar/tag-and-release@v1
         with:
-          tag_name: v${{ steps.app-version.outputs.version }}
-          release_name: v${{ steps.app-version.outputs.version }}
+          tag_name: v${{ steps.appVersion.outputs.version }}
+          release_name: v${{ steps.appVersion.outputs.version }}
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -168,6 +168,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           asset_path: ./app/build/outputs/apk/release/app*.apk
-          asset_name: f1scheduleapp-v${{ steps.app-version.outputs.version }}.apk
+          asset_name: f1scheduleappV${{ steps.appVersion.outputs.version }}.apk
           asset_content_type: application/apk
           upload_url: ${{ steps.release.outputs.upload_url }}

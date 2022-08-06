@@ -93,8 +93,8 @@ jobs:
           java-version: 11
           distribution: adopt-hotspot
           cache: gradle
-      - id: app-version
-        run: echo "::set-output name=version::$(./gradlew -q printVersion)"
+      - id: appVersion
+        run: echo "::set-output name=VERSION::$(./gradlew -q printVersion)"
       - name: Build APK
         id: buildApk
         run: ./gradlew assembleRelease --stacktrace
@@ -110,7 +110,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
-          name: app-${{ steps.app-version.outputs.version }}
+          name: app-${{ steps.appVersion.outputs.version }}
           path: |
             ./app/build/outputs/apk/release/**.apk
             ./app/release/**.apk
