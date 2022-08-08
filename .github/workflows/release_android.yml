@@ -134,10 +134,10 @@ jobs:
       - name: Cache APK
         uses: actions/cache@v3
         with:
-          path: ./app/build/outputs/apk/release/app*.apk
-          key: ${{ runner.os }}-apk-${{ hashFiles('**/*gradle*') }}
+          path: app/build/outputs/apk/release/
+          key: ${{ runner.os }}-apk-app-schedule-${{ hashFiles('**/build.gradle') }}
           restore-keys: |
-            - ${{ runner.os }}-apk-
+            - ${{ runner.os }}-apk-app-schedule-
   release:
     name: Release APK
     needs: [build]
@@ -164,12 +164,14 @@ jobs:
       - name: Use cached APK
         uses: actions/cache@v3
         with:
-          path: ./app/build/outputs/apk/release/app*.apk
-          key: ${{ runner.os }}-apk-${{ hashFiles('**/*gradle*') }}
+          path: app/build/outputs/apk/release/
+          key: ${{ runner.os }}-apk-app-schedule-${{ hashFiles('**/build.gradle') }}
           restore-keys: |
-            - ${{ runner.os }}-apk-
+            - ${{ runner.os }}-apk-app-schedule-
+        id: cache-apk
       - name: Create release
         uses: avakar/tag-and-release@v1
+        if: steps.cache-apk.outputs.cache-hit != 'true'
         with:
           tag_name: v${{ steps.appVersion.outputs.version }}
           release_name: v${{ steps.appVersion.outputs.version }}
@@ -178,10 +180,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload binaries to release
         uses: actions/upload-release-asset@v1
+        if: steps.cache-apk.outputs.cache-hit != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          asset_path: ./app/build/outputs/apk/release/app*.apk
-          asset_name: f1scheduleappV${{ steps.appVersion.outputs.version }}.apk
+          asset_path: ./app/build/outputs/apk/release/*.apk
+          asset_name: f1scheduleapp-v${{ steps.appVersion.outputs.version }}.apk
           asset_content_type: application/apk
           upload_url: ${{ steps.release.outputs.upload_url }}
