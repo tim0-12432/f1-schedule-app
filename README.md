@@ -58,13 +58,13 @@ Just start and use it.
 
 | Overview | Details |
 | --- | --- |
-| ![list](./docs/images/driver_ranking.gif) | ![details](./docs/images/driver.jpg) |
+| ![list](./docs/images/driver_ranking.gif) | ![details](./docs/images/driver.jpg?height=640) |
 
 ### Team Ranking
 
 | Overview | Details |
 | --- | --- |
-| ![list](./docs/images/team_ranking.gif) | ![details](./docs/images/team.jpg) |
+| ![list](./docs/images/team_ranking.gif) | ![details](./docs/images/team.jpg?height=640) |
 
 ## Known issues
 
