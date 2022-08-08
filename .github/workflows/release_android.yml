@@ -134,10 +134,10 @@ jobs:
       - name: Cache APK
         uses: actions/cache@v3
         with:
-          path: ./app/build/outputs/apk/release/app*.apk
-          key: ${{ runner.os }}-apk-${{ hashFiles('**/*gradle*') }}
+          path: app/build/outputs/apk/release/
+          key: ${{ runner.os }}-apk-app-schedule-${{ hashFiles('**/build.gradle') }}
           restore-keys: |
-            - ${{ runner.os }}-apk-
+            - ${{ runner.os }}-apk-app-schedule-
   release:
     name: Release APK
     needs: [build]
@@ -164,24 +164,24 @@ jobs:
       - name: Use cached APK
         uses: actions/cache@v3
         with:
-          path: ./app/build/outputs/apk/release/app*.apk
-          key: ${{ runner.os }}-apk-${{ hashFiles('**/*gradle*') }}
+          path: app/build/outputs/apk/release/
+          key: ${{ runner.os }}-apk-app-schedule-${{ hashFiles('**/build.gradle') }}
           restore-keys: |
-            - ${{ runner.os }}-apk-
-      - name: Create release
-        uses: avakar/tag-and-release@v1
+            - ${{ runner.os }}-apk-app-schedule-
+        id: cache-apk
+      - name: Upload binariy to artifacts
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
         with:
+          name: apk-v${{ steps.appVersion.outputs.version }}
+          path: ./app/build/outputs/apk/release/*-signed.apk
+      - name: Upload binary to release
+        uses: softprops/action-gh-release@v1
+        if: steps.cache-apk.outputs.cache-hit == 'true'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_unmatched_files: true
+          generate_release_notes: true
           tag_name: v${{ steps.appVersion.outputs.version }}
-          release_name: v${{ steps.appVersion.outputs.version }}
-        id: release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload binaries to release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          asset_path: ./app/build/outputs/apk/release/app*.apk
-          asset_name: f1scheduleappV${{ steps.appVersion.outputs.version }}.apk
-          asset_content_type: application/apk
-          upload_url: ${{ steps.release.outputs.upload_url }}
+          name: v${{ steps.appVersion.outputs.version }}
+          files: ./app/build/outputs/apk/release/*-signed.apk
