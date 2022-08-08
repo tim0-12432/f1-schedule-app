@@ -169,6 +169,12 @@ jobs:
           restore-keys: |
             - ${{ runner.os }}-apk-app-schedule-
         id: cache-apk
+      - name: Upload binariy to artifacts
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: apk-v${{ steps.appVersion.outputs.version }}
+          path: ./app/build/outputs/apk/release/*.apk
       - name: Create release
         uses: avakar/tag-and-release@v1
         if: steps.cache-apk.outputs.cache-hit == 'true'
@@ -178,13 +184,13 @@ jobs:
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload binaries to release
+      - name: Upload binary to release
         uses: actions/upload-release-asset@v1
         if: steps.cache-apk.outputs.cache-hit == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          asset_path: ./app/build/outputs/apk/release/**
+          asset_path: app/build/outputs/apk/release/*.apk
           asset_name: f1scheduleapp-v${{ steps.appVersion.outputs.version }}.apk
           asset_content_type: application/apk
           upload_url: ${{ steps.release.outputs.upload_url }}
