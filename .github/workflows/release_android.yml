@@ -182,7 +182,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fail_on_unmatched_files: true
           generate_release_notes: true
-          asset_name: f1scheduleapp-v${{ steps.appVersion.outputs.version }}.apk
           tag_name: v${{ steps.appVersion.outputs.version }}
           name: v${{ steps.appVersion.outputs.version }}
           files: ./app/build/outputs/apk/release/*-signed.apk
