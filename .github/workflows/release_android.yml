@@ -142,8 +142,6 @@ jobs:
     name: Release APK
     needs: [build]
     runs-on: ubuntu-latest
-    env:
-      VERSION_SUFFIX: RELEASE
     steps:
       - uses: actions/checkout@v3
       - name: Load Gradle from cache
