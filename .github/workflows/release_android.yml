@@ -184,7 +184,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          asset_path: ./app/build/outputs/apk/release/*.apk
+          asset_path: ./app/build/outputs/apk/release/**
           asset_name: f1scheduleapp-v${{ steps.appVersion.outputs.version }}.apk
           asset_content_type: application/apk
           upload_url: ${{ steps.release.outputs.upload_url }}
