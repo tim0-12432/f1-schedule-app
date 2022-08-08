@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="WidgetTheme" parent="Theme.Material3.DynamicColors.DayNight">
+        <item name="android:colorPrimary">?attr/colorPrimaryVariant</item>
+        <item name="android:colorBackground">?attr/colorSecondaryVariant</item>
+    </style>
+</resources>
