@@ -5,10 +5,11 @@ import style from './style.css';
 
 interface Props {
     children: JSX.Element | JSX.Element[];
+    styling?: any;
 }
 
-const CardComponent = ({ children }: Props) => (
-    <Card class={style.card}>
+const CardComponent = ({ children, styling }: Props) => (
+    <Card class={style.card} style={styling === undefined ? {} : styling}>
         {children}
     </Card>
 );
