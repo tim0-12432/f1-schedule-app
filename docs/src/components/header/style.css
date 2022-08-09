@@ -1,0 +1,53 @@
+.header {
+	background: #9b2926;
+	padding: 0;
+}
+
+.header .title {
+	margin: 0;
+	padding: 0 15px;
+	color: #f8f7f7;
+}
+
+nav {
+	font-size: 100%;
+}
+
+nav > a {
+	display: inline-block;
+	height: 2.4rem;
+	position: relative;
+	line-height: 2.4rem;
+	padding: 0 15px;
+	min-width: 3rem;
+	text-align: center;
+	background: rgba(0, 0, 0, 0);
+	text-decoration: none;
+	color: #f8f7f7;
+	overflow: hidden;
+	will-change: background-color;
+}
+
+nav > a::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.10rem;
+
+    background: #f8f7f7;
+    transform: translateX(-100.5%);
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+}
+
+nav a:hover::before,
+nav a:active::before {
+	transform: translateX(-50%);
+}
+
+nav a.active::before {
+	transform: translateX(0);
+}

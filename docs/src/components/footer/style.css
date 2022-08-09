@@ -1,0 +1,13 @@
+.footer {
+    padding: 2rem;
+}
+
+.copy {
+    width: 100%;
+    text-align: center;
+}
+
+.copyLink {
+    text-decoration: underline;
+    color: #373440;
+}

@@ -1,0 +1,35 @@
+html, body {
+	min-height: 100vh;
+	width: 100vw;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 0;
+	margin: 0;
+	background: #b7b1b4;
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-weight: 400;
+	color: #373440;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+#app {
+	height: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 0.45rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7d7d7d;
+    border-radius: 0.8rem;
+}
