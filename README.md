@@ -46,25 +46,25 @@ Just start and use it.
 
 | Overview | Details |
 | --- | --- |
-| ![list](./docs/images/circuits.gif) | ![details](./docs/images/circuit.gif) |
+| ![list](docs/src/assets/images/circuits.gif) | ![details](docs/src/assets/images/circuit.gif) |
 
 ### Schedule List
 
 | Overview | Details |
 | --- | --- |
-| ![list](./docs/images/races.gif) | ![details](./docs/images/race_results.gif) |
+| ![list](docs/src/assets/images/races.gif) | ![details](docs/src/assets/images/race_results.gif) |
 
 ### Driver Ranking
 
 | Overview | Details |
 | --- | --- |
-| ![list](./docs/images/driver_ranking.gif) | ![details](./docs/images/driver.jpg?height=640) |
+| ![list](docs/src/assets/images/driver_ranking.gif) | <img src="./docs/src/assets/images/driver.jpg" height="640px" alt="details" /> |
 
 ### Team Ranking
 
 | Overview | Details |
 | --- | --- |
-| ![list](./docs/images/team_ranking.gif) | ![details](./docs/images/team.jpg?height=640) |
+| ![list](docs/src/assets/images/team_ranking.gif) | <img src="./docs/src/assets/images/team.jpg" height="640px" alt="details" /> |
 
 ## Known issues
 

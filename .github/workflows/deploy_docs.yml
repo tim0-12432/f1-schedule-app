@@ -1,0 +1,54 @@
+name: Deploy documentation page
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    name: Build documentation page
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+            node-version: 14
+            cache: npm
+      - run: |
+          cd docs
+          npm run ci
+      - run: |
+          cd docs
+          npm run build
+      - name: Upload build files
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: docs
+          path:
+            ./docs/build/**
+      - name: Cache build folder
+        uses: actions/cache@v3
+        with:
+          path: docs/build/
+          key: ${{ runner.os }}-docs-app-schedule-${{ hashFiles('**/build.gradle') }}
+          restore-keys: |
+            - ${{ runner.os }}-docs-app-schedule-
+  deploy:
+    name: Deploy page
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use cached build folder
+        uses: actions/cache@v3
+        with:
+          path: docs/build/
+          key: ${{ runner.os }}-docs-app-schedule-${{ hashFiles('**/build.gradle') }}
+          restore-keys: |
+            - ${{ runner.os }}-docs-app-schedule-
+      - name: Deploy to GH pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs/build
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: documentation-page

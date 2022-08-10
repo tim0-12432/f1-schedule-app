@@ -1,0 +1,57 @@
+
+.section1 {
+    position: relative;
+    display: flex;
+    width: 100%;
+    padding: 3rem 0;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.divider {
+    position: absolute;
+    bottom: 0;
+    left: -15%;
+    width: 130%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg) translateY(5%);
+    z-index: 0;
+}
+
+.divider svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1rem);
+    height: 3rem;
+}
+
+.divider svg:nth-child(1) {
+    transform: rotate(180deg);
+}
+
+.divider svg:nth-child(2) {
+    height: 9rem;
+}
+
+.divider .shapeFill {
+    fill: #e13e3b;
+}
+
+section h2 {
+    width: 100%;
+    text-align: center;
+}
+
+.button {
+    border-color: #9b2926 !important;
+    border-width: 3px !important;
+    border-radius: 2rem;
+    background-color: #d8d1cf !important;
+    color: #9b2926 !important;
+    margin: 2rem 3rem;
+    padding: 0 2rem;
+    width: fit-content !important;
+}
