@@ -1,10 +1,11 @@
 {
-  "private": true,
+  "private": false,
   "name": "f1-schedule-app-docs",
+  "homepage": "https://tim0-12432.github.io/f1-schedule-app/",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build",
+    "build": "preact build --no-prerender",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src"
@@ -20,8 +21,6 @@
     ]
   },
   "dependencies": {
-    "@emoji-mart/data": "^1.0.3",
-    "emoji-mart": "^5.2.0",
     "preact": "^10.10.0",
     "preact-css-transition-group": "^1.3.0",
     "preact-material-components": "^1.6.1",

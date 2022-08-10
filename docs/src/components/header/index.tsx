@@ -14,7 +14,7 @@ const Header = () => (
                 <nav>
                     <Link activeClassName={style.active} href="/">Home</Link>
                     <Link activeClassName={style.active} href="/features">Features</Link>
-                    <Link activeClassName={style.active} href="/information">Infos</Link>
+                    <Link activeClassName={style.active} href="/information">More</Link>
                 </nav>
             </TopAppBar.Section>
         </TopAppBar.Row>

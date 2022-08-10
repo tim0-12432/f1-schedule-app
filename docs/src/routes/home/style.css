@@ -19,6 +19,17 @@
     justify-content: center;
 }
 
+.section3 {
+    position: relative;
+    display: flex;
+    width: 100%;
+    padding: 3rem 0;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    align-items: center;
+    justify-content: center;
+}
+
 .spacer {
     width: calc(70vh * 770 / 1600);
     height: 70vh;
@@ -37,6 +48,7 @@
     height: 70vh;
     aspect-ratio: 770/1600;
     z-index: 2;
+    transform: rotateZ(-6deg);
 }
 
 .img > img {
@@ -54,6 +66,10 @@
     z-index: 0;
 }
 
+.section3 .divider {
+    transform: rotate(180deg) translateY(5%);
+}
+
 .divider svg {
     position: relative;
     display: block;
@@ -65,10 +81,70 @@
     transform: rotate(180deg);
 }
 
-.divider svg:nth-child(2) {
+.section1 .divider svg:nth-child(2) {
     height: 18rem;
+}
+
+.section3 .divider svg:nth-child(2) {
+    height: 9rem;
 }
 
 .divider .shapeFill {
     fill: #e13e3b;
+}
+
+.section2 ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+}
+
+.section2 ul li {
+    list-style-type: none;
+    margin: 0.5rem 0;
+    font-size: 1.8rem;
+    position: relative;
+}
+
+.section2 ul li::before {
+    content: "\2713";
+    position: absolute;
+    top: 0;
+    left: -1rem;
+    height: 100%;
+    transform: translateX(-100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #3da84b;
+}
+
+section h2 {
+    width: 100%;
+    text-align: center;
+}
+
+.button {
+    border-color: #9b2926 !important;
+    border-width: 3px !important;
+    border-radius: 2rem;
+    background-color: #d8d1cf !important;
+    color: #9b2926 !important;
+    margin: 2rem 3rem;
+    padding: 0 2rem;
+    width: fit-content !important;
+}
+
+.pointer {
+    position: absolute;
+    top: 50%;
+    right: -7rem;
+    height: 8rem;
+    z-index: 1;
+    transform: translateY(-50%) rotateZ(-15deg);
 }
