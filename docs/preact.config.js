@@ -1,7 +1,7 @@
 export default (config, env, helpers) => {
   config.output.publicPath = '/f1-schedule-app/';
 
-  if (devServer !== undefined) {
+  if (config.devServer !== undefined) {
     config.devServer.devMiddleware.publicPath = "/f1-schedule-app/";
   }
 
