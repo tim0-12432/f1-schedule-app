@@ -1,7 +1,9 @@
 export default (config, env, helpers) => {
   config.output.publicPath = '/f1-schedule-app/';
 
-  config.devServer.devMiddleware.publicPath = "/f1-schedule-app/";
+  if (devServer !== undefined) {
+    config.devServer.devMiddleware.publicPath = "/f1-schedule-app/";
+  }
 
   config.plugins.push(
     new helpers.webpack.DefinePlugin({
