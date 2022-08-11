@@ -5,8 +5,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build",
-    "build:gh": "GITHUB_PAGES=f1-schedule-app preact build && dot-json ./build/manifest.json start_url \"/f1-schedule-app/\"",
+    "build": "preact build --no-prerender",
+    "build:gh": "GITHUB_PAGES=f1-schedule-app preact build --no-prerender && dot-json ./build/manifest.json start_url \"/f1-schedule-app/\"",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src"
