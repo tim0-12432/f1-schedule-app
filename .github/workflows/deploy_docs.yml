@@ -55,3 +55,5 @@ jobs:
           folder: docs/build
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: documentation-page
+          clean: true
+          force: true
