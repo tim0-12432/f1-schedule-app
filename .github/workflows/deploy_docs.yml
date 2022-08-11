@@ -19,7 +19,7 @@ jobs:
           npm ci
       - run: |
           cd docs
-          npm run build
+          npm run build:gh
       - name: Upload build files
         if: ${{ always() }}
         uses: actions/upload-artifact@v3

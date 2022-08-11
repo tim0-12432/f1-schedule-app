@@ -1,6 +1,7 @@
 import { h } from 'preact';
 import { Link } from 'preact-router/match';
 import TopAppBar from 'preact-material-components/TopAppBar';
+import baseroute from '../baseroute';
 import 'preact-material-components/TopAppBar/style.css';
 import style from './style.css';
 
@@ -12,9 +13,9 @@ const Header = () => (
             </TopAppBar.Section>
             <TopAppBar.Section align-end>
                 <nav>
-                    <Link activeClassName={style.active} href="/">Home</Link>
-                    <Link activeClassName={style.active} href="/features">Features</Link>
-                    <Link activeClassName={style.active} href="/information">More</Link>
+                    <Link activeClassName={style.active} href={`${baseroute}/`}>Home</Link>
+                    <Link activeClassName={style.active} href={`${baseroute}/features`}>Features</Link>
+                    <Link activeClassName={style.active} href={`${baseroute}/information`}>More</Link>
                 </nav>
             </TopAppBar.Section>
         </TopAppBar.Row>

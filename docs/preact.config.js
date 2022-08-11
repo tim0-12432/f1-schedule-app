@@ -1,13 +1,18 @@
-export default (config, env, helpers) => {
-  config.output.publicPath = '/f1-schedule-app/';
+export default {
+  webpack(config, env, helpers, options) {
 
-  if (config.devServer !== undefined) {
-    config.devServer.devMiddleware.publicPath = "/f1-schedule-app/";
-  }
+    const publicPath = process.env.GITHUB_PAGES
+      ? `/${process.env.GITHUB_PAGES}/`
+      : '/';
+    const ghEnv = process.env.GITHUB_PAGES
+      && JSON.stringify(`${process.env.GITHUB_PAGES}`);
 
-  config.plugins.push(
-    new helpers.webpack.DefinePlugin({
-      'process.env.PUBLIC_PATH': JSON.stringify(config.output.publicPath || '/')
-    })
-  );
+    config.output.publicPath = publicPath;
+    const { plugin } = helpers.getPluginsByName(config, 'DefinePlugin')[0];
+    Object.assign(
+      plugin.definitions,
+      { ['process.env.GITHUB_PAGES']: ghEnv }
+    );
+
+  },
 };

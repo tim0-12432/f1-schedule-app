@@ -5,7 +5,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build --no-prerender",
+    "build": "preact build",
+    "build:gh": "GITHUB_PAGES=f1-schedule-app preact build && dot-json ./build/manifest.json start_url \"/f1-schedule-app/\"",
     "serve": "sirv build --cors --single",
     "dev": "preact watch",
     "lint": "eslint src"
@@ -33,6 +34,7 @@
     "@types/enzyme": "^3.10.12",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
+    "dot-json": "^1.2.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-preact-pure": "^4.0.1",
     "eslint": "^8.20.0",
