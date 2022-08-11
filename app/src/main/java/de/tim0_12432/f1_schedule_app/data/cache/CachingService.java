@@ -60,7 +60,7 @@ public class CachingService {
             }
             throw new ClassCastException("Cache object is not a map!");
         } catch (IOException | ClassNotFoundException | ClassCastException e) {
-            Logger.log(e, "Could not read data from cache", getKey(resource, url), "!");
+            Logger.log(Logger.LogLevel.WARN, "Could not read data from cache", getKey(resource, url) + "!", e.getMessage());
             return true;
         }
     }
