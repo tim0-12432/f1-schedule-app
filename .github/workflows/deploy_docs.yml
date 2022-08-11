@@ -14,10 +14,12 @@ jobs:
             node-version: 14
             cache: npm
             cache-dependency-path: docs/package-lock.json
-      - run: |
+      - name: Install dependencies
+        run: |
           cd docs
           npm ci
-      - run: |
+      - name: Build page
+        run: |
           cd docs
           npm run build:gh
       - name: Upload build files
