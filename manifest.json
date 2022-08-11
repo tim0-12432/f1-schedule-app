@@ -1,19 +1,19 @@
 {
   "name": "F1 Schedule App",
   "short_name": "F1 Schedule",
-  "start_url": "/",
+  "start_url": "/f1-schedule-app/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#d8d1cf",
   "theme_color": "#9b2926",
   "icons": [
     {
-      "src": "/assets/icons/android-chrome-192x192.png",
+      "src": "./assets/icons/android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/assets/icons/android-chrome-512x512.png",
+      "src": "./assets/icons/android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
