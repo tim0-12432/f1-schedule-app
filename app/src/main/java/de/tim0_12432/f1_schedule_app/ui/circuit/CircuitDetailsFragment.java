@@ -58,7 +58,7 @@ public class CircuitDetailsFragment extends Fragment {
         Marker marker = new Marker(osm);
         marker.setPosition(point);
         marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        marker.setIcon(getResources().getDrawable(R.drawable.ic_location_48));
+        marker.setIcon(getContext().getDrawable(R.drawable.ic_location_48));
         osm.getOverlays().clear();
         osm.getOverlays().add(marker);
         osm.invalidate();

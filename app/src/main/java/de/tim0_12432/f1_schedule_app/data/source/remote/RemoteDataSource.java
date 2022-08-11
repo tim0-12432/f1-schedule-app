@@ -50,6 +50,7 @@ public class RemoteDataSource<T> implements IDataSource<T> {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
                         Logger.log("\u2190", "GET", url, "FAILED");
+                        Logger.log(e, "with Error: ");
                         callback.onLoaded(Collections.emptyList());
                     }
 
