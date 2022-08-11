@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { Route, Router } from 'preact-router';
-import { createHashHistory } from './history';
+import baseroute from './baseroute';
 
 import Header from './header';
 
@@ -14,10 +14,10 @@ const App = () => {
     return (
         <div id="app">
             <Header />
-            <Router history={createHashHistory()}>
-                <Route path="/" default component={Home} />
-                <Route path="/features" component={Features} />
-                <Route path="/information" component={Information} />
+            <Router>
+                <Route path={`${baseroute}/`} default component={Home} />
+                <Route path={`${baseroute}/features`} component={Features} />
+                <Route path={`${baseroute}/information`} component={Information} />
             </Router>
             <Footer />
         </div>
