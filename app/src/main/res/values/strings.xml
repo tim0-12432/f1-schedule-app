@@ -121,5 +121,6 @@
     <string name="more_info_counter">More information can be read here in</string>
     <string name="days">days</string>
     <string name="open_street_map" translatable="false">OpenStreetMap</string>
+    <string name="refresh">Refresh</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

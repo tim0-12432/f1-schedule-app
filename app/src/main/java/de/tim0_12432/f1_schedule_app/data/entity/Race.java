@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import java.sql.Date;
 import java.sql.Time;
 
+import de.tim0_12432.f1_schedule_app.utility.DateTime;
+
 public class Race extends AbstractEntity {
 
     private final int season;
@@ -43,7 +45,7 @@ public class Race extends AbstractEntity {
         this.name = name;
         this.circuit = circuit;
         this.url = url;
-        this.date = date;
+        this.date = DateTime.plusDays(date, 2);
         this.time = time;
     }
 

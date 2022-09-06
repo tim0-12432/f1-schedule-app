@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.sql.Date;
 import java.time.ZoneOffset;
+import java.util.Calendar;
 import java.util.TimeZone;
 
 public class DateTime {
@@ -17,7 +18,7 @@ public class DateTime {
     public static String getTimestamp(final Time time, final int timezoneOffset) {
         Time newTime = new Time(time.getTime());
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-        newTime.setTime(newTime.getTime() + ((long) timezoneOffset * 60 * 60 * 1000));
+        newTime.setTime(newTime.getTime() + ((long) (timezoneOffset + 1) * 60 * 60 * 1000));
         return formatter.format(new Date(newTime.getTime()));
     }
 
@@ -58,5 +59,12 @@ public class DateTime {
         LocalDateTime day1 = LocalDateTime.ofEpochSecond(date1.getTime() / 1000, 0, ZoneOffset.ofHours(getTimezone())).withHour(0).withMinute(0).withSecond(0);
         LocalDateTime day2 = LocalDateTime.ofEpochSecond(date2.getTime() / 1000, 0, ZoneOffset.ofHours(getTimezone())).withHour(0).withMinute(0).withSecond(0);
         return (int) (day1.until(day2, java.time.temporal.ChronoUnit.DAYS));
+    }
+
+    public static Date plusDays(Date date, int days) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, days);
+        return new Date(c.getTimeInMillis());
     }
 }
