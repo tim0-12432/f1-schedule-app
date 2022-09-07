@@ -25,6 +25,7 @@ import androidx.navigation.ui.NavigationUI;
 import java.util.Objects;
 
 import de.tim0_12432.f1_schedule_app.databinding.ActivityMainBinding;
+import de.tim0_12432.f1_schedule_app.ui.schedule.ScheduleFragment;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class MainActivity extends AppCompatActivity {
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.refresh_action) {
-            Logger.log("Refreshing...");
+            ScheduleFragment.fetchLatestInformation();
         }
         return super.onOptionsItemSelected(item);
     }

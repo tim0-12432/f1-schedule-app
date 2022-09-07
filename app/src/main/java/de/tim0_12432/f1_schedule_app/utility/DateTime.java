@@ -62,6 +62,8 @@ public class DateTime {
     }
 
     public static Date plusDays(Date date, int days) {
+        if (date == null) return new Date(0);
+
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         c.add(Calendar.DATE, days);

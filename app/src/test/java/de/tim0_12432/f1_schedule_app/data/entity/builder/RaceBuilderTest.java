@@ -7,9 +7,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 import de.tim0_12432.f1_schedule_app.data.entity.Circuit;
-import de.tim0_12432.f1_schedule_app.data.entity.Location;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
-import de.tim0_12432.f1_schedule_app.data.entity.RaceResultList;
 
 public class RaceBuilderTest {
     @Test
@@ -19,11 +17,11 @@ public class RaceBuilderTest {
         Assert.assertNull(race.getName());
         Assert.assertNull(race.getUrl());
         Assert.assertNull(race.getCircuit());
-        Assert.assertNull(race.getDate());
         Assert.assertNull(race.getResults());
         Assert.assertNull(race.getTime());
         Assert.assertEquals(-1, race.getRound());
         Assert.assertEquals(-1, race.getSeason());
+        Assert.assertEquals("1970-01-01", race.getDate().toString());
     }
 
     @Test
@@ -49,7 +47,7 @@ public class RaceBuilderTest {
         Assert.assertEquals(round, race.getRound());
         Assert.assertEquals(season, race.getSeason());
         Assert.assertNull(race.getResults());
-        Assert.assertEquals(date, race.getDate());
+        Assert.assertEquals("1970-01-03", race.getDate().toString());
         Assert.assertEquals(time, race.getTime());
         Assert.assertEquals(circuit, race.getCircuit());
     }

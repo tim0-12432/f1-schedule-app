@@ -16,7 +16,7 @@ public class DateTimeTest {
     @Test
     public void testGetTimestamp() {
         Time time = Time.valueOf("01:00:00");
-        assertEquals("08:00", DateTimeMock.getTimestamp(time, DateTimeMock.getTimezone()));
+        assertEquals("09:00", DateTimeMock.getTimestamp(time, DateTimeMock.getTimezone()));
     }
 
     @Test

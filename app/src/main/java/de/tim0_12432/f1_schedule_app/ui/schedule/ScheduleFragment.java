@@ -16,7 +16,10 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
+import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
 import de.tim0_12432.f1_schedule_app.data.Resource;
@@ -25,6 +28,7 @@ import de.tim0_12432.f1_schedule_app.data.entity.Race;
 import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.databinding.FragmentScheduleBinding;
 import de.tim0_12432.f1_schedule_app.ui.IListView;
+import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class ScheduleFragment extends Fragment implements IListView<Race> {
 
@@ -73,7 +77,7 @@ public class ScheduleFragment extends Fragment implements IListView<Race> {
     @Override
     @SuppressLint("NewApi")
     public void showEntries(List<Race> entries) {
-        this.getActivity().runOnUiThread(() -> {
+        requireActivity().runOnUiThread(() -> {
             if (entries.size() > 0) {
                 android.widget.ListView list = binding.scheduleList;
                 list.setAdapter(new ScheduleAdapter(getActivity(), R.layout.fragment_race, entries));
@@ -114,6 +118,43 @@ public class ScheduleFragment extends Fragment implements IListView<Race> {
             public void onLoaded(List<Race> list) {
                 if (list.size() > 0) {
                     race.addResults(list.get(0).getResults());
+                }
+            }
+        });
+    }
+
+    @SuppressLint("NewApi")
+    public static void fetchLatestInformation() {
+        Logger.log("Refreshing race results...");
+        DataManager manager = new DataManager(MainActivity.getAppContext());
+        List<Race> races = new ArrayList<>();
+        manager.getDataFrom(Resource.SCHEDULE, new ILoadCallback<Race>() {
+            @Override
+            public void onLoaded(List<Race> list) {
+                for (Race race : list) {
+                    String url = race.getSeason() + "/" + race.getRound() + "/results";
+                    manager.getDataFrom(race.getDate(), Resource.RACE_RESULTS, url, new ILoadCallback<Race>() {
+                        @Override
+                        public void onLoaded(List<Race> list) {
+                            if (list.size() > 0) {
+                                race.addResults(list.get(0).getResults());
+                            }
+                        }
+                    });
+                }
+                races.addAll(list.stream()
+                        .filter((Race race) -> race.getResults() == null || race.getResults().getResults().isEmpty())
+                        .collect(Collectors.toList()));
+                for (Race race : races) {
+                    String url = race.getSeason() + "/" + race.getRound() + "/results";
+                    manager.forceGetDataFrom(Resource.RACE_RESULTS, url, new ILoadCallback<Race>() {
+                        @Override
+                        public void onLoaded(List<Race> list) {
+                            if (list.size() > 0) {
+                                Logger.log("Refreshed", race.getName());
+                            }
+                        }
+                    });
                 }
             }
         });

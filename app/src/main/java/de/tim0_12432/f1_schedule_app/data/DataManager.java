@@ -28,33 +28,7 @@ public class DataManager {
 
     public <T extends AbstractEntity> void getDataFrom(Date date, Resource resource, String url, ILoadCallback<T> callback) {
         if (cachingService.shouldUpdateCache(resource == Resource.RACE_RESULTS ? date : null, resource, url)) {
-            AbstractDataSourceParser<T> parser = null;
-            try {
-                parser = (AbstractDataSourceParser<T>) resource.getParser().newInstance();
-            } catch (IllegalAccessException | InstantiationException e) {
-                Logger.log(e, "Could not initialize parser class!");
-                e.printStackTrace();
-            }
-            if (parser != null) {
-                RemoteDataSource<T> source;
-                if (url == null) {
-                    source = HttpService.getDataSourceForUrl(parser);
-                } else {
-                    source = HttpService.getDataSourceForUrl(url, parser);
-                }
-                Executors.newCachedThreadPool().execute(
-                        source.getData(new ILoadCallback<T>() {
-                            @Override
-                            public void onLoaded(List<T> list) {
-                                cachingService.writeData(resource, url, list);
-                                callback.onLoaded(list);
-                            }
-                        })
-                );
-
-            } else {
-                Logger.log(Logger.LogLevel.ERROR, "Parser", CachingService.getKey(resource, url), "is null!");
-            }
+            forceGetDataFrom(resource, url, callback);
         } else {
             Object cache = cachingService.readData(resource, url);
             try {
@@ -73,5 +47,32 @@ public class DataManager {
         }
     }
 
-
+    public <T extends AbstractEntity> void forceGetDataFrom(Resource resource, String url, ILoadCallback<T> callback) {
+        AbstractDataSourceParser<T> parser = null;
+        try {
+            parser = (AbstractDataSourceParser<T>) resource.getParser().newInstance();
+        } catch (IllegalAccessException | InstantiationException e) {
+            Logger.log(e, "Could not initialize parser class!");
+            e.printStackTrace();
+        }
+        if (parser != null) {
+            RemoteDataSource<T> source;
+            if (url == null) {
+                source = HttpService.getDataSourceForUrl(parser);
+            } else {
+                source = HttpService.getDataSourceForUrl(url, parser);
+            }
+            Executors.newCachedThreadPool().execute(
+                    source.getData(new ILoadCallback<T>() {
+                        @Override
+                        public void onLoaded(List<T> list) {
+                            cachingService.writeData(resource, url, list);
+                            callback.onLoaded(list);
+                        }
+                    })
+            );
+        } else {
+            Logger.log(Logger.LogLevel.ERROR, "Parser", CachingService.getKey(resource, url), "is null!");
+        }
+    }
 }
