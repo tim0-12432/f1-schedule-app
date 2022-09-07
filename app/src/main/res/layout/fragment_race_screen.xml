@@ -43,7 +43,8 @@
                         android:textFontWeight="800"
                         android:textStyle="bold"
                         android:textSize="18dp"
-                        android:layout_marginBottom="15dp"/>
+                        android:layout_marginBottom="15dp"
+                        tools:ignore="UnusedAttribute" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -51,7 +52,7 @@
                         android:textColor="?attr/colorOnSecondary"
                         android:orientation="vertical"
                         android:layout_gravity="center_horizontal"
-                        android:gravity="left">
+                        android:gravity="start">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -61,7 +62,8 @@
                             android:layout_marginBottom="7dp"
                             android:textFontWeight="700"
                             android:textStyle="bold"
-                            android:id="@+id/race_screen_circuit_name" />
+                            android:id="@+id/race_screen_circuit_name"
+                            tools:ignore="UnusedAttribute" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -111,13 +113,14 @@
                         android:textFontWeight="800"
                         android:textStyle="bold"
                         android:textSize="18dp"
-                        android:layout_marginBottom="15dp"/>
+                        android:layout_marginBottom="15dp"
+                        tools:ignore="UnusedAttribute" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
-                        >
+                        android:baselineAligned="false">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -201,16 +204,35 @@
                     android:nestedScrollingEnabled="false"
                     android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:textColor="?attr/colorOnSecondary"
-                        android:text="@string/results"
-                        android:textFontWeight="800"
-                        android:textStyle="bold"
-                        android:textSize="18dp"
-                        android:layout_marginBottom="15dp"/>
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:id="@+id/expand_results_container">
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/expand_results"
+                            android:src="@drawable/ic_expand_more_24"
+                            android:background="@android:color/transparent"
+                            android:padding="5dp"
+                            tools:ignore="ContentDescription"
+                            app:tint="?attr/colorOnSecondary" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="?attr/colorOnSecondary"
+                            android:text="@string/results"
+                            android:textFontWeight="800"
+                            android:textStyle="bold"
+                            android:textSize="18dp"
+                            tools:ignore="UnusedAttribute" />
+
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
@@ -250,7 +272,8 @@
                         android:textFontWeight="800"
                         android:textStyle="bold"
                         android:textSize="18dp"
-                        android:layout_marginBottom="15dp"/>
+                        android:layout_marginBottom="15dp"
+                        tools:ignore="UnusedAttribute" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -258,7 +281,7 @@
                         android:textColor="?attr/colorOnSecondary"
                         android:orientation="vertical"
                         android:layout_gravity="center_horizontal"
-                        android:gravity="left">
+                        android:gravity="start">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -267,6 +290,143 @@
                             android:textColor="?attr/colorOnSecondary"
                             android:text="@string/dummy_text"
                             android:id="@+id/race_screen_counter" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:id="@+id/race_screen_last_podium"
+                app:cardBackgroundColor="?attr/colorSecondaryVariant"
+                app:cardElevation="3dp"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.MediumComponent"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:paddingBottom="0dp"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:id="@+id/expand_podium_container">
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/expand_podium"
+                            android:src="@drawable/ic_expand_more_24"
+                            android:background="@android:color/transparent"
+                            android:padding="5dp"
+                            tools:ignore="ContentDescription"
+                            app:tint="?attr/colorOnSecondary" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="?attr/colorOnSecondary"
+                            android:text="@string/podium_last_season"
+                            android:textFontWeight="800"
+                            android:textStyle="bold"
+                            android:textSize="18dp"
+                            tools:ignore="UnusedAttribute" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:id="@+id/race_screen_last_podium_container"
+                        android:baselineAligned="false">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dummy_text"
+                            android:textAlignment="center"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="18dp"
+                            android:textColor="?attr/colorOnSecondary"
+                            android:id="@+id/race_screen_last_info" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:baselineAligned="false">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:minHeight="50dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:textColor="?attr/colorOnSecondary"
+                                    android:id="@+id/race_screen_last_winner_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/dummy_text"
+                                    android:textAlignment="center"
+                                    android:paddingBottom="8dp"
+                                    android:background="@drawable/textview_border" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:minHeight="50dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:textColor="?attr/colorOnSecondary"
+                                    android:id="@+id/race_screen_last_winner_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/dummy_text"
+                                    android:textAlignment="center"
+                                    android:paddingBottom="8dp"
+                                    android:background="@drawable/textview_border" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center|bottom"
+                                android:minHeight="50dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:textColor="?attr/colorOnSecondary"
+                                    android:id="@+id/race_screen_last_winner_3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/dummy_text"
+                                    android:textAlignment="center"
+                                    android:paddingBottom="8dp"
+                                    android:background="@drawable/textview_border" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 

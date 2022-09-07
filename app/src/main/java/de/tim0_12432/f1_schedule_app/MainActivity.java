@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -94,10 +95,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    @SuppressLint("DetachAndAttachSameFragment")
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.refresh_action) {
             ScheduleFragment.fetchLatestInformation();
+            Fragment schedule = getSupportFragmentManager().findFragmentById(R.id.navigation_schedule);
+            if (schedule != null) {
+                getSupportFragmentManager().beginTransaction().detach(schedule).attach(schedule).commit();
+            }
         }
         return super.onOptionsItemSelected(item);
     }

@@ -16,7 +16,6 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import de.tim0_12432.f1_schedule_app.MainActivity;
