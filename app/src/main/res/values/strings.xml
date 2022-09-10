@@ -119,4 +119,5 @@
     <string name="open_street_map" translatable="false">OpenStreetMap</string>
     <string name="refresh">Refresh</string>
     <string name="podium_last_season">Podium in last season</string>
+    <string name="qualifying">Qualifying results</string>
 </resources>
