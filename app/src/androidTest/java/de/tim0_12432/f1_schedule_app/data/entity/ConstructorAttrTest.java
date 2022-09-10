@@ -36,5 +36,6 @@ public class ConstructorAttrTest {
     public void testGetConstructorOfTeam() {
         Assert.assertEquals(ConstructorAttr.FERR, ConstructorAttr.getConstructorOfTeam(new Constructor("Ferrari", Nationality.ITALIAN, "url")));
         Assert.assertEquals(ConstructorAttr.DEFAULT, ConstructorAttr.getConstructorOfTeam(new Constructor("Absfdsf", Nationality.AUSTRALIAN, "url")));
+        Assert.assertEquals(ConstructorAttr.DEFAULT, ConstructorAttr.getConstructorOfTeam(null));
     }
 }
