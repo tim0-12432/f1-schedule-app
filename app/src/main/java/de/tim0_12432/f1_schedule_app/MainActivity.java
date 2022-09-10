@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
@@ -99,11 +102,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.refresh_action) {
+            findViewById(R.id.schedule_progress).setVisibility(View.VISIBLE);
             ScheduleFragment.fetchLatestInformation();
             Fragment schedule = getSupportFragmentManager().findFragmentById(R.id.navigation_schedule);
             if (schedule != null) {
                 getSupportFragmentManager().beginTransaction().detach(schedule).attach(schedule).commit();
             }
+            findViewById(R.id.schedule_progress).setVisibility(View.INVISIBLE);
         }
         return super.onOptionsItemSelected(item);
     }
