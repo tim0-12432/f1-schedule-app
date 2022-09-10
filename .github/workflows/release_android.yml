@@ -88,7 +88,9 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          script: ./gradlew connectedDebugAndroidTest --continue --stacktrace
+          script: |
+            adb logcat -c
+            adb logcat & ./gradlew connectedDebugAndroidTest --continue --stacktrace
       - name: Upload reports
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
