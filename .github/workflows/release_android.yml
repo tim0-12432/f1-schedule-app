@@ -64,6 +64,9 @@ jobs:
   test-android:
     name: Test source code on Android
     runs-on: macos-latest
+    strategy:
+      matrix:
+        api-level: [27, 28, 29]
     steps:
       - uses: actions/checkout@v3
       - name: Load Gradle from cache
@@ -84,7 +87,7 @@ jobs:
       - name: Run android tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
+          api-level: ${{ matrix.api-level }}
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
