@@ -19,7 +19,6 @@ import java.util.List;
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
 import de.tim0_12432.f1_schedule_app.data.Resource;
-import de.tim0_12432.f1_schedule_app.data.entity.AbstractEntity;
 import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
 import de.tim0_12432.f1_schedule_app.data.entity.Qualifying;
 import de.tim0_12432.f1_schedule_app.data.entity.QualifyingResult;
@@ -28,6 +27,8 @@ import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResultList;
 import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.databinding.FragmentRaceScreenBinding;
+import de.tim0_12432.f1_schedule_app.ui.transitions.FadeInTransition;
+import de.tim0_12432.f1_schedule_app.ui.transitions.FadeOutTransition;
 import de.tim0_12432.f1_schedule_app.utility.DateTime;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
 
@@ -82,14 +83,14 @@ public class RaceFragment extends Fragment {
                 list.setVisibility(View.GONE);
                 binding.expandResults.setOnClickListener(v -> {
                     if (list.getVisibility() == View.GONE) {
-                        TransitionManager.beginDelayedTransition(binding.raceScreenResults, new AutoTransition());
+                        TransitionManager.beginDelayedTransition(binding.raceScreenResults, new FadeInTransition());
                         list.setVisibility(View.VISIBLE);
                         binding.expandResults.setImageResource(R.drawable.ic_expand_less_24);
                         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) binding.expandResultsContainer.getLayoutParams();
                         params.bottomMargin = 15;
                         binding.expandResultsContainer.setLayoutParams(params);
                     } else {
-                        TransitionManager.beginDelayedTransition(binding.raceScreenResults, new AutoTransition());
+                        TransitionManager.beginDelayedTransition(binding.raceScreenResults, new FadeOutTransition());
                         list.setVisibility(View.GONE);
                         binding.expandResults.setImageResource(R.drawable.ic_expand_more_24);
                         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) binding.expandResultsContainer.getLayoutParams();
@@ -135,14 +136,14 @@ public class RaceFragment extends Fragment {
                         }
                     });
 
-                    TransitionManager.beginDelayedTransition(binding.raceScreenLastPodium, new AutoTransition());
+                    TransitionManager.beginDelayedTransition(binding.raceScreenLastPodium, new FadeInTransition());
                     lastPodium.setVisibility(View.VISIBLE);
                     binding.expandPodium.setImageResource(R.drawable.ic_expand_less_24);
                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) binding.expandPodiumContainer.getLayoutParams();
                     params.bottomMargin = 15;
                     binding.expandPodiumContainer.setLayoutParams(params);
                 } else {
-                    TransitionManager.beginDelayedTransition(binding.raceScreenLastPodium, new AutoTransition());
+                    TransitionManager.beginDelayedTransition(binding.raceScreenLastPodium, new FadeOutTransition());
                     lastPodium.setVisibility(View.GONE);
                     binding.expandPodium.setImageResource(R.drawable.ic_expand_more_24);
                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) binding.expandPodiumContainer.getLayoutParams();
@@ -168,14 +169,14 @@ public class RaceFragment extends Fragment {
                             binding.raceScreenQualifying.setVisibility(View.VISIBLE);
                             binding.expandQualifying.setOnClickListener(v -> {
                                 if (resultList.getVisibility() == View.GONE) {
-                                    TransitionManager.beginDelayedTransition(binding.raceScreenQualifying, new AutoTransition());
+                                    TransitionManager.beginDelayedTransition(binding.raceScreenQualifying, new FadeInTransition());
                                     resultList.setVisibility(View.VISIBLE);
                                     binding.expandQualifying.setImageResource(R.drawable.ic_expand_less_24);
                                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) binding.expandQualifyingContainer.getLayoutParams();
                                     params.bottomMargin = 15;
                                     binding.expandQualifyingContainer.setLayoutParams(params);
                                 } else {
-                                    TransitionManager.beginDelayedTransition(binding.raceScreenQualifying, new AutoTransition());
+                                    TransitionManager.beginDelayedTransition(binding.raceScreenQualifying, new FadeOutTransition());
                                     resultList.setVisibility(View.GONE);
                                     binding.expandQualifying.setImageResource(R.drawable.ic_expand_more_24);
                                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) binding.expandQualifyingContainer.getLayoutParams();
