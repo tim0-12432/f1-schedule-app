@@ -34,7 +34,7 @@ public class ScheduleParserTest extends AbstractParserTest {
         Assert.assertEquals(5, list.size());
         Race race = list.get(2);
         Assert.assertEquals("Chinese Grand Prix", race.getName());
-        Assert.assertEquals(Date.valueOf("2019-04-14"), race.getDate());
+        Assert.assertEquals(Date.valueOf("2019-04-16"), race.getDate());
         Assert.assertEquals("Shanghai", race.getCircuit().getLocation().getLocality());
         Assert.assertEquals("Shanghai International Circuit", race.getCircuit().getName());
     }
