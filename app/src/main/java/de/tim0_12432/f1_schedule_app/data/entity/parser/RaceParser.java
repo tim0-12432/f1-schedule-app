@@ -11,8 +11,8 @@ import de.tim0_12432.f1_schedule_app.data.entity.Race;
 import de.tim0_12432.f1_schedule_app.data.entity.builder.RaceBuilder;
 
 public class RaceParser extends AbstractEntityParser<Race> {
-    private static final CircuitParser circuitParser = new CircuitParser();
-    private static final ResultParser resultParser = new ResultParser();
+    private static final CircuitParser CIRCUIT_PARSER = new CircuitParser();
+    private static final RaceResultParser RACE_RESULT_PARSER = new RaceResultParser();
 
     @Override
     public Race parse(XmlPullParser parser) throws XmlPullParserException, IOException {
@@ -36,7 +36,7 @@ public class RaceParser extends AbstractEntityParser<Race> {
                         builder.withTime(Time.valueOf(parser.nextText().replace("Z", "")));
                         break;
                     case "Circuit":
-                        builder.withCircuit(circuitParser.parse(parser));
+                        builder.withCircuit(CIRCUIT_PARSER.parse(parser));
                         break;
                 }
             }
@@ -66,10 +66,10 @@ public class RaceParser extends AbstractEntityParser<Race> {
                         builder.withTime(Time.valueOf(parser.nextText().replace("Z", "")));
                         break;
                     case "Circuit":
-                        builder.withCircuit(circuitParser.parse(parser));
+                        builder.withCircuit(CIRCUIT_PARSER.parse(parser));
                         break;
                     case "ResultsList":
-                        builder.withResults(resultParser.parse(parser));
+                        builder.withResults(RACE_RESULT_PARSER.parse(parser));
                         break;
                 }
             }

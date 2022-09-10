@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
@@ -82,7 +83,7 @@ public class DriverRankingFragment extends Fragment implements IListView<DriverS
         binding = FragmentDriverRankingBinding.inflate(inflater, container, false);
         binding.driverRankingError.setVisibility(View.GONE);
 
-        getActivity().findViewById(R.id.world_cup_progress).setVisibility(View.GONE);
+        ((View) Objects.requireNonNull(requireActivity().findViewById(R.id.world_cup_progress))).setVisibility(View.GONE);
 
         manager = new DataManager(getContext());
 

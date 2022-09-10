@@ -4,11 +4,12 @@ import androidx.annotation.NonNull;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.tim0_12432.f1_schedule_app.utility.DateTime;
 
-public class Race extends AbstractEntity {
-
+public class Qualifying extends AbstractEntity {
     private final int season;
 
     private final int round;
@@ -23,23 +24,23 @@ public class Race extends AbstractEntity {
 
     private final Time time;
 
-    private RaceResultList results = null;
+    private List<QualifyingResult> results = null;
 
-    public Race(int season, int round, String name, Circuit circuit, String url, String date, String time, RaceResultList results) {
+    public Qualifying(int season, int round, String name, Circuit circuit, String url, String date, String time, List<QualifyingResult> results) {
         this(season, round, name, circuit, url, Date.valueOf(date), Time.valueOf(time));
         this.results = results;
     }
 
-    public Race(int season, int round, String name, Circuit circuit, String url, Date date, Time time, RaceResultList results) {
+    public Qualifying(int season, int round, String name, Circuit circuit, String url, Date date, Time time, List<QualifyingResult> results) {
         this(season, round, name, circuit, url, date, time);
         this.results = results;
     }
 
-    public Race(int season, int round, String name, Circuit circuit, String url, String date, String time) {
+    public Qualifying(int season, int round, String name, Circuit circuit, String url, String date, String time) {
         this(season, round, name, circuit, url, Date.valueOf(date), Time.valueOf(time));
     }
 
-    public Race(int season, int round, String name, Circuit circuit, String url, Date date, Time time) {
+    public Qualifying(int season, int round, String name, Circuit circuit, String url, Date date, Time time) {
         this.season = season;
         this.round = round;
         this.name = name;
@@ -47,6 +48,7 @@ public class Race extends AbstractEntity {
         this.url = url;
         this.date = DateTime.plusDays(date, 2);
         this.time = time;
+        this.results = new ArrayList<>();
     }
 
     public int getSeason() {
@@ -77,24 +79,22 @@ public class Race extends AbstractEntity {
         return time;
     }
 
-    public RaceResultList getResults() {
+    public List<QualifyingResult> getResults() {
         return results;
     }
 
-    public void addResults(RaceResultList results) {
-        this.results = results;
+    public void addResult(QualifyingResult result) {
+        this.results.add(result);
     }
 
-    public static Race copyOf(Race r) {
-        if (r.getResults() == null)
-            return new Race(r.getSeason(), r.getRound(), r.getName(), r.getCircuit(), r.getUrl(), r.getDate(), r.getTime());
-        return new Race(r.getSeason(), r.getRound(), r.getName(), r.getCircuit(), r.getUrl(), r.getDate(), r.getTime(), r.getResults());
+    public static Qualifying copyOf(Qualifying r) {
+        return new Qualifying(r.getSeason(), r.getRound(), r.getName(), r.getCircuit(), r.getUrl(), r.getDate(), r.getTime(), r.getResults());
     }
 
     @NonNull
     @Override
     public String toString() {
-        return "Race{" +
+        return "Qualifying{" +
                 "season=" + season +
                 ", round=" + round +
                 ", name='" + name + '\'' +
@@ -102,7 +102,7 @@ public class Race extends AbstractEntity {
                 ", url='" + url + '\'' +
                 ", date=" + date +
                 ", time=" + time +
-                (results != null ? ", results=" + results : "") +
+                ", results=" + results.toString() +
                 '}';
     }
 }

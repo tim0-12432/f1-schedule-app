@@ -1,4 +1,5 @@
 - [ ] Widget displaying the next race or last race results
 - [ ] Pitstop infos added to race result screen
-- [ ] Display podiums from last seasons on the next race screen
+- [x] Display podiums from last seasons on the next race screen
+- [ ] Display qualifying results on the race screen
 - [ ] More tests

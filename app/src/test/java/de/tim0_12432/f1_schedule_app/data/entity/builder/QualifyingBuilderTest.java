@@ -7,18 +7,18 @@ import java.sql.Date;
 import java.sql.Time;
 
 import de.tim0_12432.f1_schedule_app.data.entity.Circuit;
-import de.tim0_12432.f1_schedule_app.data.entity.Race;
+import de.tim0_12432.f1_schedule_app.data.entity.Qualifying;
 
-public class RaceBuilderTest {
+public class QualifyingBuilderTest {
     @Test
     public void testDefault() {
-        RaceBuilder builder = new RaceBuilder();
-        Race race = builder.build();
+        QualifyingBuilder builder = new QualifyingBuilder();
+        Qualifying race = builder.build();
         Assert.assertNull(race.getName());
         Assert.assertNull(race.getUrl());
         Assert.assertNull(race.getCircuit());
-        Assert.assertNull(race.getResults());
         Assert.assertNull(race.getTime());
+        Assert.assertTrue(race.getResults().isEmpty());
         Assert.assertEquals(-1, race.getRound());
         Assert.assertEquals(-1, race.getSeason());
         Assert.assertEquals("1970-01-01", race.getDate().toString());
@@ -33,7 +33,7 @@ public class RaceBuilderTest {
         Time time = new Time(0);
         int round = 9;
         int season = 1997;
-        RaceBuilder builder = new RaceBuilder()
+        QualifyingBuilder builder = new QualifyingBuilder()
                 .withUrl(url)
                 .withName(name)
                 .withRound(round)
@@ -41,12 +41,12 @@ public class RaceBuilderTest {
                 .withCircuit(circuit)
                 .withDate(date)
                 .withTime(time);
-        Race race = builder.build();
+        Qualifying race = builder.build();
         Assert.assertEquals(url, race.getUrl());
         Assert.assertEquals(name, race.getName());
         Assert.assertEquals(round, race.getRound());
         Assert.assertEquals(season, race.getSeason());
-        Assert.assertNull(race.getResults());
+        Assert.assertTrue(race.getResults().isEmpty());
         Assert.assertEquals("1970-01-03", race.getDate().toString());
         Assert.assertEquals(time, race.getTime());
         Assert.assertEquals(circuit, race.getCircuit());
