@@ -21,6 +21,8 @@ import de.tim0_12432.f1_schedule_app.data.DataManager;
 import de.tim0_12432.f1_schedule_app.data.Resource;
 import de.tim0_12432.f1_schedule_app.data.entity.AbstractEntity;
 import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
+import de.tim0_12432.f1_schedule_app.data.entity.Qualifying;
+import de.tim0_12432.f1_schedule_app.data.entity.QualifyingResult;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResultList;
@@ -146,6 +148,45 @@ public class RaceFragment extends Fragment {
                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) binding.expandPodiumContainer.getLayoutParams();
                     params.bottomMargin = 0;
                     binding.expandPodiumContainer.setLayoutParams(params);
+                }
+            });
+
+            String url = race.getSeason() + "/" + race.getRound() + "/qualifying";
+            dataManager.getDataFrom(DateTime.plusDays(race.getDate(), -1), Resource.QUALIFYING_RESULTS, url, new ILoadCallback<Qualifying>() {
+                @Override
+                public void onLoaded(List<Qualifying> list) {
+                    requireActivity().runOnUiThread(() -> {
+                        if (!list.isEmpty()) {
+                            Qualifying qualifying = list.get(0);
+                            List<QualifyingResult> results = qualifying.getResults();
+                            RecyclerView resultList = binding.raceScreenQualifyingResults;
+                            resultList.setLayoutManager(new LinearLayoutManager(getContext()));
+                            resultList.setOverScrollMode(View.OVER_SCROLL_NEVER);
+                            resultList.setAdapter(new QualifyingAdapter(results));
+
+                            resultList.setVisibility(View.GONE);
+                            binding.raceScreenQualifying.setVisibility(View.VISIBLE);
+                            binding.expandQualifying.setOnClickListener(v -> {
+                                if (resultList.getVisibility() == View.GONE) {
+                                    TransitionManager.beginDelayedTransition(binding.raceScreenQualifying, new AutoTransition());
+                                    resultList.setVisibility(View.VISIBLE);
+                                    binding.expandQualifying.setImageResource(R.drawable.ic_expand_less_24);
+                                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) binding.expandQualifyingContainer.getLayoutParams();
+                                    params.bottomMargin = 15;
+                                    binding.expandQualifyingContainer.setLayoutParams(params);
+                                } else {
+                                    TransitionManager.beginDelayedTransition(binding.raceScreenQualifying, new AutoTransition());
+                                    resultList.setVisibility(View.GONE);
+                                    binding.expandQualifying.setImageResource(R.drawable.ic_expand_more_24);
+                                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) binding.expandQualifyingContainer.getLayoutParams();
+                                    params.bottomMargin = 0;
+                                    binding.expandQualifyingContainer.setLayoutParams(params);
+                                }
+                            });
+                        } else {
+                            binding.raceScreenQualifying.setVisibility(View.GONE);
+                        }
+                    });
                 }
             });
         } else {

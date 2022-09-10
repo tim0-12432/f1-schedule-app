@@ -114,4 +114,6 @@
     <string name="days">Tage</string>
     <string name="refresh">Neu laden</string>
     <string name="podium_last_season">Podium der letzten Saison</string>
+    <string name="qualifying">Qualifying Ergebnisse</string>
+    <string name="refreshed">Neu geladen!</string>
 </resources>

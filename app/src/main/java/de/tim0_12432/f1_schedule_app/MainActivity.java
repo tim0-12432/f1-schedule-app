@@ -7,13 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.progressindicator.LinearProgressIndicator;
-
-import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,11 +20,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.Objects;
 
 import de.tim0_12432.f1_schedule_app.databinding.ActivityMainBinding;
 import de.tim0_12432.f1_schedule_app.ui.schedule.ScheduleFragment;
-import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -101,14 +96,20 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("DetachAndAttachSameFragment")
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        View progress = findViewById(R.id.schedule_progress);
         if (id == R.id.refresh_action) {
-            findViewById(R.id.schedule_progress).setVisibility(View.VISIBLE);
+            if (progress != null) {
+                progress.setVisibility(View.VISIBLE);
+            }
             ScheduleFragment.fetchLatestInformation();
             Fragment schedule = getSupportFragmentManager().findFragmentById(R.id.navigation_schedule);
             if (schedule != null) {
                 getSupportFragmentManager().beginTransaction().detach(schedule).attach(schedule).commit();
             }
-            findViewById(R.id.schedule_progress).setVisibility(View.INVISIBLE);
+            if (progress != null) {
+                progress.setVisibility(View.INVISIBLE);
+            }
+            Navigation.findNavController(this, R.id.nav_host_fragment_activity_main).navigate(R.id.navigation_schedule);
         }
         return super.onOptionsItemSelected(item);
     }

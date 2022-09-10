@@ -11,7 +11,7 @@ import de.tim0_12432.f1_schedule_app.data.entity.RaceResultStatus;
 import de.tim0_12432.f1_schedule_app.data.entity.builder.RaceResultBuilder;
 import de.tim0_12432.f1_schedule_app.data.entity.builder.RaceResultListBuilder;
 
-public class ResultParser extends AbstractEntityParser<RaceResultList> {
+public class RaceResultParser extends AbstractEntityParser<RaceResultList> {
     private static final DriverParser driverParser = new DriverParser();
     private static final ConstructorParser constructorParser = new ConstructorParser();
 
