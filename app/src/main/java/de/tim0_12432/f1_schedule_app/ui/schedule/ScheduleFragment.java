@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -143,17 +144,28 @@ public class ScheduleFragment extends Fragment implements IListView<Race> {
                 }
                 races.addAll(list.stream()
                         .filter((Race race) -> race.getResults() == null || race.getResults().getResults().isEmpty())
+                        .limit(2)
                         .collect(Collectors.toList()));
                 for (Race race : races) {
-                    String url = race.getSeason() + "/" + race.getRound() + "/results";
-                    manager.forceGetDataFrom(Resource.RACE_RESULTS, url, new ILoadCallback<Race>() {
+                    String urlRace = race.getSeason() + "/" + race.getRound() + "/results";
+                    manager.forceGetDataFrom(Resource.RACE_RESULTS, urlRace, new ILoadCallback<Race>() {
                         @Override
                         public void onLoaded(List<Race> list) {
                             if (list.size() > 0) {
-                                Logger.log("Refreshed", race.getName());
+                                Logger.log("Refreshed race", race.getName());
                             }
                         }
                     });
+                    String urlQuali = race.getSeason() + "/" + race.getRound() + "/qualifying";
+                    manager.forceGetDataFrom(Resource.QUALIFYING_RESULTS, urlQuali, new ILoadCallback<Race>() {
+                        @Override
+                        public void onLoaded(List<Race> list) {
+                            if (list.size() > 0) {
+                                Logger.log("Refreshed qualifying", race.getName());
+                            }
+                        }
+                    });
+                    Toast.makeText(MainActivity.getAppContext(), R.string.refreshed, Toast.LENGTH_SHORT).show();
                 }
             }
         });
