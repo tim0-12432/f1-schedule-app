@@ -162,7 +162,7 @@ public class RaceFragment extends Fragment {
                             RecyclerView resultList = binding.raceScreenQualifyingResults;
                             resultList.setLayoutManager(new LinearLayoutManager(getContext()));
                             resultList.setOverScrollMode(View.OVER_SCROLL_NEVER);
-                            //resultList.setAdapter(new QualifyingAdapter(results));
+                            resultList.setAdapter(new QualifyingAdapter(results));
 
                             resultList.setVisibility(View.GONE);
                             binding.raceScreenQualifying.setVisibility(View.VISIBLE);

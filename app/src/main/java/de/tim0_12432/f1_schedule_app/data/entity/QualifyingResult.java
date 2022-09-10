@@ -53,14 +53,22 @@ public class QualifyingResult extends AbstractEntity {
     }
 
     public String getFastestLapTime() {
-        if (lapTimes[2] != null) {
-            return lapTimes[2];
-        } else if (lapTimes[1] != null) {
-            return lapTimes[1];
-        } else if (lapTimes[0] != null) {
-            return lapTimes[0];
+        if (getQualifyingRound() > 0) {
+            return lapTimes[getQualifyingRound() - 1];
         } else {
             return null;
+        }
+    }
+
+    public int getQualifyingRound() {
+        if (lapTimes[2] != null) {
+            return 3;
+        } else if (lapTimes[1] != null) {
+            return 2;
+        } else if (lapTimes[0] != null) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 
