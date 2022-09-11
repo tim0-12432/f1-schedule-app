@@ -77,38 +77,40 @@ public class ScheduleFragment extends Fragment implements IListView<Race> {
     @Override
     @SuppressLint("NewApi")
     public void showEntries(List<Race> entries) {
-        requireActivity().runOnUiThread(() -> {
-            if (entries.size() > 0) {
-                android.widget.ListView list = binding.scheduleList;
-                list.setAdapter(new ScheduleAdapter(getActivity(), R.layout.fragment_race, entries));
-            } else {
-                binding.scheduleError.setVisibility(View.VISIBLE);
-            }
-            binding.scheduleProgress.setVisibility(View.INVISIBLE);
-            binding.scheduleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Race race = entries.get(i);
-                    String locEmoji = Nationality.getNationalityOfCountry(race.getCircuit().getLocation().getCountry()).getEmojiFlag();
-                    NavController controller = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                    Bundle params = new Bundle();
-                    params.putSerializable("raceObj", race);
-                    params.putString("raceName", race.getName() + " " + locEmoji);
-                    controller.navigate(R.id.action_navigation_schedule_to_raceFragment, params);
+        if (getActivity() != null) {
+            requireActivity().runOnUiThread(() -> {
+                if (entries.size() > 0) {
+                    android.widget.ListView list = binding.scheduleList;
+                    list.setAdapter(new ScheduleAdapter(getActivity(), R.layout.fragment_race, entries));
+                } else {
+                    binding.scheduleError.setVisibility(View.VISIBLE);
+                }
+                binding.scheduleProgress.setVisibility(View.INVISIBLE);
+                binding.scheduleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Race race = entries.get(i);
+                        String locEmoji = Nationality.getNationalityOfCountry(race.getCircuit().getLocation().getCountry()).getEmojiFlag();
+                        NavController controller = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+                        Bundle params = new Bundle();
+                        params.putSerializable("raceObj", race);
+                        params.putString("raceName", race.getName() + " " + locEmoji);
+                        controller.navigate(R.id.action_navigation_schedule_to_raceFragment, params);
+                    }
+                });
+
+                if (entries.size() > 0) {
+                    int nextRacePosition = entries.indexOf(entries.stream().filter(r -> r.getResults() == null).findFirst().get());
+                    binding.scheduleList.setSelection(Math.max(nextRacePosition - 2, 0));
+                    View selectedItem = binding.scheduleList.getAdapter().getView(nextRacePosition, null, binding.scheduleList);
+                    MaterialCardView card = selectedItem == null ? null : selectedItem.findViewById(R.id.race_card);
+                    if (card != null) {
+                        card.setStrokeWidth(getResources().getDimensionPixelOffset(R.dimen.card_border_active));
+                        card.setStrokeColor(getResources().getColor(R.color.red_auburn));
+                    }
                 }
             });
-
-            if (entries.size() > 0) {
-                int nextRacePosition = entries.indexOf(entries.stream().filter(r -> r.getResults() == null).findFirst().get());
-                binding.scheduleList.setSelection(Math.max(nextRacePosition - 2, 0));
-                View selectedItem = binding.scheduleList.getAdapter().getView(nextRacePosition, null, binding.scheduleList);
-                MaterialCardView card = selectedItem == null ? null : selectedItem.findViewById(R.id.race_card);
-                if (card != null) {
-                    card.setStrokeWidth(getResources().getDimensionPixelOffset(R.dimen.card_border_active));
-                    card.setStrokeColor(getResources().getColor(R.color.red_auburn));
-                }
-            }
-        });
+        }
     }
 
     private void fetchRaces(Race race) {
