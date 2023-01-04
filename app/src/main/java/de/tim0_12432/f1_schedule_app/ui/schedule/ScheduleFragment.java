@@ -17,6 +17,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import de.tim0_12432.f1_schedule_app.MainActivity;
@@ -100,7 +101,11 @@ public class ScheduleFragment extends Fragment implements IListView<Race> {
                 });
 
                 if (entries.size() > 0) {
-                    int nextRacePosition = entries.indexOf(entries.stream().filter(r -> r.getResults() == null).findFirst().get());
+                    int nextRacePosition = 0;
+                    Optional<Race> nextRace = entries.stream().filter(r -> r.getResults() == null).findFirst();
+                    if (nextRace.isPresent()) {
+                        nextRacePosition = entries.indexOf(nextRace.get());
+                    }
                     binding.scheduleList.setSelection(Math.max(nextRacePosition - 2, 0));
                     View selectedItem = binding.scheduleList.getAdapter().getView(nextRacePosition, null, binding.scheduleList);
                     MaterialCardView card = selectedItem == null ? null : selectedItem.findViewById(R.id.race_card);
