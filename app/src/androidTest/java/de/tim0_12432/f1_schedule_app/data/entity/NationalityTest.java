@@ -30,7 +30,7 @@ public class NationalityTest {
 
     @Test
     public void testGetNationalityOfCountry() {
-        Assert.assertEquals(Nationality.AMERICAN, Nationality.getNationalityOfCountry("USA"));
+        Assert.assertEquals(Nationality.USAMERICAN, Nationality.getNationalityOfCountry("USA"));
         Assert.assertEquals(Nationality.CHINESE, Nationality.getNationalityOfCountry("China"));
         Assert.assertEquals(Nationality.DEFAULT, Nationality.getNationalityOfCountry("Abcdefghijk"));
     }
