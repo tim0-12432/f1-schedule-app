@@ -10,14 +10,14 @@ import de.tim0_12432.f1_schedule_app.R;
 public enum ConstructorAttr {
     FERR("Scuderia Ferrari", R.color.red_english_vermillion, Nationality.ITALIAN, EngineConstructor.Ferrari),       // Ferrari
     MERC("Mercedes-AMG Petronas Motorsport", R.color.green_keppel, Nationality.GERMAN, EngineConstructor.Mercedes), // Mercedes
-    HAAS("Haas F1 Team", R.color.blue_yonder, Nationality.AMERICAN, EngineConstructor.Ferrari),                     // Haas
+    HAAS("MoneyGram Haas F1 Team", R.color.blue_yonder, Nationality.AMERICAN, EngineConstructor.Ferrari),           // Haas
     ALFA("Alfa Romeo F1 Team ORLEN", R.color.red_rose_vale, Nationality.SWISS, EngineConstructor.Ferrari),          // Sauber
-    ALPH("Scuderia AlphaTauri", R.color.black_charcoal, Nationality.ITALIAN, EngineConstructor.RedBullPowertrains),            // Red Bull
+    ALPH("Scuderia AlphaTauri", R.color.black_charcoal, Nationality.ITALIAN, EngineConstructor.RedBullPowertrains), // Toro Rosso
     ALPI("Alpine F1 Team", R.color.purple_middle, Nationality.FRENCH, EngineConstructor.Renault),                   // Renault
     ASTO("Aston Martin", R.color.green_viridian, Nationality.BRITISH, EngineConstructor.Mercedes),                  // Racing Point
     WILL("Williams Racing", R.color.blue_lapis_lazuli, Nationality.BRITISH, EngineConstructor.Mercedes),            // Williams
     MCLA("McLaren Racing", R.color.orange_persian, Nationality.BRITISH, EngineConstructor.Mercedes),                // McLaren
-    REDB("Red Bull Racing", R.color.blue_prussian, Nationality.AUSTRIAN, EngineConstructor.RedBullPowertrains),                // Toro Rosso
+    REDB("Red Bull Racing", R.color.blue_prussian, Nationality.AUSTRIAN, EngineConstructor.RedBullPowertrains),     // RedBull
     MANO("Marussia F1 Team", R.color.red_english_vermillion, Nationality.BRITISH, EngineConstructor.Ferrari),       // Virgin Racing
     LOTU("Lotus F1", R.color.yellow_metallic_gold, Nationality.BRITISH, EngineConstructor.Renault),                 // Lotus Renault
     FORC("Sahare Force India F1 Team", R.color.purple_middle, Nationality.INDIAN, EngineConstructor.Mercedes),      // Force India
