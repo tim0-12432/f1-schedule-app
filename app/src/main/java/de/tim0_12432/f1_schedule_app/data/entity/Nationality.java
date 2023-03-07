@@ -10,7 +10,8 @@ import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public enum Nationality {
-    AMERICAN("\uD83C\uDDFA\uD83C\uDDF8", R.string.nationality_american, "USA"),
+    AMERICAN("\uD83C\uDDFA\uD83C\uDDF8", R.string.nationality_american, "United States"),
+    USAMERICAN("\uD83C\uDDFA\uD83C\uDDF8", R.string.nationality_american, "USA"),
     ARAB("\uD83C\uDDE6\uD83C\uDDEA", R.string.nationality_arab, "UAE"),
     ARGENTINIAN("\uD83C\uDDE6\uD83C\uDDF7", "Argentina"),
     AUSTRIAN("\uD83C\uDDE6\uD83C\uDDF9", R.string.nationality_austrian, "Austria"),
@@ -36,6 +37,7 @@ public enum Nationality {
     MONEGASQUE("\uD83C\uDDF2\uD83C\uDDE8", R.string.nationality_monegasque, "Monaco"),
     MOROCCAN("\uD83C\uDDF2\uD83C\uDDE6", "Morocco"),
     PORTUGUESE("\uD83C\uDDF5\uD83C\uDDF9", "Portugal"),
+    POLISH("\uD83C\uDDF5\uD83C\uDDF1", R.string.nationality_polish, "Poland"),
     QATARI("\uD83C\uDDF6\uD83C\uDDE6", "Qatar"),
     RUSSIAN("\uD83C\uDDF7\uD83C\uDDFA", R.string.nationality_russian, "Russia"),
     SAUDI("\uD83C\uDDF8\uD83C\uDDE6", R.string.nationality_saudi, "Saudi Arabia"),

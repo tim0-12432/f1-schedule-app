@@ -2,4 +2,5 @@
 - [ ] Pitstop infos added to race result screen
 - [x] Display podiums from last seasons on the next race screen
 - [ ] Display qualifying results on the race screen
+- [ ] Constructor's team lead
 - [ ] More tests

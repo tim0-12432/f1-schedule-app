@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.sql.Date;
 import java.time.ZoneOffset;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class DateTime {
@@ -17,13 +18,19 @@ public class DateTime {
 
     public static String getTimestamp(final Time time, final int timezoneOffset) {
         Time newTime = new Time(time.getTime());
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.ROOT);
         newTime.setTime(newTime.getTime() + ((long) (timezoneOffset + 1) * 60 * 60 * 1000));
         return formatter.format(new Date(newTime.getTime()));
     }
 
     public static String getDatestamp(final Date date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
+        return formatter.format(new Date(date.getTime()));
+    }
+
+    public static String getCurrentYear() {
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy", Locale.ROOT);
         return formatter.format(new Date(date.getTime()));
     }
 
