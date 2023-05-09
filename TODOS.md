@@ -1,3 +1,7 @@
+- [ ] Change last season race card to get race by name
+- [x] Change qualifying card to display fastest lap time
+- [ ] Add sprint results to race view
+- [x] Add correct dnf comment as tooltip to race results list
 - [ ] Widget displaying the next race or last race results
 - [ ] Pitstop infos added to race result screen
 - [x] Display podiums from last seasons on the next race screen

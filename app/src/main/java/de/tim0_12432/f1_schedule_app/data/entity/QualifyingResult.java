@@ -1,8 +1,19 @@
 package de.tim0_12432.f1_schedule_app.data.entity;
 
-import androidx.annotation.NonNull;
+import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+
+import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class QualifyingResult extends AbstractEntity {
     private final int number;
@@ -52,12 +63,28 @@ public class QualifyingResult extends AbstractEntity {
         return lapTimes;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public String getFastestLapTime() {
-        if (getQualifyingRound() > 0) {
-            return lapTimes[getQualifyingRound() - 1];
-        } else {
-            return null;
+        SimpleDateFormat parser = new SimpleDateFormat("mm:ss.SSS");
+        List<Date> lapTimeList = new ArrayList<>();
+        for (String lapTime : lapTimes) {
+            if (lapTime != null && !lapTime.isEmpty()) {
+                try {
+                    lapTimeList.add(parser.parse(lapTime));
+                } catch (ParseException e) {
+                    Logger.log(Logger.LogLevel.ERROR, "'" + lapTime + "' could not be parsed!");
+                }
+            }
         }
+        lapTimeList.sort(new Comparator<Date>() {
+            @Override
+            public int compare(Date o1, Date o2) {
+                return o1.compareTo(o2);
+            }
+        });
+
+        Date fastest = lapTimeList.get(0);
+        return parser.format(fastest);
     }
 
     public int getQualifyingRound() {

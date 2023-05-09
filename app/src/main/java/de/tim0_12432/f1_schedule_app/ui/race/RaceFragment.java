@@ -102,9 +102,17 @@ public class RaceFragment extends Fragment {
                 binding.raceScreenPodium.setVisibility(View.GONE);
                 binding.raceScreenResults.setVisibility(View.GONE);
 
-                binding.raceScreenCounter.setText(getString(R.string.more_info_counter) + " "
-                        + DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) + " "
-                        + getString(R.string.days) + ".");
+                if (DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) > 0) {
+                    binding.raceScreenCounter.setText(getString(R.string.more_info_counter) + " "
+                            + DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) + " "
+                            + getString(R.string.days) + ".");
+                } else if (DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) == 0) {
+                    binding.raceScreenCounter.setText(getString(R.string.more_info_today) + ".");
+                } else {
+                    binding.raceScreenCounter.setText(getString(R.string.more_info_soon) + " "
+                            + DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) + " "
+                            + getString(R.string.days) + ".");
+                }
             }
 
             LinearLayout lastPodium = binding.raceScreenLastPodiumContainer;
