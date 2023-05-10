@@ -38,8 +38,8 @@ public class QualifyingResultBuilderTest {
     public void testAttributes() {
         Driver driver = new DriverBuilder().build();
         Constructor team = new ConstructorBuilder().build();
-        String q1 = "1:32.028";
-        String q2 = "52:42.002";
+        String q1 = "01:02.028";
+        String q2 = "00:52.002";
         int number = 1;
         int position = 2;
         QualifyingResultBuilder builder = new QualifyingResultBuilder()

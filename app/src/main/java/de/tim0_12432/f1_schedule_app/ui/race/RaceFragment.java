@@ -168,6 +168,8 @@ public class RaceFragment extends Fragment {
                         if (!list.isEmpty()) {
                             Qualifying qualifying = list.get(0);
                             List<QualifyingResult> results = qualifying.getResults();
+                            Logger.log(Logger.LogLevel.DEBUG, results.toString());
+
                             RecyclerView resultList = binding.raceScreenQualifyingResults;
                             resultList.setLayoutManager(new LinearLayoutManager(getContext()));
                             resultList.setOverScrollMode(View.OVER_SCROLL_NEVER);

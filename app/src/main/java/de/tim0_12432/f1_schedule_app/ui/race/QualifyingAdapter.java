@@ -17,6 +17,7 @@ import de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr;
 import de.tim0_12432.f1_schedule_app.data.entity.Driver;
 import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
 import de.tim0_12432.f1_schedule_app.data.entity.QualifyingResult;
+import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class QualifyingAdapter extends RecyclerView.Adapter<QualifyingAdapter.ViewHolder> {
     private final List<QualifyingResult> resultList;

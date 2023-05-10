@@ -63,7 +63,6 @@ public class QualifyingResult extends AbstractEntity {
         return lapTimes;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public String getFastestLapTime() {
         SimpleDateFormat parser = new SimpleDateFormat("mm:ss.SSS");
         List<Date> lapTimeList = new ArrayList<>();

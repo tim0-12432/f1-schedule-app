@@ -27,11 +27,11 @@ import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResultStatus;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
+import de.tim0_12432.f1_schedule_app.utility.Speed;
 
 public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
     private final List<RaceResult> resultList;
-    private final String fastestDriverCode;
-    private final String fastestDriverTime;
+    private final FastestDriver fastestDriver;
 
     public RaceAdapter(List<RaceResult> items) {
         resultList = items;
@@ -59,8 +59,8 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
                 }
             }
         };
-        fastestDriverCode = Collections.min(resultList, comparator).getDriver().getCode();
-        fastestDriverTime = Collections.min(resultList, comparator).getFastestLapTime();
+        RaceResult fastestResult = Collections.min(resultList, comparator);
+        fastestDriver = new FastestDriver(fastestResult.getDriver().getCode(), fastestResult.getFastestLapTime(), fastestResult.getFastestLapSpeed());
     }
 
     @Override
@@ -125,11 +125,35 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
             holder.driverStatus.setTooltipText(RaceResultStatus.DEFAULT.getText());
         }
 
-        if (fastestDriverCode.equals(result.getDriver().getCode())) {
+        if (fastestDriver.getCode().equals(result.getDriver().getCode())) {
             holder.driverIcon.setColorFilter(MainActivity.getAppResources().getColor(R.color.purple_purpureus), android.graphics.PorterDuff.Mode.SRC_IN);
-            holder.driverIcon.setTooltipText(fastestDriverTime);
+            holder.driverIcon.setTooltipText(fastestDriver.getTime() + " (" + Speed.convertMphToKmh(fastestDriver.getSpeed()) + "kmh)");
         } else {
             holder.driverIcon.setVisibility(View.GONE);
+        }
+    }
+
+    static class FastestDriver {
+        private final String code;
+        private final String time;
+        private final String speed;
+
+        FastestDriver(String code, String time, String speed) {
+            this.code = code;
+            this.time = time;
+            this.speed = speed;
+        }
+
+        String getCode() {
+            return code;
+        }
+
+        String getTime() {
+            return time;
+        }
+
+        String getSpeed() {
+            return speed;
         }
     }
 
