@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "de.tim0_12432.f1_schedule_app"
-        minSdk 21
+        minSdk 24
         targetSdk 32
         versionCode getUniqueVersionCode()
         versionName getUserVisibleVersionName()

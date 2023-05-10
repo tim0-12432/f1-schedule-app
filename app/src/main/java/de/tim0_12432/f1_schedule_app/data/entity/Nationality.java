@@ -39,6 +39,7 @@ public enum Nationality {
     PORTUGUESE("\uD83C\uDDF5\uD83C\uDDF9", "Portugal"),
     POLISH("\uD83C\uDDF5\uD83C\uDDF1", R.string.nationality_polish, "Poland"),
     QATARI("\uD83C\uDDF6\uD83C\uDDE6", "Qatar"),
+    ROMANIAN("\uD83C\uDDF7\uD83C\uDDF4", "Romania"),
     RUSSIAN("\uD83C\uDDF7\uD83C\uDDFA", R.string.nationality_russian, "Russia"),
     SAUDI("\uD83C\uDDF8\uD83C\uDDE6", R.string.nationality_saudi, "Saudi Arabia"),
     SOUTH_AFRICAN("\uD83C\uDDFF\uD83C\uDDE6", "South Africa"),

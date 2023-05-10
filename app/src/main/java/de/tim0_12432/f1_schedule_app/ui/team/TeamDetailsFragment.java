@@ -74,6 +74,18 @@ public class TeamDetailsFragment extends Fragment {
             setText(binding.teamScreenName, R.string.name, attr.getName());
             setText(binding.teamScreenNationality, R.string.nationality, team.getNationality().getTranslation() + " " + team.getNationality().getEmojiFlag());
             setText(binding.teamScreenEngine, R.string.engine, attr.getEngine().name());
+
+            if (attr.getTeamLead() != null) {
+                setText(binding.teamScreenTeamlead, R.string.teamlead, attr.getTeamLead().getName() + " " + attr.getTeamLead().getFamilyName() + " " + attr.getTeamLead().getNationality().getEmojiFlag());
+            } else {
+                binding.teamScreenTeamlead.setVisibility(View.GONE);
+            }
+            if (attr.getTechnicalDirector() != null) {
+                setText(binding.teamScreenDirector, R.string.tech_director, attr.getTechnicalDirector().getName() + " " + attr.getTechnicalDirector().getFamilyName() + " " + attr.getTechnicalDirector().getNationality().getEmojiFlag());
+            } else {
+                binding.teamScreenDirector.setVisibility(View.GONE);
+            }
+
             setText(binding.teamScreenPoints, R.string.points, points + "\uD83C\uDF96");
             setText(binding.teamScreenWins, R.string.wins, wins + "\uD83C\uDFC6");
 

@@ -5,6 +5,6 @@
 - [ ] Widget displaying the next race or last race results
 - [ ] Pitstop infos added to race result screen
 - [x] Display podiums from last seasons on the next race screen
-- [ ] Display qualifying results on the race screen
-- [ ] Constructor's team lead
+- [x] Display qualifying results on the race screen
+- [x] Constructor's team lead
 - [ ] More tests

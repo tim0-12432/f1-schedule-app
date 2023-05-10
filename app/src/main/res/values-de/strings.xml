@@ -119,4 +119,6 @@
     <string name="nationality_polish">Polnisch</string>
     <string name="more_info_today">Heute findet das Rennen statt! Danach finden Sie hier mehr Informationen.</string>
     <string name="more_info_soon">Warten Sie noch ein wenig! Bald kommen hier noch mehr Informationen.</string>
+    <string name="teamlead">Teamchef</string>
+    <string name="tech_director">Technischer Direktor</string>
 </resources>
