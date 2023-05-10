@@ -30,8 +30,8 @@ public class QualifyingResultBuilderTest {
         Assert.assertEquals(-1, quali.getNumber());
         Assert.assertEquals(-1, quali.getPosition());
         Assert.assertEquals(3, quali.getLapTimes().length);
-        Assert.assertNull(quali.getLapTimes()[0]);
         Assert.assertNull(quali.getFastestLapTime());
+        Assert.assertNull(quali.getLapTimes()[0]);
     }
 
     @Test

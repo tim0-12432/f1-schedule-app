@@ -82,6 +82,9 @@ public class QualifyingResult extends AbstractEntity {
             }
         });
 
+        if (lapTimeList.isEmpty()) {
+            return null;
+        }
         Date fastest = lapTimeList.get(0);
         return parser.format(fastest);
     }
