@@ -32,6 +32,7 @@ public enum Nationality {
     INDIAN("\uD83C\uDDEE\uD83C\uDDF3", "India"),
     ITALIAN("\uD83C\uDDEE\uD83C\uDDF9", R.string.nationality_italian, "Italy"),
     JAPANESE("\uD83C\uDDEF\uD83C\uDDF5", R.string.nationality_japanese, "Japan"),
+    LUXEMBOURGISH("\uD83C\uDDF1\uD83C\uDDFA", "Luxembourg"),
     MALAYSIAN("\uD83C\uDDF2\uD83C\uDDFE", "Malaysia"),
     MEXICAN("\uD83C\uDDF2\uD83C\uDDFD", R.string.nationality_mexican, "Mexico"),
     MONEGASQUE("\uD83C\uDDF2\uD83C\uDDE8", R.string.nationality_monegasque, "Monaco"),
