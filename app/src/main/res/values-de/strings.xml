@@ -121,4 +121,6 @@
     <string name="more_info_soon">Warten Sie noch ein wenig! Bald kommen hier noch mehr Informationen.</string>
     <string name="teamlead">Teamchef</string>
     <string name="tech_director">Technischer Direktor</string>
+    <string name="sprint_race">Wochenende mit Sprint-Rennen</string>
+    <string name="no_last_podium">Es gibt kein Podium!</string>
 </resources>
