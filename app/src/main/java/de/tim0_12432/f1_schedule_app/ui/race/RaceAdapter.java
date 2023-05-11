@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.R;
@@ -47,7 +48,7 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
                 } else if (time1.equals(time2)) {
                     return 0;
                 } else {
-                    SimpleDateFormat parser = new SimpleDateFormat("mm:ss.SSS");
+                    SimpleDateFormat parser = new SimpleDateFormat("mm:ss.SSS", Locale.ROOT);
                     try {
                         Date date1 = parser.parse(time1);
                         Date date2 = parser.parse(time2);

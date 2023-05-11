@@ -113,11 +113,9 @@ public class RaceFragment extends Fragment {
                             + DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) + " "
                             + getString(R.string.days) + ".");
                 } else if (DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) == 0) {
-                    binding.raceScreenCounter.setText(getString(R.string.more_info_today) + ".");
+                    binding.raceScreenCounter.setText(getString(R.string.more_info_today));
                 } else {
-                    binding.raceScreenCounter.setText(getString(R.string.more_info_soon) + " "
-                            + DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) + " "
-                            + getString(R.string.days) + ".");
+                    binding.raceScreenCounter.setText(getString(R.string.more_info_soon));
                 }
             }
 

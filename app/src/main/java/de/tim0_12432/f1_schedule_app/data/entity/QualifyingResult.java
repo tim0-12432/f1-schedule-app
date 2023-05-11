@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.tim0_12432.f1_schedule_app.utility.Logger;
 
@@ -76,7 +77,7 @@ public class QualifyingResult extends AbstractEntity {
                 if (o1.equals(o2)) {
                     return 0;
                 } else {
-                    SimpleDateFormat parser = new SimpleDateFormat("mm:ss.SSS");
+                    SimpleDateFormat parser = new SimpleDateFormat("mm:ss.SSS", Locale.ROOT);
                     try {
                         Date date1 = parser.parse(o1);
                         Date date2 = parser.parse(o2);

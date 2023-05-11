@@ -46,7 +46,7 @@ public class Race extends AbstractEntity {
         this.circuit = circuit;
         this.url = url;
         this.date = DateTime.plusDays(date, 2);
-        this.time = time;
+        this.time = DateTime.plusHours(time, DateTime.getTimezone());
     }
 
     public int getSeason() {

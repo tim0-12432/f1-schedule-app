@@ -26,6 +26,7 @@ I hope you will love it.
 
 - :uk: English
 - :de: German
+- :es: Spanish
 
 ## Installation
 
