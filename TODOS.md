@@ -7,5 +7,5 @@
 - [x] Display podiums from last seasons on the next race screen
 - [x] Display qualifying results on the race screen
 - [x] Constructor's team lead
-- [ ] horizontal/tablet layout
+- [x] horizontal/tablet layout
 - [ ] More tests

@@ -64,29 +64,35 @@ public class QualifyingResult extends AbstractEntity {
     }
 
     public String getFastestLapTime() {
-        SimpleDateFormat parser = new SimpleDateFormat("mm:ss.SSS");
-        List<Date> lapTimeList = new ArrayList<>();
+        List<String> lapTimeList = new ArrayList<>();
         for (String lapTime : lapTimes) {
             if (lapTime != null && !lapTime.isEmpty()) {
-                try {
-                    lapTimeList.add(parser.parse(lapTime));
-                } catch (ParseException e) {
-                    Logger.log(Logger.LogLevel.ERROR, "'" + lapTime + "' could not be parsed!");
-                }
+                lapTimeList.add(lapTime);
             }
         }
-        lapTimeList.sort(new Comparator<Date>() {
+        lapTimeList.sort(new Comparator<String>() {
             @Override
-            public int compare(Date o1, Date o2) {
-                return o1.compareTo(o2);
+            public int compare(String o1, String o2) {
+                if (o1.equals(o2)) {
+                    return 0;
+                } else {
+                    SimpleDateFormat parser = new SimpleDateFormat("mm:ss.SSS");
+                    try {
+                        Date date1 = parser.parse(o1);
+                        Date date2 = parser.parse(o2);
+                        return date1.compareTo(date2);
+                    } catch (ParseException e) {
+                        Logger.log(Logger.LogLevel.ERROR, "'" + o1 + "' or '" + o2 + "' could not be parsed!");
+                        return 0;
+                    }
+                }
             }
         });
 
         if (lapTimeList.isEmpty()) {
             return null;
         }
-        Date fastest = lapTimeList.get(0);
-        return parser.format(fastest);
+        return lapTimeList.get(0);
     }
 
     public int getQualifyingRound() {
