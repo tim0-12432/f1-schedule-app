@@ -11,6 +11,7 @@
         android:maxSdkVersion="29"
         tools:ignore="ScopedStorage"/>
     <application
+        android:hardwareAccelerated="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:requestLegacyExternalStorage="true"
@@ -23,7 +24,7 @@
         android:theme="@style/Theme.F1scheduleapp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="de.tim0_12432.f1_schedule_app.MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
