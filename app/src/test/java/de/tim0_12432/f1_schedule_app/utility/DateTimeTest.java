@@ -16,7 +16,7 @@ public class DateTimeTest {
     @Test
     public void testGetTimestamp() {
         Time time = Time.valueOf("01:00:00");
-        assertEquals("01:00", DateTime.getTimestamp(time));
+        assertEquals("03:00", DateTimeSpy.getTimestamp(time));
     }
 
     @Test

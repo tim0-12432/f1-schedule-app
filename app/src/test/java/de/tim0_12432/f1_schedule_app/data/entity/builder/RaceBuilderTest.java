@@ -1,6 +1,11 @@
 package de.tim0_12432.f1_schedule_app.data.entity.builder;
 
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
+
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.sql.Date;
@@ -10,15 +15,27 @@ import de.tim0_12432.f1_schedule_app.data.entity.Circuit;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
 
 public class RaceBuilderTest {
+
+    RaceBuilder builder;
+
+    @Before
+    public void setup() {
+        builder = new RaceBuilder();
+    }
+
+    @After
+    public void teardown() {
+        builder = null;
+    }
+
     @Test
     public void testDefault() {
-        RaceBuilder builder = new RaceBuilder();
         Race race = builder.build();
         Assert.assertNull(race.getName());
         Assert.assertNull(race.getUrl());
         Assert.assertNull(race.getCircuit());
         Assert.assertNull(race.getResults());
-        Assert.assertEquals("01:00:00", race.getTime().toString());
+        Assert.assertNull(race.getTime());
         Assert.assertEquals(-1, race.getRound());
         Assert.assertEquals(-1, race.getSeason());
         Assert.assertEquals("1970-01-01", race.getDate().toString());
@@ -33,7 +50,7 @@ public class RaceBuilderTest {
         Time time = new Time(0);
         int round = 9;
         int season = 1997;
-        RaceBuilder builder = new RaceBuilder()
+        builder = builder
                 .withUrl(url)
                 .withName(name)
                 .withRound(round)
@@ -48,7 +65,7 @@ public class RaceBuilderTest {
         Assert.assertEquals(season, race.getSeason());
         Assert.assertNull(race.getResults());
         Assert.assertEquals("1970-01-03", race.getDate().toString());
-        Assert.assertEquals("03:00:00", race.getTime().toString());
+        Assert.assertEquals("01:00:00", race.getTime().toString());
         Assert.assertEquals(circuit, race.getCircuit());
     }
 }

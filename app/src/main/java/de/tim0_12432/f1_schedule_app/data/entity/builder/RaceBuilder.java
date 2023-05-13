@@ -9,21 +9,21 @@ import de.tim0_12432.f1_schedule_app.data.entity.RaceResultList;
 
 public class RaceBuilder extends EntityBuilder<Race> {
 
-    private int season;
+    int season;
 
-    private int round;
+    int round;
 
-    private String name;
+    String name;
 
-    private Circuit circuit;
+    Circuit circuit;
 
-    private String url;
+    String url;
 
-    private Date date;
+    Date date;
 
-    private Time time;
+    Time time;
 
-    private RaceResultList results;
+    RaceResultList results;
 
     public RaceBuilder() {
         this.season = -1;

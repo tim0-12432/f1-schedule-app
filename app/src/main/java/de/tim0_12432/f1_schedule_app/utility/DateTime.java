@@ -15,7 +15,8 @@ public class DateTime {
 
     public static String getTimestamp(final Time time) {
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.ROOT);
-        return formatter.format(new Date(time.getTime()));
+        Time newTime = new Time(time.getTime() + 3600000L * getTimezone());
+        return formatter.format(new Date(newTime.getTime()));
     }
 
     public static String getDatestamp(final Date date) {
