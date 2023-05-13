@@ -65,7 +65,7 @@ public class RaceBuilderTest {
         Assert.assertEquals(season, race.getSeason());
         Assert.assertNull(race.getResults());
         Assert.assertEquals("1970-01-03", race.getDate().toString());
-        Assert.assertEquals("01:00:00", race.getTime().toString());
+        Assert.assertEquals(0, race.getTime().getTime());
         Assert.assertEquals(circuit, race.getCircuit());
     }
 }

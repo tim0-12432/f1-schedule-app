@@ -14,8 +14,12 @@ import java.util.TimeZone;
 public class DateTime {
 
     public static String getTimestamp(final Time time) {
+        return getTimestamp(time, getTimezone());
+    }
+
+    public static String getTimestamp(final Time time, final int timezone) {
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.ROOT);
-        Time newTime = new Time(time.getTime() + 3600000L * getTimezone());
+        Time newTime = new Time(time.getTime() + 3600000L * timezone);
         return formatter.format(new Date(newTime.getTime()));
     }
 
