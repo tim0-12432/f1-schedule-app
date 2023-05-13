@@ -1,11 +1,8 @@
 package de.tim0_12432.f1_schedule_app.data.parser;
 
-import android.content.Context;
-
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.MediumTest;
-import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.After;

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.List;
 
 import de.tim0_12432.f1_schedule_app.R;
@@ -15,6 +16,7 @@ import de.tim0_12432.f1_schedule_app.data.entity.Driver;
 import de.tim0_12432.f1_schedule_app.data.entity.Nationality;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
+import de.tim0_12432.f1_schedule_app.data.entity.SprintRace;
 import de.tim0_12432.f1_schedule_app.utility.DateTime;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
 
@@ -77,7 +79,11 @@ public class ScheduleAdapter extends ArrayAdapter<Race> {
         Race race = raceList.get(position);
         Logger.log(Logger.LogLevel.DEBUG, race.toString());
 
-        holder.raceName.setText(race.getName());
+        String raceName = race.getName();
+        if (Arrays.stream(SprintRace.getSprintsByYear(race.getSeason()).getNumbers()).anyMatch(r -> r == race.getRound())) {
+            raceName += " \uD83C\uDFC3";
+        }
+        holder.raceName.setText(raceName);
         holder.raceRound.setText(String.valueOf(race.getRound()));
         holder.raceDate.setText("\uD83D\uDDD3 " + DateTime.getDatestamp(race.getDate()));
         holder.raceTime.setText("\uD83D\uDD51 " + DateTime.getTimestamp(race.getTime()));

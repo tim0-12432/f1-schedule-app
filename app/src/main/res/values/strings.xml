@@ -122,4 +122,10 @@
     <string name="qualifying">Qualifying results</string>
     <string name="refreshed">Refreshed!</string>
     <string name="nationality_polish">Polish</string>
+    <string name="more_info_today">Today is race day! So afterwards you might find more information here.</string>
+    <string name="more_info_soon">What just a little bit! Soon there will be more information.</string>
+    <string name="teamlead">Team lead</string>
+    <string name="tech_director">Technical director</string>
+    <string name="sprint_race">Sprint weekend</string>
+    <string name="no_last_podium">No last podium available!</string>
 </resources>

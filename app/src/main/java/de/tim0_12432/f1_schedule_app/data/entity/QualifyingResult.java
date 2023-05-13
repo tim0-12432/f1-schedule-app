@@ -1,8 +1,20 @@
 package de.tim0_12432.f1_schedule_app.data.entity;
 
-import androidx.annotation.NonNull;
+import android.os.Build;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class QualifyingResult extends AbstractEntity {
     private final int number;
@@ -53,11 +65,35 @@ public class QualifyingResult extends AbstractEntity {
     }
 
     public String getFastestLapTime() {
-        if (getQualifyingRound() > 0) {
-            return lapTimes[getQualifyingRound() - 1];
-        } else {
+        List<String> lapTimeList = new ArrayList<>();
+        for (String lapTime : lapTimes) {
+            if (lapTime != null && !lapTime.isEmpty()) {
+                lapTimeList.add(lapTime);
+            }
+        }
+        lapTimeList.sort(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                if (o1.equals(o2)) {
+                    return 0;
+                } else {
+                    SimpleDateFormat parser = new SimpleDateFormat("mm:ss.SSS", Locale.ROOT);
+                    try {
+                        Date date1 = parser.parse(o1);
+                        Date date2 = parser.parse(o2);
+                        return date1.compareTo(date2);
+                    } catch (ParseException e) {
+                        Logger.log(Logger.LogLevel.ERROR, "'" + o1 + "' or '" + o2 + "' could not be parsed!");
+                        return 0;
+                    }
+                }
+            }
+        });
+
+        if (lapTimeList.isEmpty()) {
             return null;
         }
+        return lapTimeList.get(0);
     }
 
     public int getQualifyingRound() {

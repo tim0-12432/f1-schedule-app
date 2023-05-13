@@ -12,14 +12,14 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class DateTime {
-    public static String getTimestamp(Time time) {
+
+    public static String getTimestamp(final Time time) {
         return getTimestamp(time, getTimezone());
     }
 
-    public static String getTimestamp(final Time time, final int timezoneOffset) {
-        Time newTime = new Time(time.getTime());
+    public static String getTimestamp(final Time time, final int timezone) {
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.ROOT);
-        newTime.setTime(newTime.getTime() + ((long) (timezoneOffset + 1) * 60 * 60 * 1000));
+        Time newTime = new Time(time.getTime() + 3600000L * timezone);
         return formatter.format(new Date(newTime.getTime()));
     }
 
@@ -75,5 +75,23 @@ public class DateTime {
         c.setTime(date);
         c.add(Calendar.DATE, days);
         return new Date(c.getTimeInMillis());
+    }
+
+    public static Time plusHours(Time time, int hours) {
+        if (time == null) return new Time(0);
+
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(time.getTime());
+        c.add(Calendar.HOUR, hours);
+        return new Time(c.getTimeInMillis());
+    }
+
+    public static Time plusMinutes(Time time, int minutes) {
+        if (time == null) return new Time(0);
+
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(time.getTime());
+        c.add(Calendar.MINUTE, minutes);
+        return new Time(c.getTimeInMillis());
     }
 }

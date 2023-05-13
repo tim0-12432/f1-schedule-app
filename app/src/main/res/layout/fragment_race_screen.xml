@@ -80,6 +80,14 @@
                             android:text="@string/dummy_text"
                             android:id="@+id/race_screen_time" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/colorOnSecondary"
+                            android:layout_marginTop="7dp"
+                            android:text="@string/dummy_text"
+                            android:id="@+id/race_screen_sprint" />
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -367,7 +375,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="horizontal"
-                            android:baselineAligned="false">
+                            android:baselineAligned="false"
+                            android:id="@+id/race_screen_last_podium_layout_container">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"

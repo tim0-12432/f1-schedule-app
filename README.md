@@ -26,6 +26,7 @@ I hope you will love it.
 
 - :uk: English
 - :de: German
+- :es: Spanish
 
 ## Installation
 
@@ -69,7 +70,7 @@ Just start and use it.
 ## Known issues
 
 - Sometimes the onClick event on ranked list items will not work when tabbed to the other tab before
-- Rotating your phone could possibly break the layout
+- Rotating your phone could possibly lead to a app crash when location is not a main tab
 
 ## License
 

@@ -11,9 +11,9 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
 
+import java.util.Arrays;
 import java.util.List;
 
 import de.tim0_12432.f1_schedule_app.R;
@@ -25,6 +25,7 @@ import de.tim0_12432.f1_schedule_app.data.entity.QualifyingResult;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResultList;
+import de.tim0_12432.f1_schedule_app.data.entity.SprintRace;
 import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.databinding.FragmentRaceScreenBinding;
 import de.tim0_12432.f1_schedule_app.ui.transitions.FadeInTransition;
@@ -59,6 +60,11 @@ public class RaceFragment extends Fragment {
             setText(binding.raceScreenCircuitName, R.string.circuit, race.getCircuit().getName());
             setText(binding.raceScreenDate, R.string.date, DateTime.getDatestamp(race.getDate()));
             setText(binding.raceScreenTime, R.string.time, DateTime.getTimestamp(race.getTime()));
+            if (Arrays.stream(SprintRace.getSprintsByYear(race.getSeason()).getNumbers()).anyMatch(r -> r == race.getRound())) {
+                binding.raceScreenSprint.setText(getString(R.string.sprint_race) + " \uD83C\uDFC3");
+            } else {
+                binding.raceScreenSprint.setVisibility(View.GONE);
+            }
 
             RaceResultList resultList = race.getResults();
             if (resultList != null) {
@@ -102,9 +108,15 @@ public class RaceFragment extends Fragment {
                 binding.raceScreenPodium.setVisibility(View.GONE);
                 binding.raceScreenResults.setVisibility(View.GONE);
 
-                binding.raceScreenCounter.setText(getString(R.string.more_info_counter) + " "
-                        + DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) + " "
-                        + getString(R.string.days) + ".");
+                if (DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) > 0) {
+                    binding.raceScreenCounter.setText(getString(R.string.more_info_counter) + " "
+                            + DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) + " "
+                            + getString(R.string.days) + ".");
+                } else if (DateTime.getDaysDifference(DateTime.getToday(), race.getDate()) == 0) {
+                    binding.raceScreenCounter.setText(getString(R.string.more_info_today));
+                } else {
+                    binding.raceScreenCounter.setText(getString(R.string.more_info_soon));
+                }
             }
 
             LinearLayout lastPodium = binding.raceScreenLastPodiumContainer;
@@ -115,23 +127,27 @@ public class RaceFragment extends Fragment {
                     dataManager.getDataFrom(DateTime.plusDays(race.getDate(), -365), Resource.RACE_RESULTS, url, new ILoadCallback<Race>() {
                         @Override
                         public void onLoaded(List<Race> list) {
-                            if (list.size() <= 0 || list.get(0).getResults() == null) return;
-                            Race race = list.get(0);
-                            setText(binding.raceScreenLastInfo,
-                                    Nationality.getNationalityOfCountry(race.getCircuit().getLocation().getCountry()).getEmojiFlag(),
-                                    ' ',
-                                    race.getName());
-                            List<RaceResult> results = race.getResults().getResults();
-                            if (results.size() > 0) {
-                                setText(binding.raceScreenLastWinner1, "\uD83E\uDD47", ' ',
-                                        results.get(0).getDriver().getCode() + " "
-                                                + results.get(0).getDriver().getNationality().getEmojiFlag());
-                                setText(binding.raceScreenLastWinner2, "\uD83E\uDD48", ' ',
-                                        results.get(1).getDriver().getCode() + " "
-                                                + results.get(1).getDriver().getNationality().getEmojiFlag());
-                                setText(binding.raceScreenLastWinner3, "\uD83E\uDD49", ' ',
-                                        results.get(2).getDriver().getCode() + " "
-                                                + results.get(2).getDriver().getNationality().getEmojiFlag());
+                            if (list.size() <= 0 || list.get(0).getResults() == null) {
+                                binding.raceScreenLastInfo.setText(getString(R.string.no_last_podium));
+                                binding.raceScreenLastPodiumLayoutContainer.setVisibility(View.GONE);
+                            } else {
+                                Race race = list.get(0);
+                                setText(binding.raceScreenLastInfo,
+                                        Nationality.getNationalityOfCountry(race.getCircuit().getLocation().getCountry()).getEmojiFlag(),
+                                        ' ',
+                                        race.getName());
+                                List<RaceResult> results = race.getResults().getResults();
+                                if (results.size() > 0) {
+                                    setText(binding.raceScreenLastWinner1, "\uD83E\uDD47", ' ',
+                                            results.get(0).getDriver().getCode() + " "
+                                                    + results.get(0).getDriver().getNationality().getEmojiFlag());
+                                    setText(binding.raceScreenLastWinner2, "\uD83E\uDD48", ' ',
+                                            results.get(1).getDriver().getCode() + " "
+                                                    + results.get(1).getDriver().getNationality().getEmojiFlag());
+                                    setText(binding.raceScreenLastWinner3, "\uD83E\uDD49", ' ',
+                                            results.get(2).getDriver().getCode() + " "
+                                                    + results.get(2).getDriver().getNationality().getEmojiFlag());
+                                }
                             }
                         }
                     });
@@ -160,6 +176,8 @@ public class RaceFragment extends Fragment {
                         if (!list.isEmpty()) {
                             Qualifying qualifying = list.get(0);
                             List<QualifyingResult> results = qualifying.getResults();
+                            Logger.log(Logger.LogLevel.DEBUG, results.toString());
+
                             RecyclerView resultList = binding.raceScreenQualifyingResults;
                             resultList.setLayoutManager(new LinearLayoutManager(getContext()));
                             resultList.setOverScrollMode(View.OVER_SCROLL_NEVER);
