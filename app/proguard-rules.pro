@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class de.tim0_12432.f1_schedule_app.data.entity.Race { *; }
+-keep class de.tim0_12432.f1_schedule_app.data.entity.Driver { *; }
+-keep class de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr { *; }
+-keep class de.tim0_12432.f1_schedule_app.data.entity.ConstructorStanding { *; }
+-keep class de.tim0_12432.f1_schedule_app.data.entity.Circuit { *; }
