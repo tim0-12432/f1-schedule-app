@@ -140,7 +140,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: app/build/outputs/apk/release/
-          key: ${{ runner.os }}-apk-app-schedule-${{ hashFiles('**/build.gradle') }}
+          key: ${{ runner.os }}-apk-app-schedule-${{ hashFiles('**/build.gradle', '**/app-versioning.gradle') }}
           restore-keys: |
             - ${{ runner.os }}-apk-app-schedule-
   release:
@@ -170,7 +170,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: app/build/outputs/apk/release/
-          key: ${{ runner.os }}-apk-app-schedule-${{ hashFiles('**/build.gradle') }}
+          key: ${{ runner.os }}-apk-app-schedule-${{ hashFiles('**/build.gradle', '**/app-versioning.gradle') }}
           restore-keys: |
             - ${{ runner.os }}-apk-app-schedule-
         id: cache-apk

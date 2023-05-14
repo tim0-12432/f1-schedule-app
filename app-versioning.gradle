@@ -1,5 +1,5 @@
-def VERSION_NAME = "1.3.0"
-def DEFAULT_VERSION_CODE = 5
+def VERSION_NAME = "1.3.1"
+def DEFAULT_VERSION_CODE = 6
 
 ext.getUniqueVersionCode = {
     def code = System.getenv("VERSION_CODE")
