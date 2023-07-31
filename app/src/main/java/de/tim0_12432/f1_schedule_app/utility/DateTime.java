@@ -58,7 +58,11 @@ public class DateTime {
     public static int getAge(final Date date) {
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime birthday = LocalDateTime.ofEpochSecond(date.getTime() / 1000, 0, ZoneOffset.ofHours(getTimezone()));
-        return today.getYear() - birthday.getYear();
+        int yearDiff = today.getYear() - birthday.getYear();
+        if (today.isBefore(birthday.plusYears(yearDiff))) {
+            return yearDiff - 1;
+        }
+        return yearDiff;
     }
 
     @SuppressLint("NewApi")

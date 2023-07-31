@@ -4,7 +4,7 @@ import java.util.Locale;
 
 public enum SprintRace {
     _2022(4, 11, 22),
-    _2023(4, 10, 13, 18, 19, 21),
+    _2023(4, 9, 12, 17, 18, 20),
     DEFAULT();
 
     private final int[] numbers;

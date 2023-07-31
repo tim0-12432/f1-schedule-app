@@ -4,6 +4,7 @@
 - [x] Add correct dnf comment as tooltip to race results list
 - [ ] Widget displaying the next race or last race results
 - [ ] Pitstop infos added to race result screen
+- [x] Update checker
 - [x] Display podiums from last seasons on the next race screen
 - [x] Display qualifying results on the race screen
 - [x] Constructor's team lead
