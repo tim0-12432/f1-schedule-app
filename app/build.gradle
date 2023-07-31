@@ -53,6 +53,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.5.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'org.osmdroid:osmdroid-android:6.1.16'
+    implementation 'org.json:json:20230618'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'

@@ -2,6 +2,7 @@ package de.tim0_12432.f1_schedule_app;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,9 +24,12 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 import de.tim0_12432.f1_schedule_app.databinding.ActivityMainBinding;
 import de.tim0_12432.f1_schedule_app.ui.schedule.ScheduleFragment;
+import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,6 +87,22 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        UpdateService updateService = new UpdateService();
+        CompletableFuture<String> newVersion = null;
+        try {
+            newVersion = updateService.checkForUpdates(context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName);
+            newVersion.thenAcceptAsync(s -> {
+                if (!s.equals(UpdateService.EMPTY_STRING)) {
+                    updateService.showUpdateDialog(this, "13.0.2");
+                }
+            }).exceptionally(e -> {
+                Logger.log(Logger.LogLevel.ERROR, "Error while checking for updates:", e);
+                return null;
+            });
+        } catch (PackageManager.NameNotFoundException e) {
+            Logger.log(Logger.LogLevel.ERROR, "Error while getting the package's version name:", e);
+        }
     }
 
     @Override
