@@ -128,4 +128,6 @@
     <string name="source_code">Quellcode</string>
     <string name="latest_release">Neuester Release</string>
     <string name="licenses">Lizenzen</string>
+    <string name="version">Version</string>
+    <string name="app">App</string>
 </resources>

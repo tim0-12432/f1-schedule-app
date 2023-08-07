@@ -135,4 +135,6 @@
     <string name="latest_release">Latest Release</string>
     <string name="licenses">Licenses</string>
     <string name="ergast_api" translatable="false">Ergast API</string>
+    <string name="version">Version</string>
+    <string name="app">App</string>
 </resources>
