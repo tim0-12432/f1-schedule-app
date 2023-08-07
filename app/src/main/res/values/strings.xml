@@ -128,4 +128,11 @@
     <string name="tech_director">Technical director</string>
     <string name="sprint_race">Sprint weekend</string>
     <string name="no_last_podium">No last podium available!</string>
+    <string name="title_information">Information</string>
+    <string name="title_analytics">Analytics</string>
+    <string name="source_code">Source Code</string>
+    <string name="github" translatable="false">Github</string>
+    <string name="latest_release">Latest Release</string>
+    <string name="licenses">Licenses</string>
+    <string name="ergast_api" translatable="false">Ergast API</string>
 </resources>

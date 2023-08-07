@@ -6,6 +6,20 @@
     app:startDestination="@+id/navigation_schedule">
 
     <fragment
+        android:id="@+id/navigation_information"
+        android:name="de.tim0_12432.f1_schedule_app.ui.information.InformationFragment"
+        android:label="@string/title_information"
+        tools:layout="@layout/fragment_information" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_analytics"
+        android:name="de.tim0_12432.f1_schedule_app.ui.analytics.AnalyticsFragment"
+        android:label="@string/title_analytics"
+        tools:layout="@layout/fragment_analytics" >
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_circuits"
         android:name="de.tim0_12432.f1_schedule_app.ui.circuit.CircuitsFragment"
         android:label="@string/title_circuits"

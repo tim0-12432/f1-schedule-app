@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/navigation_information"
+        android:icon="@drawable/ic_info_24"
+        android:title="@string/title_information" />
+
+    <item
         android:id="@+id/navigation_circuits"
         android:icon="@drawable/ic_circuit_24"
         android:title="@string/title_circuits" />
@@ -15,5 +20,10 @@
         android:id="@+id/navigation_world_cup"
         android:icon="@drawable/ic_world_cup_24"
         android:title="@string/title_world_cup" />
+
+    <item
+        android:id="@+id/navigation_analytics"
+        android:icon="@drawable/ic_query_stats_24"
+        android:title="@string/title_analytics" />
 
 </menu>

@@ -123,4 +123,9 @@
     <string name="tech_director">Technischer Direktor</string>
     <string name="sprint_race">Wochenende mit Sprint-Rennen</string>
     <string name="no_last_podium">Es gibt kein Podium!</string>
+    <string name="title_information">Informationen</string>
+    <string name="title_analytics">Analysen</string>
+    <string name="source_code">Quellcode</string>
+    <string name="latest_release">Neuester Release</string>
+    <string name="licenses">Lizenzen</string>
 </resources>
