@@ -20,7 +20,7 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: 11
+          java-version: 17
           distribution: adopt-hotspot
           cache: gradle
       - name: Run tests
@@ -49,7 +49,7 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: 11
+          java-version: 17
           distribution: adopt-hotspot
           cache: gradle
       - name: Run linting
@@ -81,7 +81,7 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: 11
+          java-version: 17
           distribution: adopt-hotspot
           cache: gradle
       - name: Run android tests
@@ -121,7 +121,7 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: 11
+          java-version: 17
           distribution: adopt-hotspot
           cache: gradle
       - name: Build APK
@@ -161,7 +161,7 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: 11
+          java-version: 17
           distribution: adopt-hotspot
           cache: gradle
       - id: appVersion
