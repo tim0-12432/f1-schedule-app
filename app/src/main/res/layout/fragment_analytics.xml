@@ -45,7 +45,7 @@
                         android:layout_marginBottom="15dp" />
 
                     <com.anychart.AnyChartView
-                        android:id="@+id/analytics_points"
+                        android:id="@+id/analytics_points_chart"
                         android:layout_width="match_parent"
                         android:minHeight="260dp"
                         android:layout_height="match_parent" />
