@@ -137,4 +137,11 @@
     <string name="ergast_api" translatable="false">Ergast API</string>
     <string name="version">Version</string>
     <string name="app">App</string>
+    <string name="non_finished_races">Non-finished races</string>
+    <string name="no_data_for_chart">❗ No data for chart available!</string>
+    <string name="position_in_the_end">Position in the end of the race</string>
+    <string name="development_of_points">Development of points</string>
+    <string name="times_in_the_front_row">Times in the first three starters</string>
+    <string name="new_version_available">New version available</string>
+    <string name="get_it_here">Get it here</string>
 </resources>

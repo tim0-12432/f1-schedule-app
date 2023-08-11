@@ -1,16 +1,23 @@
 package de.tim0_12432.f1_schedule_app.data.analysis;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
 import de.tim0_12432.f1_schedule_app.data.Resource;
+import de.tim0_12432.f1_schedule_app.data.entity.Constructor;
 import de.tim0_12432.f1_schedule_app.data.entity.DriverStanding;
 import de.tim0_12432.f1_schedule_app.data.entity.Qualifying;
 import de.tim0_12432.f1_schedule_app.data.entity.Race;
+import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
+import de.tim0_12432.f1_schedule_app.data.entity.RaceResultStatus;
 import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.utility.DateTime;
 
@@ -70,8 +77,92 @@ public class AnalysisService {
         return races.size() * 28;
     }
 
-    public Map<String, Integer> getPointsPerDriver() {
-        return driverStandings.stream()
-                .collect(Collectors.toMap(standing -> standing.getDriver().getCode(), DriverStanding::getPoints));
+    public Map<DriverStanding, Integer> getAccidentsPerDriver() {
+        final Map<DriverStanding, Integer> drivers = new HashMap<>();
+        driverStandings.forEach(standing -> {
+            drivers.put(standing, 0);
+        });
+
+        final Map<DriverStanding, Integer> result = new LinkedHashMap<>();
+        drivers.entrySet().stream()
+                .sorted((a, b) -> {
+                    String cA = a.getKey().getConstructor().getName();
+                    String cB = b.getKey().getConstructor().getName();
+                    return cA.compareTo(cB);
+                })
+                .forEach(entry -> result.put(entry.getKey(), entry.getValue()));
+
+        races.forEach(race -> race.getResults().getResults().forEach(entry -> {
+            if (!(entry.getStatus().compareTo(RaceResultStatus.FINISHED) == 0
+                    || (entry.getStatus().getCode() >= 11
+                    && entry.getStatus().getCode() <= 17))) {
+                driverStandings.stream()
+                        .filter(driverStanding -> driverStanding.getDriver().getCode().equals(entry.getDriver().getCode()))
+                        .findFirst().ifPresent(standing -> result.put(standing, result.get(standing) + 1));
+            }
+        }));
+        return result;
+    }
+
+    public Map<DriverStanding, Integer> getFrontRowPerDriver() {
+        final Map<DriverStanding, Integer> drivers = new HashMap<>();
+        driverStandings.forEach(standing -> {
+            drivers.put(standing, 0);
+        });
+
+        final Map<DriverStanding, Integer> result = new LinkedHashMap<>();
+        drivers.entrySet().stream()
+                .sorted((a, b) -> {
+                    String cA = a.getKey().getConstructor().getName();
+                    String cB = b.getKey().getConstructor().getName();
+                    return cA.compareTo(cB);
+                })
+                .forEach(entry -> result.put(entry.getKey(), entry.getValue()));
+
+        qualifyings.forEach(quali -> quali.getResults().forEach(entry -> {
+            if (entry.getPosition() == 1 || entry.getPosition() == 2 || entry.getPosition() == 3) {
+                driverStandings.stream()
+                        .filter(driverStanding -> driverStanding.getDriver().getCode().equals(entry.getDriver().getCode()))
+                        .findFirst().ifPresent(standing -> result.put(standing, result.get(standing) + 1));
+            }
+        }));
+        return result;
+    }
+
+    public Map<DriverStanding, Integer[]> getPointsPerDriver() {
+        final Map<DriverStanding, Integer[]> result = new HashMap<>();
+        driverStandings.forEach(standing -> {
+            Integer[] list = new Integer[races.size() + 1];
+            list[0] = 0;
+            result.put(standing, list);
+        });
+
+        IntStream.range(0, races.size()).forEach(i -> {
+            Race race = races.get(i);
+            race.getResults().getResults().forEach(entry -> {
+                driverStandings.stream()
+                        .filter(driverStanding -> driverStanding.getDriver().getCode().equals(entry.getDriver().getCode()))
+                        .findFirst().ifPresent(standing -> Objects.requireNonNull(result.get(standing))[i + 1] = entry.getPoints());
+            });
+        });
+        return result;
+    }
+
+    public Map<DriverStanding, Integer[]> getPositionHistoryPerDriver() {
+        final Map<DriverStanding, Integer[]> result = new HashMap<>();
+        driverStandings.forEach(standing -> {
+            Integer[] list = new Integer[races.size()];
+            result.put(standing, list);
+        });
+
+        IntStream.range(0, races.size()).forEach(i -> {
+            Race race = races.get(i);
+            race.getResults().getResults().forEach(entry -> {
+                driverStandings.stream()
+                        .filter(driverStanding -> driverStanding.getDriver().getCode().equals(entry.getDriver().getCode()))
+                        .findFirst().ifPresent(standing -> Objects.requireNonNull(result.get(standing))[i] = entry.getPosition());
+            });
+        });
+        return result;
     }
 }

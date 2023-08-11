@@ -1,106 +1,186 @@
 package de.tim0_12432.f1_schedule_app.data.analysis;
 
+import static java.util.stream.Collectors.toList;
+
 import android.content.Context;
 
-import com.anychart.APIlib;
-import com.anychart.AnyChart;
-import com.anychart.AnyChartView;
-import com.anychart.chart.common.dataentry.SingleValueDataSet;
-import com.anychart.charts.CircularGauge;
-import com.anychart.core.axes.Circular;
-import com.anychart.core.gauge.pointers.Bar;
-import com.anychart.enums.Anchor;
-import com.anychart.graphics.vector.Fill;
-import com.anychart.graphics.vector.SolidFill;
-import com.anychart.graphics.vector.text.HAlign;
-import com.anychart.graphics.vector.text.VAlign;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.DataSet;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
+import de.tim0_12432.f1_schedule_app.data.analysis.chart.AccidentChart;
+import de.tim0_12432.f1_schedule_app.data.analysis.chart.PointsChart;
+import de.tim0_12432.f1_schedule_app.data.analysis.chart.PositionChart;
+import de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr;
+import de.tim0_12432.f1_schedule_app.data.entity.DriverStanding;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
 
 public class ChartService {
 
-    private Context appContext;
+    private final Context appContext;
 
-    private AnalysisService analysisService;
+    private final AnalysisService analysisService;
 
     public ChartService(Context context, AnalysisService analysisService) {
         this.appContext = context;
         this.analysisService = analysisService;
     }
 
-    public void createTotalPointsChart(AnyChartView anyChartView) {
-        if (anyChartView == null) {
-            Logger.log(Logger.LogLevel.ERROR, "AnyChartView is null!");
+    private int getColorForDriver(DriverStanding driverStanding) {
+        ConstructorAttr attributes = ConstructorAttr.getConstructorOfTeam(driverStanding.getConstructor());
+        return attributes.getColor();
+    }
+
+    public void createAccidentsChart(BarChart chart) {
+        Map<DriverStanding, Integer> data = analysisService.getAccidentsPerDriver();
+
+        if (data.isEmpty()) {
             return;
         }
-        APIlib.getInstance().setActiveAnyChartView(anyChartView);
-        Map<String, Integer> totalPoints = analysisService.getPointsPerDriver();
 
-        CircularGauge circularGauge = AnyChart.circular();
-        circularGauge.data(new SingleValueDataSet(totalPoints.values().toArray(new Integer[0])));
-        circularGauge.fill("#fff")
-                .stroke(null)
-                .padding(0d, 0d, 0d, 0d)
-                .margin(100d, 100d, 100d, 100d);
-        circularGauge.startAngle(0d);
-        circularGauge.sweepAngle(270d);
+        List<BarEntry> chartData = IntStream.range(0, data.size())
+                .mapToObj(i -> {
+                    DriverStanding key = (DriverStanding) data.keySet().toArray()[i];
+                    int value = data.getOrDefault(key, 0);
+                    return new BarEntry(i, value);
+                })
+                .collect(toList());
 
-        double radius = totalPoints.size() * 20d;
-        double maximum = analysisService.getMaximumPossiblePoints();
-        Circular xAxis = circularGauge.axis(0)
-                .radius(radius)
-                .width(1d)
-                .fill((Fill) null);
-        xAxis.scale()
-                .minimum(0d)
-                .maximum(maximum);
-        xAxis.ticks("{ interval: 1 }")
-                .minorTicks("{ interval: 1 }");
-        xAxis.labels().enabled(false);
-        xAxis.ticks().enabled(false);
-        xAxis.minorTicks().enabled(false);
+        BarDataSet dataSet = new BarDataSet(chartData, "Accidents");
+        dataSet.setColors(data.keySet().stream().map(this::getColorForDriver).collect(toList()));
+        dataSet.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.valueOf((int) value);
+            }
+        });
 
-        for (int i = 0; i < totalPoints.size(); i++) {
-            String driverCode = totalPoints.keySet().toArray(new String[0])[i];
+        AccidentChart accidentChart = new AccidentChart(appContext, chart, dataSet, data);
+        accidentChart.create();
+    }
 
-            circularGauge.label(0d)
-                    .text(driverCode + " " + totalPoints.get(driverCode))
-                    .useHtml(true)
-                    .hAlign(HAlign.CENTER)
-                    .vAlign(VAlign.MIDDLE);
-            circularGauge.label(1d * i)
-                    .anchor(Anchor.RIGHT_CENTER)
-                    .padding(0d, 10d, 0d, 0d)
-                    .height(17d / 2d + "%")
-                    .offsetY((radius - 20d * i) + "%")
-                    .offsetX(0d);
-            Bar bar = circularGauge.bar(1d * i);
-            bar.dataIndex(1d * i);
-            bar.radius(radius - 20d * i);
-            bar.width(17d);
-            bar.fill(new SolidFill("#64b5f6", 1d));
-            bar.stroke(null);
-            bar.zIndex(5d);
-            Bar barAlt = circularGauge.bar(radius + 1d * i);
-            barAlt.dataIndex(radius + 1d * i);
-            barAlt.radius(radius - 20d * i);
-            barAlt.width(17d);
-            barAlt.fill(new SolidFill("#F5F4F4", 1d));
-            barAlt.stroke("1 #e5e4e4");
-            barAlt.zIndex(4d);
+    public void createFrontRowChart(BarChart chart) {
+        Map<DriverStanding, Integer> data = analysisService.getFrontRowPerDriver();
+
+        if (data.isEmpty()) {
+            return;
         }
-        circularGauge.margin(50d, 50d, 50d, 50d);
-        circularGauge.title()
-                .text("<small>possible points:</small> " + maximum)
-                .useHtml(true)
-                .padding(0d, 0d, 0d, 0d)
-                .margin(10d, 0d, 20d, 0d);
-        circularGauge.title().enabled(true);
-        circularGauge.title().hAlign(HAlign.CENTER).vAlign(VAlign.BOTTOM);
 
-        anyChartView.setChart(circularGauge);
-        circularGauge.draw(true);
+        List<BarEntry> chartData = IntStream.range(0, data.size())
+                .mapToObj(i -> {
+                    DriverStanding key = (DriverStanding) data.keySet().toArray()[i];
+                    int value = data.getOrDefault(key, 0);
+                    return new BarEntry(i, value);
+                })
+                .collect(toList());
+
+        BarDataSet dataSet = new BarDataSet(chartData, "TimesInFrontRow");
+        dataSet.setColors(data.keySet().stream().map(this::getColorForDriver).collect(toList()));
+        dataSet.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.valueOf((int) value);
+            }
+        });
+
+        AccidentChart accidentChart = new AccidentChart(appContext, chart, dataSet, data);
+        accidentChart.create();
+    }
+
+    public void createPointsChart(LineChart chart) {
+        Map<DriverStanding, Integer[]> data = analysisService.getPointsPerDriver();
+
+        if (data.isEmpty()) {
+            return;
+        }
+
+        List<DataSet> dataSets = new ArrayList<>();
+        for (DriverStanding driver : data.keySet()) {
+            Integer[] points = data.get(driver);
+            final Integer[] memory = {0};
+            List<Entry> chartData = IntStream.range(0, points.length)
+                    .mapToObj(i -> {
+                        if (points[i] == null) {
+                            return new Entry(i, memory[0]);
+                        }
+                        int p = points[i] + memory[0];
+                        memory[0] = p;
+                        return new Entry(i, p);
+                    })
+                    .collect(toList());
+
+            LineDataSet dataSet = new LineDataSet(chartData, driver.getDriver().getCode());
+            dataSet.setColors(getColorForDriver(driver));
+            dataSet.setCircleColors(getColorForDriver(driver));
+            dataSet.setCircleRadius(3f);
+            dataSet.setLineWidth(2f);
+            dataSet.setDrawValues(true);
+            dataSet.setLabel(driver.getDriver().getCode());
+            dataSet.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+                    return String.valueOf((int) value);
+                }
+            });
+            dataSets.add(dataSet);
+        }
+
+        PointsChart pointsChart = new PointsChart(
+                appContext,
+                chart,
+                analysisService.getMaximumPossiblePoints(),
+                dataSets.toArray(new DataSet[]{}));
+        pointsChart.create();
+    }
+
+    public void createPositionChart(LineChart chart) {
+        Map<DriverStanding, Integer[]> data = analysisService.getPositionHistoryPerDriver();
+
+        if (data.isEmpty()) {
+            return;
+        }
+
+        List<DataSet> dataSets = new ArrayList<>();
+        for (DriverStanding driver : data.keySet()) {
+            Integer[] positions = data.get(driver);
+            List<Entry> chartData = IntStream.range(0, positions.length)
+                    .mapToObj(i -> {
+                        if (positions[i] == null) {
+                            return new Entry(i, data.size());
+                        }
+                        return new Entry(i, positions[i]);
+                    })
+                    .collect(toList());
+
+            LineDataSet dataSet = new LineDataSet(chartData, driver.getDriver().getCode());
+            dataSet.setColors(getColorForDriver(driver));
+            dataSet.setDrawCircles(false);
+            dataSet.setLineWidth(2f);
+            dataSet.setDrawValues(true);
+            dataSet.setLabel(driver.getDriver().getCode());
+            dataSet.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+                    return String.valueOf((int) value);
+                }
+            });
+            dataSets.add(dataSet);
+        }
+
+        PositionChart positionChart = new PositionChart(
+                appContext,
+                chart,
+                dataSets.toArray(new DataSet[]{}));
+        positionChart.create();
     }
 }

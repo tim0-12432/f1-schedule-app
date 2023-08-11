@@ -38,17 +38,134 @@
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:textColor="?attr/colorOnSecondary"
-                        android:text="Total points / Maximum points"
+                        android:text="@string/development_of_points"
                         android:textFontWeight="800"
                         android:textStyle="bold"
                         android:textSize="18dp"
                         android:layout_marginBottom="15dp" />
 
-                    <com.anychart.AnyChartView
-                        android:id="@+id/analytics_points_chart"
+                    <com.github.mikephil.charting.charts.LineChart
                         android:layout_width="match_parent"
-                        android:minHeight="260dp"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:id="@+id/analytics_points"
+                        android:minHeight="250dp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="?attr/colorSecondaryVariant"
+                app:cardElevation="3dp"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.MediumComponent"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="?attr/colorOnSecondary"
+                        android:text="@string/position_in_the_end"
+                        android:textFontWeight="800"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:layout_marginBottom="15dp" />
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/analytics_race_position"
+                        android:minHeight="320dp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="?attr/colorSecondaryVariant"
+                app:cardElevation="3dp"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.MediumComponent"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="?attr/colorOnSecondary"
+                        android:text="@string/times_in_the_front_row"
+                        android:textFontWeight="800"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:layout_marginBottom="15dp" />
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/analytics_front_row"
+                        android:minHeight="175dp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="?attr/colorSecondaryVariant"
+                app:cardElevation="3dp"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.MediumComponent"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="?attr/colorOnSecondary"
+                        android:text="@string/non_finished_races"
+                        android:textFontWeight="800"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:layout_marginBottom="15dp" />
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/analytics_accidents"
+                        android:minHeight="175dp" />
 
                 </LinearLayout>
 

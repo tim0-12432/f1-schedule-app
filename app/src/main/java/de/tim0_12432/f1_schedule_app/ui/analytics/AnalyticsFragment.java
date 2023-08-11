@@ -8,14 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import java.util.Objects;
-
 import de.tim0_12432.f1_schedule_app.MainActivity;
-import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.analysis.AnalysisService;
 import de.tim0_12432.f1_schedule_app.data.analysis.ChartService;
 import de.tim0_12432.f1_schedule_app.databinding.FragmentAnalyticsBinding;
-import de.tim0_12432.f1_schedule_app.databinding.FragmentInformationBinding;
 
 public class AnalyticsFragment extends Fragment {
 
@@ -28,7 +24,10 @@ public class AnalyticsFragment extends Fragment {
         AnalysisService analysis = new AnalysisService();
         ChartService charts = new ChartService(MainActivity.getAppContext(), analysis);
 
-        charts.createTotalPointsChart(binding.analyticsPointsChart);
+        charts.createAccidentsChart(binding.analyticsAccidents);
+        charts.createFrontRowChart(binding.analyticsFrontRow);
+        charts.createPointsChart(binding.analyticsPoints);
+        charts.createPositionChart(binding.analyticsRacePosition);
 
         return root;
     }

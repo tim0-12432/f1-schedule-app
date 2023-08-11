@@ -130,4 +130,11 @@
     <string name="licenses">Lizenzen</string>
     <string name="version">Version</string>
     <string name="app">App</string>
+    <string name="non_finished_races">Nicht beendete Rennen</string>
+    <string name="no_data_for_chart">❗ Keine Daten für den Graphen verfügbar!</string>
+    <string name="position_in_the_end">Position am Ende des Rennens</string>
+    <string name="development_of_points">Entwicklung der Punktzahlen</string>
+    <string name="times_in_the_front_row">Anzahl Starts unter den ersten Drei</string>
+    <string name="new_version_available">Neue Version verfügbar</string>
+    <string name="get_it_here">Klicke hier</string>
 </resources>

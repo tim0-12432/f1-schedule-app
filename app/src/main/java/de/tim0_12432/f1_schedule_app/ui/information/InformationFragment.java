@@ -34,7 +34,7 @@ public class InformationFragment extends Fragment {
         } catch (PackageManager.NameNotFoundException e) {
             setText(binding.informationVersion, R.string.version, "unknown");
         }
-        setText(binding.informationLicense, R.string.app, "MIT");
+        setText(binding.informationLicenseButton, R.string.app, "MIT");
 
         binding.informationGithubButton.setOnClickListener(v -> {
             Logger.log("Github opened");
@@ -45,6 +45,12 @@ public class InformationFragment extends Fragment {
         binding.informationReleaseButton.setOnClickListener(v -> {
             Logger.log("Latest release opened");
             Uri url = Uri.parse("https://github.com/tim0-12432/f1-schedule-app/releases/latest");
+            requireActivity().startActivity(new Intent(Intent.ACTION_VIEW, url));
+        });
+
+        binding.informationLicenseButton.setOnClickListener(v -> {
+            Logger.log("App license opened");
+            Uri url = Uri.parse("https://github.com/tim0-12432/f1-schedule-app/blob/main/LICENSE.md");
             requireActivity().startActivity(new Intent(Intent.ACTION_VIEW, url));
         });
 

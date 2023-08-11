@@ -61,8 +61,8 @@ public class UpdateService {
     }
 
     public void showUpdateDialog(MainActivity mainActivity, String newVersion) {
-        Snackbar snack = Snackbar.make(mainActivity.getCurrentFocus(), "New version available: " + newVersion, Snackbar.LENGTH_INDEFINITE);
-        snack.setAction("Get it here", v -> {
+        Snackbar snack = Snackbar.make(mainActivity.getCurrentFocus(), mainActivity.getString(R.string.new_version_available) + ": " + newVersion, Snackbar.LENGTH_INDEFINITE);
+        snack.setAction(R.string.get_it_here, v -> {
                 Logger.log("Github opened for", newVersion);
                 Uri url = Uri.parse("https://github.com/tim0-12432/f1-schedule-app/releases/latest");
                 mainActivity.startActivity(new Intent(Intent.ACTION_VIEW, url));
