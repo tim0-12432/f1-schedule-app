@@ -31,8 +31,9 @@ public class PositionChart extends AbstractChart<LineChart> {
         yAxisLeft.setLabelCount(10);
         yAxisLeft.setInverted(true);
         yAxisLeft.setDrawGridLinesBehindData(true);
-        yAxisLeft.setGridColor(appContext.getColor(R.color.silver_metallic));
+        yAxisLeft.setGridColor(getThemedColorFor(ColorElement.GRID));
         yAxisLeft.setGridLineWidth(1);
+        yAxisLeft.setTextColor(getThemedColorFor(ColorElement.LABEL));
         yAxisLeft.setDrawGridLines(true);
         yAxisLeft.setDrawAxisLine(false);
         yAxisLeft.setDrawLabels(true);
@@ -41,6 +42,7 @@ public class PositionChart extends AbstractChart<LineChart> {
         yAxisRight.setEnabled(false);
 
         LineData lineData = new LineData(Arrays.stream(dataSet).map(d -> (ILineDataSet) d).collect(toList()));
+        lineData.setValueTextColor(getThemedColorFor(ColorElement.LABEL));
         chart.setData(lineData);
 
         chart.getDescription().setEnabled(false);
@@ -48,6 +50,7 @@ public class PositionChart extends AbstractChart<LineChart> {
         chart.getLegend().setDrawInside(false);
         chart.getLegend().setFormSize(4);
         chart.getLegend().setFormToTextSpace(2);
+        chart.getLegend().setTextColor(getThemedColorFor(ColorElement.LABEL));
         chart.getXAxis().setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
@@ -58,12 +61,13 @@ public class PositionChart extends AbstractChart<LineChart> {
         chart.getXAxis().setDrawGridLines(false);
         chart.getXAxis().setDrawAxisLine(true);
         chart.getXAxis().setAxisLineWidth(2);
-        chart.getXAxis().setAxisLineColor(appContext.getColor(R.color.silver_metallic));
+        chart.getXAxis().setAxisLineColor(getThemedColorFor(ColorElement.AXIS));
         chart.getXAxis().setLabelCount(dataSet[0].getEntryCount());
         chart.getXAxis().setGranularity(1);
+        chart.getXAxis().setTextColor(getThemedColorFor(ColorElement.LABEL));
         chart.getXAxis().setGranularityEnabled(true);
         chart.animateY(1000, Easing.EaseInOutSine);
-        chart.setNoDataTextColor(appContext.getColor(R.color.red_cg));
+        chart.setNoDataTextColor(getThemedColorFor(ColorElement.ERROR));
         chart.setNoDataText(appContext.getString(R.string.no_data_for_chart));
         chart.invalidate();
     }
