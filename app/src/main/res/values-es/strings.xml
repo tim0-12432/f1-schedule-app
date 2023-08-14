@@ -137,4 +137,5 @@
     <string name="times_in_the_front_row">Tiempos en los tres primeros titulares</string>
     <string name="new_version_available">Nueva versión disponible</string>
     <string name="get_it_here">Consiguelo aqui</string>
+    <string name="driver_fastest_speed">Mayor velocidad por conductor (kmh)</string>
 </resources>

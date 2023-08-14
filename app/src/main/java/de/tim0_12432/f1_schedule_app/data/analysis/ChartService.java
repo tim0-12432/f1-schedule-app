@@ -5,9 +5,12 @@ import static java.util.stream.Collectors.toList;
 import android.content.Context;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.CandleStickChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.CandleDataSet;
+import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -16,11 +19,14 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
+import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.analysis.chart.AccidentChart;
 import de.tim0_12432.f1_schedule_app.data.analysis.chart.PointsChart;
 import de.tim0_12432.f1_schedule_app.data.analysis.chart.PositionChart;
+import de.tim0_12432.f1_schedule_app.data.analysis.chart.SpeedChart;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr;
 import de.tim0_12432.f1_schedule_app.data.entity.DriverStanding;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
@@ -182,5 +188,33 @@ public class ChartService {
                 chart,
                 dataSets.toArray(new DataSet[]{}));
         positionChart.create();
+    }
+
+    public void createSpeedChart(CandleStickChart chart) {
+        Map<DriverStanding, AnalysisService.CandleStick> data = analysisService.getFastestSpeedPerDriver();
+
+        if (data.isEmpty()) {
+            return;
+        }
+
+        List<CandleEntry> chartData = IntStream.range(0, data.size())
+                .mapToObj(i -> {
+                    DriverStanding key = (DriverStanding) data.keySet().toArray()[i];
+                    AnalysisService.CandleStick value = Objects.requireNonNull(data.get(key));
+                    return new CandleEntry(i, value.high, value.low, value.open, value.close);
+                })
+                .collect(toList());
+
+        CandleDataSet dataSet = new CandleDataSet(chartData, "DriverFastestSpeed");
+        dataSet.setColors(data.keySet().stream().map(this::getColorForDriver).collect(toList()));
+        dataSet.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.valueOf((int) value);
+            }
+        });
+
+        SpeedChart speedChart = new SpeedChart(appContext, chart, dataSet, data);
+        speedChart.create();
     }
 }

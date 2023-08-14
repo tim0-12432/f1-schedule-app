@@ -25,7 +25,7 @@ public abstract class AbstractChart<T extends Chart> {
     public abstract void create();
 
     protected enum ColorElement {
-        BACKGROUND, GRID, AXIS, LABEL, ERROR
+        BACKGROUND, GRID, AXIS, LABEL, ERROR, DATA
     }
 
     protected int getThemedColorFor(ColorElement element) {
@@ -37,12 +37,14 @@ public abstract class AbstractChart<T extends Chart> {
             return switch (element) {
                 case BACKGROUND -> appContext.getColor(R.color.black_raisin_light);
                 case GRID, AXIS -> appContext.getColor(R.color.black_raisin_dark);
+                case DATA -> appContext.getColor(R.color.red_auburn);
                 default -> appContext.getColor(R.color.silver_timberwolf);
             };
         } else if (config == Configuration.UI_MODE_NIGHT_NO) {
             return switch (element) {
                 case BACKGROUND -> appContext.getColor(R.color.silver_timberwolf);
                 case GRID, AXIS -> appContext.getColor(R.color.silver_metallic);
+                case DATA -> appContext.getColor(R.color.red_auburn);
                 default -> appContext.getColor(R.color.black_jet);
             };
         } else {

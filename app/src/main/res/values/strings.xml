@@ -144,4 +144,5 @@
     <string name="times_in_the_front_row">Times in the first three starters</string>
     <string name="new_version_available">New version available</string>
     <string name="get_it_here">Get it here</string>
+    <string name="driver_fastest_speed">Fastest speed per driver (kmh)</string>
 </resources>

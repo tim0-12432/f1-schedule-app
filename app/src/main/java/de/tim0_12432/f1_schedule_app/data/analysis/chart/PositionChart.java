@@ -33,9 +33,10 @@ public class PositionChart extends AbstractChart<LineChart> {
         yAxisLeft.setDrawGridLinesBehindData(true);
         yAxisLeft.setGridColor(getThemedColorFor(ColorElement.GRID));
         yAxisLeft.setGridLineWidth(1);
+        yAxisLeft.setAxisLineWidth(2);
         yAxisLeft.setTextColor(getThemedColorFor(ColorElement.LABEL));
         yAxisLeft.setDrawGridLines(true);
-        yAxisLeft.setDrawAxisLine(false);
+        yAxisLeft.setDrawAxisLine(true);
         yAxisLeft.setDrawLabels(true);
 
         YAxis yAxisRight = chart.getAxisRight();

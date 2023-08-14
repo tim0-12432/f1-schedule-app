@@ -28,6 +28,7 @@ public class AnalyticsFragment extends Fragment {
         charts.createFrontRowChart(binding.analyticsFrontRow);
         charts.createPointsChart(binding.analyticsPoints);
         charts.createPositionChart(binding.analyticsRacePosition);
+        charts.createSpeedChart(binding.analyticsSpeeds);
 
         return root;
     }

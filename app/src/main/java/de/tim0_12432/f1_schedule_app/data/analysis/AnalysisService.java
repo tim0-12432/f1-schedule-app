@@ -20,6 +20,7 @@ import de.tim0_12432.f1_schedule_app.data.entity.RaceResult;
 import de.tim0_12432.f1_schedule_app.data.entity.RaceResultStatus;
 import de.tim0_12432.f1_schedule_app.data.source.ILoadCallback;
 import de.tim0_12432.f1_schedule_app.utility.DateTime;
+import de.tim0_12432.f1_schedule_app.utility.Speed;
 
 public class AnalysisService {
 
@@ -163,6 +164,67 @@ public class AnalysisService {
                         .findFirst().ifPresent(standing -> Objects.requireNonNull(result.get(standing))[i] = entry.getPosition());
             });
         });
+        return result;
+    }
+
+    public static class CandleStick {
+        public final float x;
+        public final float open;
+        public final float close;
+        public final float high;
+        public final float low;
+
+        public CandleStick(float x, float open, float close, float high, float low) {
+            this.x = x;
+            this.open = open;
+            this.close = close;
+            this.high = high;
+            this.low = low;
+        }
+    }
+
+    public Map<DriverStanding, CandleStick> getFastestSpeedPerDriver() {
+        final Map<DriverStanding, CandleStick> drivers = new HashMap<>();
+        driverStandings.forEach(standing -> {
+            drivers.put(standing, null);
+        });
+
+        driverStandings.forEach(driver -> {
+            final float[] minSpeed = {Float.MAX_VALUE};
+            final float[] maxSpeed = {Float.MIN_VALUE};
+            final float[] avgSpeed = {0};
+            final int[] count = {0};
+
+            IntStream.range(0, races.size()).forEach(i -> {
+                Race race = races.get(i);
+                race.getResults().getResults().forEach(entry -> {
+                    if (entry.getDriver().getCode().equals(driver.getDriver().getCode())) {
+                        if (entry.getFastestLapSpeed() != null && !entry.getFastestLapSpeed().isEmpty()) {
+                            float speed = (float) Speed.convertMphToKmh(Float.parseFloat(entry.getFastestLapSpeed()));
+                            if (speed < minSpeed[0]) {
+                                minSpeed[0] = speed;
+                            }
+                            if (speed > maxSpeed[0]) {
+                                maxSpeed[0] = speed;
+                            }
+                            avgSpeed[0] += speed;
+                            count[0]++;
+                        }
+                    }
+                });
+            });
+            avgSpeed[0] /= count[0];
+            drivers.put(driver, new CandleStick(0, avgSpeed[0] - 0.3f, avgSpeed[0] + 0.3f, maxSpeed[0], minSpeed[0]));
+        });
+
+        final Map<DriverStanding, CandleStick> result = new LinkedHashMap<>();
+        drivers.entrySet().stream()
+                .sorted((a, b) -> {
+                    float highA = a.getValue() != null ? a.getValue().high : 0;
+                    float highB = b.getValue() != null ? b.getValue().high : 0;
+                    return Float.compare(highA, highB);
+                })
+                .forEach(entry -> result.put(entry.getKey(), entry.getValue()));
         return result;
     }
 }
