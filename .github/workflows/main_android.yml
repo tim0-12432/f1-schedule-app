@@ -21,12 +21,6 @@ jobs:
           distribution: temurin
           java-version: 17
           cache: gradle
-      - name: Install Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: adopt-hotspot
-          cache: gradle
       - name: Run tests
         run: ./gradlew testDebugUnitTest --continue --stacktrace
       - name: Upload reports
@@ -47,12 +41,6 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-          cache: gradle
-      - name: Install Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: adopt-hotspot
           cache: gradle
       - name: Run linting
         run: ./gradlew lintDebug --stacktrace
