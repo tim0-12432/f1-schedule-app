@@ -48,7 +48,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/analytics_points"
-                        android:minHeight="250dp" />
+                        android:minHeight="300dp" />
 
                 </LinearLayout>
 
@@ -87,7 +87,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/analytics_race_position"
-                        android:minHeight="320dp" />
+                        android:minHeight="370dp" />
 
                 </LinearLayout>
 

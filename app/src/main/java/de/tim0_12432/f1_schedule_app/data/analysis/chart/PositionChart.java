@@ -51,6 +51,7 @@ public class PositionChart extends AbstractChart<LineChart> {
         chart.getLegend().setFormSize(4);
         chart.getLegend().setFormToTextSpace(2);
         chart.getLegend().setTextColor(getThemedColorFor(ColorElement.LABEL));
+        chart.getLegend().setWordWrapEnabled(true);
         chart.getXAxis().setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
