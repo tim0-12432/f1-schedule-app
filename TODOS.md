@@ -10,3 +10,4 @@
 - [x] Constructor's team lead
 - [x] horizontal/tablet layout
 - [ ] More tests
+- [ ] share buttons for analytics and races

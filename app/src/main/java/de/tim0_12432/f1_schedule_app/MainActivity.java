@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             newVersion = updateService.checkForUpdates(context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName);
             newVersion.thenAcceptAsync(s -> {
                 if (!s.equals(UpdateService.EMPTY_STRING)) {
-                    updateService.showUpdateDialog(this, "13.0.2");
+                    updateService.showUpdateDialog(this, s);
                 }
             }).exceptionally(e -> {
                 Logger.log(Logger.LogLevel.ERROR, "Error while checking for updates:", e);

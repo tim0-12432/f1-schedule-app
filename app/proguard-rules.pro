@@ -25,3 +25,6 @@
 -keep class de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr { *; }
 -keep class de.tim0_12432.f1_schedule_app.data.entity.ConstructorStanding { *; }
 -keep class de.tim0_12432.f1_schedule_app.data.entity.Circuit { *; }
+-keep class de.tim0_12432.f1_schedule_app.data.entity.Constructor { *; }
+-keep class de.tim0_12432.f1_schedule_app.data.entity.DriverStanding { *; }
+-keep class de.tim0_12432.f1_schedule_app.data.entity.Qualifying { *; }

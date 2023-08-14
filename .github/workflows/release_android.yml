@@ -9,19 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Load Gradle from cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            - ~/.gradle/caches
-            - ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
-          restore-keys: |
-            - ${{ runner.os }}-gradle-
-      - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: 11
-          distribution: adopt-hotspot
+          distribution: temurin
+          java-version: 17
           cache: gradle
       - name: Run tests
         run: ./gradlew testDebugUnitTest --continue --stacktrace
@@ -38,19 +29,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Load Gradle from cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            - ~/.gradle/caches
-            - ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
-          restore-keys: |
-            - ${{ runner.os }}-gradle-
-      - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: 11
-          distribution: adopt-hotspot
+          distribution: temurin
+          java-version: 17
           cache: gradle
       - name: Run linting
         run: ./gradlew lintDebug --stacktrace
@@ -70,19 +52,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Load Gradle from cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            - ~/.gradle/caches
-            - ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
-          restore-keys: |
-            - ${{ runner.os }}-gradle-
-      - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: 11
-          distribution: adopt-hotspot
+          distribution: temurin
+          java-version: 17
           cache: gradle
       - name: Run android tests
         uses: reactivecircus/android-emulator-runner@v2
@@ -110,19 +83,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Load Gradle from cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            - ~/.gradle/caches
-            - ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
-          restore-keys: |
-            - ${{ runner.os }}-gradle-
-      - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: 11
-          distribution: adopt-hotspot
+          distribution: temurin
+          java-version: 17
           cache: gradle
       - name: Build APK
         id: buildApk
@@ -150,19 +114,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Load Gradle from cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            - ~/.gradle/caches
-            - ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*gradle*') }}
-          restore-keys: |
-            - ${{ runner.os }}-gradle-
-      - name: Install Java
         uses: actions/setup-java@v3
         with:
-          java-version: 11
-          distribution: adopt-hotspot
+          distribution: temurin
+          java-version: 17
           cache: gradle
       - id: appVersion
         run: echo "::set-output name=VERSION::$(./gradlew -q printVersion)"

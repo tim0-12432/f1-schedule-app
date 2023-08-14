@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.information.InformationFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="?attr/colorSecondaryVariant"
+                app:cardElevation="3dp"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.MediumComponent"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/colorOnSecondary"
+                        android:text="@string/dummy_text"
+                        android:id="@+id/information_version" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="?attr/colorSecondaryVariant"
+                app:cardElevation="3dp"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.MediumComponent"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="?attr/colorOnSecondary"
+                        android:text="@string/source_code"
+                        android:textFontWeight="800"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:layout_marginBottom="15dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        >
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/information_github_button"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:elevation="2dp"
+                            android:layout_margin="4dp"
+                            android:text="@string/github"
+                            android:textColor="?attr/colorPrimaryVariant"
+                            app:backgroundTint="?attr/colorSecondaryVariant"
+                            app:icon="@drawable/ic_code_24"
+                            app:iconTint="?attr/colorPrimaryVariant"
+                            app:strokeColor="?attr/colorPrimaryVariant"
+                            app:strokeWidth="2dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/information_release_button"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:elevation="2dp"
+                            android:layout_margin="4dp"
+                            android:text="@string/latest_release"
+                            android:textColor="?attr/colorPrimaryVariant"
+                            app:backgroundTint="?attr/colorSecondaryVariant"
+                            app:icon="@drawable/ic_get_app_24"
+                            app:iconTint="?attr/colorPrimaryVariant"
+                            app:strokeColor="?attr/colorPrimaryVariant"
+                            app:strokeWidth="2dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                app:cardBackgroundColor="?attr/colorSecondaryVariant"
+                app:cardElevation="3dp"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.MediumComponent"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="?attr/colorOnSecondary"
+                        android:text="@string/licenses"
+                        android:textFontWeight="800"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:layout_marginBottom="15dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:textColor="?attr/colorOnSecondary">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/information_license_button"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:elevation="2dp"
+                            android:text="@string/dummy_text"
+                            android:textColor="?attr/colorPrimaryVariant"
+                            app:backgroundTint="?attr/colorSecondaryVariant"
+                            app:icon="@drawable/ic_collections_bookmark_24"
+                            app:iconTint="?attr/colorPrimaryVariant"
+                            app:strokeColor="?attr/colorPrimaryVariant"
+                            app:strokeWidth="2dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/information_f1api_button"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:elevation="2dp"
+                            android:text="@string/ergast_api"
+                            android:textColor="?attr/colorPrimaryVariant"
+                            app:backgroundTint="?attr/colorSecondaryVariant"
+                            app:icon="@drawable/ic_collections_bookmark_24"
+                            app:iconTint="?attr/colorPrimaryVariant"
+                            app:strokeColor="?attr/colorPrimaryVariant"
+                            app:strokeWidth="2dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/information_osm_button"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:elevation="2dp"
+                            android:text="@string/open_street_map"
+                            android:textColor="?attr/colorPrimaryVariant"
+                            app:backgroundTint="?attr/colorSecondaryVariant"
+                            app:icon="@drawable/ic_map_24"
+                            app:iconTint="?attr/colorPrimaryVariant"
+                            app:strokeColor="?attr/colorPrimaryVariant"
+                            app:strokeWidth="2dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

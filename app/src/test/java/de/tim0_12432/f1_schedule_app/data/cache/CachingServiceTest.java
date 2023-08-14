@@ -1,5 +1,7 @@
 package de.tim0_12432.f1_schedule_app.data.cache;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -65,7 +67,7 @@ public class CachingServiceTest {
         cache.put("time", System.currentTimeMillis());
         cache.put("data", races);
         cachingService.writeData(res, url, races);
-        verify(storageMock, times(1)).writeObject(CachingService.getKey(res, url), cache);
+        verify(storageMock, times(1)).writeObject(eq(CachingService.getKey(res, url)), eq(cache));
     }
 
     @Test
