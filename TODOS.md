@@ -11,3 +11,7 @@
 - [x] horizontal/tablet layout
 - [ ] More tests
 - [ ] share buttons for analytics and races
+- [ ] fix update-notification
+- [ ] add Liam Lawson Nationality
+- [ ] add more than one sub driver to Team view
+- [ ] add comparison statistics card to Team view

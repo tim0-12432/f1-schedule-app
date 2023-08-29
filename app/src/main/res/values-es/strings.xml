@@ -138,4 +138,5 @@
     <string name="new_version_available">Nueva versión disponible</string>
     <string name="get_it_here">Consiguelo aqui</string>
     <string name="driver_fastest_speed">Mayor velocidad por conductor (kmh)</string>
+    <string name="debug_information">Información de depuración</string>
 </resources>

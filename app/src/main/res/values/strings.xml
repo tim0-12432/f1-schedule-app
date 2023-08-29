@@ -145,4 +145,5 @@
     <string name="new_version_available">New version available</string>
     <string name="get_it_here">Get it here</string>
     <string name="driver_fastest_speed">Fastest speed per driver (kmh)</string>
+    <string name="debug_information">Debug Information</string>
 </resources>
