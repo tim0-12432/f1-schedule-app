@@ -139,4 +139,6 @@
     <string name="get_it_here">Klicke hier</string>
     <string name="driver_fastest_speed">Höchstgeschwindigkeiten pro Fahrer (km/h)</string>
     <string name="debug_information">Debug-Informationen</string>
+    <string name="nationality_new_zealander">Neuseeländer</string>
+    <string name="sub_drivers">Ersatzfahrer</string>
 </resources>

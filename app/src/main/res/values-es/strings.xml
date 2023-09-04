@@ -139,4 +139,6 @@
     <string name="get_it_here">Consiguelo aqui</string>
     <string name="driver_fastest_speed">Mayor velocidad por conductor (kmh)</string>
     <string name="debug_information">Información de depuración</string>
+    <string name="nationality_new_zealander">Neozelandeses</string>
+    <string name="sub_drivers">Pilotos suplentes</string>
 </resources>

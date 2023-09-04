@@ -112,7 +112,7 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
 
         holder.driverName.setText(getDriverText(result.getDriver()));
         ConstructorAttr team = ConstructorAttr.getConstructorOfTeam(result.getTeam());
-        holder.driverTeam.setText(team.name().substring(0, 3));
+        holder.driverTeam.setText(team.name().substring(0, 4));
         holder.driverTeam.setTextColor(team.getColor());
         holder.driverPosition.setText(String.valueOf(result.getPosition()));
         holder.driverNumber.setText(String.valueOf(result.getNumber()));
