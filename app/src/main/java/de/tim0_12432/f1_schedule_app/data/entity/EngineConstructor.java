@@ -2,7 +2,7 @@ package de.tim0_12432.f1_schedule_app.data.entity;
 
 public enum EngineConstructor {
     Honda("Honda"),
-    Mercedes("Mercedes AMG Petronas"),
+    Mercedes("Mercedes-AMG Petronas"),
     Ferrari("Ferrari"),
     Renault("Renault"),
     RBPT("Red Bull Powertrains");

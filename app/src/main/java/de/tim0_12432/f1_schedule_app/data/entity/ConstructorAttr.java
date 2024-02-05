@@ -8,12 +8,12 @@ import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.R;
 
 public enum ConstructorAttr {
-    FERR("Scuderia Ferrari", R.color.red_english_vermillion, Nationality.ITALIAN, EngineConstructor.Ferrari, new NonDriverPerson("Frédéric", "Vasseur", Nationality.FRENCH)), // Ferrari
+    FERR("Scuderia Ferrari", R.color.red_english_vermillion, Nationality.ITALIAN, EngineConstructor.Ferrari, new NonDriverPerson("Frédéric", "Vasseur", Nationality.FRENCH), new NonDriverPerson("Enrico", "Cardile", Nationality.ITALIAN)), // Ferrari
     MERC("Mercedes-AMG Petronas Motorsport", R.color.green_keppel, Nationality.GERMAN, EngineConstructor.Mercedes, new NonDriverPerson("Toto", "Wolff", Nationality.AUSTRIAN), new NonDriverPerson("James", "Allison", Nationality.BRITISH)), // Mercedes
-    HAAS("MoneyGram Haas F1 Team", R.color.blue_yonder, Nationality.AMERICAN, EngineConstructor.Ferrari, new NonDriverPerson("Günther", "Steiner", Nationality.ITALIAN), new NonDriverPerson("Rob", "Taylor", Nationality.BRITISH)), // Haas
-    ALFA("Alfa Romeo F1 Team Stake", R.color.red_rose_vale, Nationality.SWISS, EngineConstructor.Ferrari, new NonDriverPerson("Alessandro Alunni", "Bravi", Nationality.ITALIAN), new NonDriverPerson("Jan", "Monchaux", Nationality.FRENCH)), // Sauber
-    ALPH("Scuderia AlphaTauri", R.color.black_charcoal, Nationality.ITALIAN, EngineConstructor.RBPT, new NonDriverPerson("Franz", "Tost", Nationality.AUSTRIAN), new NonDriverPerson("Jody", "Egginton", Nationality.BRITISH)), // Toro Rosso
-    ALPI("Alpine F1 Team", R.color.purple_middle, Nationality.FRENCH, EngineConstructor.Renault, new NonDriverPerson("Bruno", "Famin", Nationality.FRENCH)), // Renault
+    HAAS("MoneyGram Haas F1 Team", R.color.blue_yonder, Nationality.AMERICAN, EngineConstructor.Ferrari, new NonDriverPerson("Ayao", "Komatsu", Nationality.JAPANESE), new NonDriverPerson("Rob", "Taylor", Nationality.BRITISH)), // Haas
+    ALFA("Stake F1 Team", R.color.green_pantone, Nationality.SWISS, EngineConstructor.Ferrari, new NonDriverPerson("Alessandro Alunni", "Bravi", Nationality.ITALIAN), new NonDriverPerson("James", "Key", Nationality.BRITISH)), // Sauber
+    ALPH("Visa Cash App RB Formula One Team", R.color.black_charcoal, Nationality.ITALIAN, EngineConstructor.RBPT, new NonDriverPerson("Laurent", "Mekkies", Nationality.FRENCH), new NonDriverPerson("Jody", "Egginton", Nationality.BRITISH)), // Toro Rosso
+    ALPI("Alpine F1 Team", R.color.purple_middle, Nationality.FRENCH, EngineConstructor.Renault, new NonDriverPerson("Bruno", "Famin", Nationality.FRENCH), new NonDriverPerson("Matthew", "Harman", Nationality.BRITISH)), // Renault
     ASTO("Aston Martin F1 Team", R.color.green_viridian, Nationality.BRITISH, EngineConstructor.Mercedes, new NonDriverPerson("Mike", "Krack", Nationality.LUXEMBOURGISH), new NonDriverPerson("Dan", "Fallows", Nationality.BRITISH)), // Racing Point
     WILL("Williams Racing", R.color.blue_lapis_lazuli, Nationality.BRITISH, EngineConstructor.Mercedes, new NonDriverPerson("James", "Vowles", Nationality.BRITISH), new NonDriverPerson("Pat", "Fry", Nationality.BRITISH)), // Williams
     MCLA("McLaren Racing", R.color.orange_persian, Nationality.BRITISH, EngineConstructor.Mercedes, new NonDriverPerson("Andrea", "Stella", Nationality.ITALIAN)), // McLaren
