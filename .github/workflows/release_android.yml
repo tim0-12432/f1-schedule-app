@@ -101,7 +101,7 @@ jobs:
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.PASSWORD }}
         env:
-          BUILD_TOOLS_VERSION: "35.0.0"
+          BUILD_TOOLS_VERSION: 30.0.3
       - name: Cache APK
         uses: actions/cache@v3
         with:
