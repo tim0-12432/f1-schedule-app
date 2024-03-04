@@ -100,6 +100,8 @@ jobs:
           signingKeyBase64: ${{ secrets.KEYSTORE }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "35.0.0"
       - name: Cache APK
         uses: actions/cache@v3
         with:
