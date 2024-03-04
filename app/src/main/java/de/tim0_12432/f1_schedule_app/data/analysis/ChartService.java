@@ -24,9 +24,11 @@ import java.util.stream.IntStream;
 
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.analysis.chart.AccidentChart;
+import de.tim0_12432.f1_schedule_app.data.analysis.chart.DriverComparisonChart;
 import de.tim0_12432.f1_schedule_app.data.analysis.chart.PointsChart;
 import de.tim0_12432.f1_schedule_app.data.analysis.chart.PositionChart;
 import de.tim0_12432.f1_schedule_app.data.analysis.chart.SpeedChart;
+import de.tim0_12432.f1_schedule_app.data.entity.ColorShades;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr;
 import de.tim0_12432.f1_schedule_app.data.entity.DriverStanding;
 import de.tim0_12432.f1_schedule_app.utility.Logger;
@@ -216,5 +218,32 @@ public class ChartService {
 
         SpeedChart speedChart = new SpeedChart(appContext, chart, dataSet, data);
         speedChart.create();
+    }
+
+    public void createDriverComparisonChart(BarChart chart) {
+        Map<DriverStanding, Integer[]> data = analysisService.getComparisonOfDrivers();
+
+        if (data.isEmpty()) {
+            return;
+        }
+
+        List<DataSet> dataSets = new ArrayList<>();
+        for (DriverStanding driver : data.keySet()) {
+            Integer[] dataPoints = data.get(driver);
+            DataSet dataSet = new BarDataSet(IntStream.range(0, dataPoints.length)
+                    .mapToObj(i -> new BarEntry(i, dataPoints[i]))
+                    .collect(toList()), driver.getDriver().getCode());
+            dataSet.setColors(ColorShades.getShadesForColor(getColorForDriver(driver)));
+            dataSet.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+                    return String.valueOf((int) value);
+                }
+            });
+            dataSets.add(dataSet);
+        }
+
+        DriverComparisonChart driverComparisonChart = new DriverComparisonChart(appContext, chart, dataSets);
+        driverComparisonChart.create();
     }
 }

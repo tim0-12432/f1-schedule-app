@@ -40,6 +40,7 @@ public class SpeedChart extends AbstractChart<CandleStickChart> {
         yAxisLeft.setGridColor(getThemedColorFor(ColorElement.GRID));
         yAxisLeft.setGridLineWidth(1);
         yAxisLeft.setTextColor(getThemedColorFor(ColorElement.LABEL));
+        yAxisLeft.setAxisLineColor(getThemedColorFor(ColorElement.AXIS));
         yAxisLeft.setAxisLineWidth(2);
         yAxisLeft.setDrawGridLines(true);
         yAxisLeft.setDrawAxisLine(true);

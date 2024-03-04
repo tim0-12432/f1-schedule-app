@@ -37,6 +37,7 @@ public enum Nationality {
     MEXICAN("\uD83C\uDDF2\uD83C\uDDFD", R.string.nationality_mexican, "Mexico"),
     MONEGASQUE("\uD83C\uDDF2\uD83C\uDDE8", R.string.nationality_monegasque, "Monaco"),
     MOROCCAN("\uD83C\uDDF2\uD83C\uDDE6", "Morocco"),
+    NEW_ZEALANDER("\uD83C\uDDF3\uD83C\uDDFF", R.string.nationality_new_zealander, "New Zealand"),
     PORTUGUESE("\uD83C\uDDF5\uD83C\uDDF9", "Portugal"),
     POLISH("\uD83C\uDDF5\uD83C\uDDF1", R.string.nationality_polish, "Poland"),
     QATARI("\uD83C\uDDF6\uD83C\uDDE6", "Qatar"),
@@ -108,7 +109,7 @@ public enum Nationality {
             if (englishTranslation == null) {
                 throw new IllegalArgumentException("Translation is null!");
             }
-            return Nationality.valueOf(englishTranslation.toUpperCase(Locale.ROOT));
+            return Nationality.valueOf(englishTranslation.toUpperCase(Locale.ROOT).replace(" ", "_"));
         } catch (IllegalArgumentException e) {
             Resources currUsed = MainActivity.getAppResources();
             Configuration config = currUsed.getConfiguration();

@@ -95,7 +95,7 @@ public class DriverRankingAdapter extends ArrayAdapter<DriverStanding> {
 
         holder.driverName.setText(getDriverText(driver.getDriver()));
         ConstructorAttr team = ConstructorAttr.getConstructorOfTeam(driver.getConstructor());
-        holder.teamName.setText("\uD83D\uDC65 " + team.name().substring(0, 3));
+        holder.teamName.setText("\uD83D\uDC65 " + team.name().substring(0, 4));
         holder.teamName.setTextColor(team.getColor());
         holder.position.setText(getPositionText(driver.getPosition()));
         holder.points.setText(String.valueOf(driver.getPoints()));

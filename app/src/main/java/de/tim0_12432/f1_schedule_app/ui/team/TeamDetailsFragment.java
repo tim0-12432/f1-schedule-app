@@ -13,10 +13,14 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
 import de.tim0_12432.f1_schedule_app.data.Resource;
+import de.tim0_12432.f1_schedule_app.data.analysis.AnalysisService;
+import de.tim0_12432.f1_schedule_app.data.analysis.ChartService;
 import de.tim0_12432.f1_schedule_app.data.entity.Constructor;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorStanding;
@@ -72,8 +76,15 @@ public class TeamDetailsFragment extends Fragment {
 
         if (team != null) {
             setText(binding.teamScreenName, R.string.name, attr.getName());
+
+            if (attr.getAlterativeName() != null) {
+                binding.teamScreenAltName.setText("\u0020\u0020\u0020\u0020\u0020\u0020\u0020\"" + attr.getAlterativeName() + '\"');
+            } else {
+                binding.teamScreenAltName.setVisibility(View.GONE);
+            }
+
             setText(binding.teamScreenNationality, R.string.nationality, team.getNationality().getTranslation() + " " + team.getNationality().getEmojiFlag());
-            setText(binding.teamScreenEngine, R.string.engine, attr.getEngine().name());
+            setText(binding.teamScreenEngine, R.string.engine, attr.getEngine().getName());
 
             if (attr.getTeamLead() != null) {
                 setText(binding.teamScreenTeamlead, R.string.teamlead, attr.getTeamLead().getName() + " " + attr.getTeamLead().getFamilyName() + " " + attr.getTeamLead().getNationality().getEmojiFlag());
@@ -90,17 +101,28 @@ public class TeamDetailsFragment extends Fragment {
             setText(binding.teamScreenWins, R.string.wins, wins + "\uD83C\uDFC6");
 
             if (results.size() > 0) {
-                List<DriverStanding> list = results.stream().filter(x -> x.getConstructor().getName().equals(team.getName())).collect(java.util.stream.Collectors.toList());
+                List<DriverStanding> list = results.stream().filter(x -> x.getConstructor().getName().equals(team.getName())).collect(Collectors.toList());
                 setText(binding.teamScreenFirstDriver, R.string.first_driver, getDriverText(list.get(0)));
                 setText(binding.teamScreenSecondDriver, R.string.second_driver, getDriverText(list.get(1)));
                 if (list.size() > 2) {
-                    setText(binding.teamScreenSubDriver, R.string.sub_driver, getDriverText(list.get(2)));
+                    if (list.subList(2, list.size()).size() == 1) {
+                        setText(binding.teamScreenSubDriver, R.string.sub_driver, getDriverText(list.get(2)));
+                    } else {
+                        setText(binding.teamScreenSubDriver, R.string.sub_drivers, "\n" + list.subList(2, list.size())
+                                .stream()
+                                .map(this::getDriverText)
+                                .collect(Collectors.joining("\n")));
+                    }
                 } else {
                     binding.teamScreenSubDriver.setVisibility(View.GONE);
                     LinearLayout.LayoutParams second = (LinearLayout.LayoutParams) binding.teamScreenSecondDriver.getLayoutParams();
                     second.bottomMargin = 0;
                     binding.teamScreenSecondDriver.setLayoutParams(second);
                 }
+
+                AnalysisService analysis = new AnalysisService();
+                ChartService charts = new ChartService(MainActivity.getAppContext(), analysis);
+//                charts.createDriverComparisonChart(binding.teamDriverComparison);
             }
 
             binding.teamScreenWikiButton.setOnClickListener(v -> {

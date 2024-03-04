@@ -167,6 +167,12 @@ public class AnalysisService {
         return result;
     }
 
+    public Map<DriverStanding, Integer[]> getComparisonOfDrivers() {
+        final Map<DriverStanding, Integer[]> result = new HashMap<>();
+
+        return result;
+    }
+
     public static class CandleStick {
         public final float x;
         public final float open;
