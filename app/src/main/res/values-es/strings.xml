@@ -141,4 +141,5 @@
     <string name="debug_information">Información de depuración</string>
     <string name="nationality_new_zealander">Neozelandeses</string>
     <string name="sub_drivers">Pilotos suplentes</string>
+    <string name="driver_comparison">Comparación de conductores</string>
 </resources>

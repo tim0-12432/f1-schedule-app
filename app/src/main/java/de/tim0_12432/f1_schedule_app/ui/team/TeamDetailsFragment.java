@@ -15,9 +15,12 @@ import androidx.fragment.app.Fragment;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import de.tim0_12432.f1_schedule_app.MainActivity;
 import de.tim0_12432.f1_schedule_app.R;
 import de.tim0_12432.f1_schedule_app.data.DataManager;
 import de.tim0_12432.f1_schedule_app.data.Resource;
+import de.tim0_12432.f1_schedule_app.data.analysis.AnalysisService;
+import de.tim0_12432.f1_schedule_app.data.analysis.ChartService;
 import de.tim0_12432.f1_schedule_app.data.entity.Constructor;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorAttr;
 import de.tim0_12432.f1_schedule_app.data.entity.ConstructorStanding;
@@ -73,6 +76,13 @@ public class TeamDetailsFragment extends Fragment {
 
         if (team != null) {
             setText(binding.teamScreenName, R.string.name, attr.getName());
+
+            if (attr.getAlterativeName() != null) {
+                binding.teamScreenAltName.setText("\u0020\u0020\u0020\u0020\u0020\u0020\u0020\"" + attr.getAlterativeName() + '\"');
+            } else {
+                binding.teamScreenAltName.setVisibility(View.GONE);
+            }
+
             setText(binding.teamScreenNationality, R.string.nationality, team.getNationality().getTranslation() + " " + team.getNationality().getEmojiFlag());
             setText(binding.teamScreenEngine, R.string.engine, attr.getEngine().getName());
 
@@ -109,6 +119,10 @@ public class TeamDetailsFragment extends Fragment {
                     second.bottomMargin = 0;
                     binding.teamScreenSecondDriver.setLayoutParams(second);
                 }
+
+                AnalysisService analysis = new AnalysisService();
+                ChartService charts = new ChartService(MainActivity.getAppContext(), analysis);
+//                charts.createDriverComparisonChart(binding.teamDriverComparison);
             }
 
             binding.teamScreenWikiButton.setOnClickListener(v -> {

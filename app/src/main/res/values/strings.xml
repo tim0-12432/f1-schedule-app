@@ -148,4 +148,5 @@
     <string name="debug_information">Debug Information</string>
     <string name="nationality_new_zealander">New Zealander</string>
     <string name="sub_drivers">Sub drivers</string>
+    <string name="driver_comparison">Driver comparison</string>
 </resources>

@@ -141,4 +141,5 @@
     <string name="debug_information">Debug-Informationen</string>
     <string name="nationality_new_zealander">Neuseeländer</string>
     <string name="sub_drivers">Ersatzfahrer</string>
+    <string name="driver_comparison">Fahrer-Vergleich</string>
 </resources>

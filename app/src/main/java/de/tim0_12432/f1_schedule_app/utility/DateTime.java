@@ -18,6 +18,9 @@ public class DateTime {
     }
 
     public static String getTimestamp(final Time time, final int timezone) {
+        if (time == null) {
+            return "00:00";
+        }
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.ROOT);
         Time newTime = new Time(time.getTime() + 3600000L * timezone);
         return formatter.format(new Date(newTime.getTime()));
