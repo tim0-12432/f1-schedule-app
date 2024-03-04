@@ -80,6 +80,8 @@ jobs:
           signingKeyBase64: ${{ secrets.KEYSTORE }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "35.0.0"
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
