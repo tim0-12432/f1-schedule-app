@@ -21,7 +21,7 @@ public class ConstructorAttrTest {
     @Test
     public void testAttributes() {
         Assert.assertEquals(Nationality.ITALIAN, ConstructorAttr.FERR.getNationality());
-        Assert.assertEquals("Red Bull Racing", ConstructorAttr.REDB.getName());
+        Assert.assertEquals("Oracle Red Bull Racing", ConstructorAttr.REDB.getName());
         Assert.assertEquals(EngineConstructor.Mercedes, ConstructorAttr.MERC.getEngine());
     }
 
