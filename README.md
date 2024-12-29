@@ -4,6 +4,8 @@
 
 ![banner](./app/src/main/res/logo-files/play_store_feature_graphic.png)
 
+> ⚠️ The API I used for this app has been discontinued. Therefore the app does not work anymore after 2024! ⚠️
+
 ## Table of Contents
 
 - [Description](#description)
